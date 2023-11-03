@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import view.TelaBuscaCliente;
+import view.TelaBuscaEndereco;
 
 
 public class ControllerCadCliente implements ActionListener, FocusListener{
@@ -30,6 +31,7 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
         this.telaCadastroCliente.getGravar().addActionListener(this);
         this.telaCadastroCliente.getSair().addActionListener(this);
         this.telaCadastroCliente.getNewButton().addActionListener(this);
+        this.telaCadastroCliente.getBuscarEnd().addActionListener(this);
         Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
         for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
             if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
@@ -90,6 +92,11 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
             end.setVisible(true);
         }else if(e.getSource() == this.telaCadastroCliente.getBuscar()){
             this.telaBusca.setVisible(true);
+        }else if(e.getSource() == this.telaCadastroCliente.getBuscarEnd()){
+           
+            view.TelaBuscaEndereco end = new view.TelaBuscaEndereco(null,true);
+            ControllerBuscaEndereco controller = new ControllerBuscaEndereco(end,this);
+            end.setVisible(true);
         }
     }
 

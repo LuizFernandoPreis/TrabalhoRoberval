@@ -61,7 +61,7 @@ private List<Cliente> listaCliente = new ArrayList();
         if(e.getSource() == this.telaBuscaCliente.getjButtonCarregar()){
                  int aux = this.telaBuscaCliente.getjTableDados().getSelectedRow();
 
-                 this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.get(aux).getId()));
+                 this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(aux+1));
                  this.controller.telaCadastroCliente.getComplementoTexto().setText(listaCliente.get(aux).getComplementoEmdereco());
                  this.controller.telaCadastroCliente.getCpfTexto().setText(listaCliente.get(aux).getCpf());
                  this.controller.telaCadastroCliente.getNomeTexto().setText(listaCliente.get(aux).getNome());
@@ -71,7 +71,11 @@ private List<Cliente> listaCliente = new ArrayList();
                  this.controller.telaCadastroCliente.getFoneTexto().setText(listaCliente.get(aux).getFone1());
                  this.controller.telaCadastroCliente.getFone2Texto().setText(listaCliente.get(aux).getFone2());
                  this.controller.telaCadastroCliente.getEmailTexto().setText(listaCliente.get(aux).getEmail());
-                  if(listaCliente.get(aux).getStatus() == "a"){
+                 this.controller.telaCadastroCliente.getBuscaEnd().setText(listaCliente.get(aux).getEndereco().getCep());
+                 this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(aux).getEndereco().getBairro().getDescricao());
+                 this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(aux).getEndereco().getCidade().getDescricao());
+                 this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(aux).getEndereco().getCidade().getUf());
+                  if(listaCliente.get(aux).getStatus().length() == 1){
                 this.controller.telaCadastroCliente.getStatus().setSelected(true);
             }else{
                 this.controller.telaCadastroCliente.getStatus().setSelected(false);

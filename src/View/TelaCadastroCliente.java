@@ -413,6 +413,46 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public JTextField getBuscaEnd() {
+        return buscaEnd;
+    }
+
+    public void setBuscaEnd(JTextField buscaEnd) {
+        this.buscaEnd = buscaEnd;
+    }
+
+    public JButton getBuscarEnd() {
+        return buscarEnd;
+    }
+
+    public void setBuscarEnd(JButton buscarEnd) {
+        this.buscarEnd = buscarEnd;
+    }
+
+    public JTextField getMostraBairro() {
+        return mostraBairro;
+    }
+
+    public void setMostraBairro(JTextField mostraBairro) {
+        this.mostraBairro = mostraBairro;
+    }
+
+    public JTextField getMostraCidade() {
+        return mostraCidade;
+    }
+
+    public void setMostraCidade(JTextField mostraCidade) {
+        this.mostraCidade = mostraCidade;
+    }
+
+    public JTextField getMostraUf() {
+        return mostraUf;
+    }
+
+    public void setMostraUf(JTextField mostraUf) {
+        this.mostraUf = mostraUf;
+    }
+
     public JPanel getBody() {
         return Body;
     }

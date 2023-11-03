@@ -105,13 +105,11 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
      public List<Cliente> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT cliente.cpf, cliente.rg, "
-                +"cliente.matricula, "
-                +"cliente.nome, cliente.fone1, "
-                +"cliente.fone2, cliente.email, cliente.status, "
-                +"cliente.complementoendereco, cliente.endereco_id "
+        String param = "SELECT * "
                 +"from cliente "
                 +"LEFT OUTER JOIN ENDERECO ON ENDERECO.id = cliente.endereco_id "
+                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
+                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id "
                 +"where CLIENTE." + aux + " like ?";
                 
         String sql = param;
@@ -139,10 +137,12 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                 cliente.setFone2(rst.getString("fone2"));   
                 cliente.setRg(rst.getString("rg"));
                 cliente.setStatus(rst.getString("status"));
+                cliente.setDataNascimento(rst.getString("datanascimento"));
                 
                 Endereco endereco = new Endereco();
                 endereco.setId(Integer.parseInt(rst.getString("endereco_id")));
-                /*
+                endereco.setCep(rst.getString("cep"));
+                
                 Bairro bairro = new Bairro();
                 bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
                 bairro.setDescricao(rst.getString("bairro.descricao"));
@@ -152,7 +152,8 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                 cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
                 cidade.setDescricao(rst.getString("cidade.descricao"));
                 cidade.setUf(rst.getString("cidade.uf"));
-                endereco.setCidade(cidade);*/
+                endereco.setCidade(cidade);
+                cliente.setEndereco(endereco);
                 listaBairro.add(cliente);
             }
            
