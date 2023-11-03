@@ -53,7 +53,7 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
                 tf.getFoneTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getFone1());
                 tf.getEndBox().setSelectedItem(Integer.toOctalString(DAO.ClasseDados.listaFornecedor.get(aux).getEndereco().getId()));
                 tf.getEmailTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getEmail());
-                if(DAO.ClasseDados.listaFornecedor.get(aux).getStatus() == 'a'){
+                if(DAO.ClasseDados.listaFornecedor.get(aux).getStatus() == "a"){
                     this.controller.telaCadastroFornecedor.getStatus().setSelected(true);
                 }else{
                     this.controller.telaCadastroFornecedor.getStatus().setSelected(false);

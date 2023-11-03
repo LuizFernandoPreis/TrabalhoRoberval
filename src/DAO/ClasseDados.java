@@ -55,9 +55,9 @@ public class ClasseDados {
         Endereco endereco1 = new Endereco(2,"88765000", "Estra Geral","a", bairro1, cidade1);
         Endereco endereco2 = new Endereco(3,"88765000", "centro","a", bairro2, cidade2);
        
-        Cliente cliente = new Cliente("123123123", "123123123", "123123123", "1807200", 1, "Luiz", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", 'a', "casa", endereco);
-        Cliente cliente1 = new Cliente("123123123", "123123123", "123123123", "1807200", 2, "Gabriel", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", 'a', "casa", endereco1);
-        Cliente cliente2= new Cliente("123123123", "123123123", "123123123", "1807200", 3, "David", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", 'a', "casa", endereco2);
+        Cliente cliente = new Cliente("123123123", "123123123", "123123123", "1807200", 1, "Luiz", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", "a", "casa", endereco);
+        Cliente cliente1 = new Cliente("123123123", "123123123", "123123123", "1807200", 2, "Gabriel", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", "a", "casa", endereco1);
+        Cliente cliente2= new Cliente("123123123", "123123123", "123123123", "1807200", 3, "David", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", "a", "casa", endereco2);
         
         Produto produto = new Produto(1, "caixa", "123123", "a");
         Produto produto1 = new Produto(2, "bombom", "123123", "a");
@@ -67,13 +67,13 @@ public class ClasseDados {
         Carteirinha carteirinha1 = new Carteirinha(2, "123123", "18082023", "18082024",cliente1);
         Carteirinha carteirinha2 = new Carteirinha(3, "123123", "18092020", "18092021",cliente2);
         
-        funcionario Funcionario = new funcionario("123123","123123","luiz","123123",1,"luiz fernando", "1231231230","48123123123", "a@gmail.com", 'a',"casa do juninho", endereco);
-        funcionario Funcionario1 = new funcionario("123123","123123","guilherme","123123",2,"luiz fernando", "1231231230","48123123123", "a@gmail.com", 'a',"casa do juninho", endereco);
-        funcionario Funcionario2 = new funcionario("123123","123123","gabriel","123123",3,"luiz fernando", "1231231230","48123123123", "a@gmail.com", 'a',"casa do juninho", endereco);
+        funcionario Funcionario = new funcionario("123123","123123","luiz","123123",1,"luiz fernando", "1231231230","48123123123", "a@gmail.com", "a","casa do juninho", endereco);
+        funcionario Funcionario1 = new funcionario("123123","123123","guilherme","123123",2,"luiz fernando", "1231231230","48123123123", "a@gmail.com", "a","casa do juninho", endereco);
+        funcionario Funcionario2 = new funcionario("123123","123123","gabriel","123123",3,"luiz fernando", "1231231230","48123123123", "a@gmail.com", "a","casa do juninho", endereco);
                 
-        Fornecedor fornecedor = new Fornecedor("123456123", "sim", "casado", 1, "Garcia", "998696969", "998969696", "garcia@gmail.com", 'a', "casa do caralho", endereco);
-        Fornecedor fornecedor1 = new Fornecedor("123456123", "sim", "casado", 2, "Diniz", "998696969", "998969696", "garcia@gmail.com", 'd', "casa do caralho", endereco1);
-        Fornecedor fornecedor2 = new Fornecedor("123456123", "sim", "casado", 3, "Luiz", "998696969", "998969696", "garcia@gmail.com", 'a', "casa do caralho", endereco2);
+        Fornecedor fornecedor = new Fornecedor("123456123", "sim", "casado", 1, "Garcia", "998696969", "998969696", "garcia@gmail.com", "a", "casa do caralho", endereco);
+        Fornecedor fornecedor1 = new Fornecedor("123456123", "sim", "casado", 2, "Diniz", "998696969", "998969696", "garcia@gmail.com", "a", "casa do caralho", endereco1);
+        Fornecedor fornecedor2 = new Fornecedor("123456123", "sim", "casado", 3, "Luiz", "998696969", "998969696", "garcia@gmail.com", "a", "casa do caralho", endereco2);
 
         listaBairro.add(bairro);
         listaBairro.add(bairro1);

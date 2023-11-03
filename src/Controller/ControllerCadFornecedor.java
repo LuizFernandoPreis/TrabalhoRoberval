@@ -52,11 +52,11 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroFornecedor.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroFornecedor.getBody());
         }else if(e.getSource() == this.telaCadastroFornecedor.getGravar()){
-            char on = 's';
+            String on = "";
             if(this.telaCadastroFornecedor.getStatus().isSelected() == true){
-                on = 'a';
+                on = "a";
             }else if(this.telaCadastroFornecedor.getStatus().isSelected() == false){
-                on = 'd';
+                on = "a";
             }
             Endereco endereco = DAO.ClasseDados.listaEndereco.get(Integer.parseInt(this.telaCadastroFornecedor.getEndBox().getSelectedItem().toString() )-1);
             if(Integer.parseInt(this.telaCadastroFornecedor.getIdTexto().getText()) > DAO.ClasseDados.listaFornecedor.size()){

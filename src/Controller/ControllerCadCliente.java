@@ -50,11 +50,11 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroCliente.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCliente.getBody());
         }else if(e.getSource() == this.telaCadastroCliente.getGravar()){
-            char on = 's';
+            String on = "";
             if(this.telaCadastroCliente.getStatus().isSelected() == true){
-                on = 'a';
+                on = "a";
             }else if(this.telaCadastroCliente.getStatus().isSelected() == false){
-                on = 'd';
+                on = "";
             }
              if(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) > DAO.ClasseDados.listaCliente.size()){
                  Cliente cliente = new Cliente(this.telaCadastroCliente.getCpfTexto().getText(), this.telaCadastroCliente.getRgTexto().getText(),

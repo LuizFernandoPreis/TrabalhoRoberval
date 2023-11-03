@@ -22,7 +22,7 @@ public class Fornecedor extends Pessoa{
         this.inscricaoEstadual = inscricaoEstadual;
     }
     
-    public Fornecedor(String cnpj, String inscricaoEstadual, String razaoSocial, int id, String nome, String fone1, String fone2, String email, char status, String complementoEmdereco, Endereco endereco) {
+    public Fornecedor(String cnpj, String inscricaoEstadual, String razaoSocial, int id, String nome, String fone1, String fone2, String email, String status, String complementoEmdereco, Endereco endereco) {
         super(id, nome, fone1, fone2, email, status, complementoEmdereco, endereco);
         this.cnpj = cnpj;
         this.inscricaoEstadual = inscricaoEstadual;

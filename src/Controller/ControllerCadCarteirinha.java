@@ -31,7 +31,7 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         this.telaCadastroCarteirinha.getIdTexto().setEnabled(false);
         this.telaCadastroCarteirinha.getClienteBox().addFocusListener(this);
         for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
-            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == 'a'){
+            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == "a"){
                  this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(DAO.ClasseDados.listaCliente.get(i).getId()));
             }
            
@@ -84,7 +84,7 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
     public void focusGained(FocusEvent e) {
         this.telaCadastroCarteirinha.getClienteBox().removeAllItems();
         for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
-            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == 'a'){
+            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == "a"){
             this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(DAO.ClasseDados.listaCliente.get(i).getId()));
             }
         }

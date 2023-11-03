@@ -105,15 +105,14 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
      public List<Cliente> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT endereco.id, endereco.cep, "
-                +"endereco.logradouro, endereco.cidade_id, "
-                +"endereco.bairro_id, endereco.status, "
-                +"bairro.descricao, cidade.descricao, "
-                +"cidade.uf "
-                +"from Endereco "
-                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
-                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id "
-                +"where ENDERECO." + aux + " like ?";
+        String param = "SELECT cliente.cpf, cliente.rg, "
+                +"cliente.matricula, cliente.carteirinha_id, "
+                +"cliente.nome, cliente.fone1, "
+                +"cliente.fone2, cliente.email, cliente.status, "
+                +"cliente.complementoendereco, cliente.endereco_id "
+                +"from cliente "
+                +"LEFT OUTER JOIN ENDERECO ON ENDERECO.id = cliente.endereco_id "
+                +"where CLIENTE." + aux + " like ?";
                 
         String sql = param;
         String sqlExecutar =sql;
@@ -129,12 +128,20 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
            
            
             while(rst.next()){
+                Cliente cliente = new Cliente();
+                
+                cliente.setComplementoEmdereco(rst.getString("complementoendereco"));
+                cliente.setCpf(rst.getString("cpf"));
+                cliente.setEmail(rst.getString("email"));
+                cliente.setMatricula(rst.getString("matricula"));
+                cliente.setNome(rst.getString("nome"));
+                cliente.setFone1(rst.getString("fone1"));
+                cliente.setFone2(rst.getString("fone2"));   
+                cliente.setRg(rst.getString("rg"));
+                cliente.setStatus(rst.getString("status"));
+                
                 Endereco endereco = new Endereco();
-                endereco.setId(rst.getInt("id"));
-                endereco.setCep(rst.getString("cep"));
-                endereco.setLogradoura(rst.getString("logradouro"));
-                endereco.setStatus( ""+rst.getString("status"));
-                listaBairro.add(endereco);
+                endereco.setId(Integer.parseInt(rst.getString("endereco_id")));
                 
                 Bairro bairro = new Bairro();
                 bairro.setId(Integer.parseInt(rst.getString("bairro_id")));

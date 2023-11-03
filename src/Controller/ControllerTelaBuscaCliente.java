@@ -47,7 +47,7 @@ private DefaultTableModel tabela;
                  this.controller.telaCadastroCliente.getFoneTexto().setText(DAO.ClasseDados.listaCliente.get(aux).getFone1());
                  this.controller.telaCadastroCliente.getFone2Texto().setText(DAO.ClasseDados.listaCliente.get(aux).getFone2());
                  this.controller.telaCadastroCliente.getEmailTexto().setText(DAO.ClasseDados.listaCliente.get(aux).getEmail());
-                  if(DAO.ClasseDados.listaCliente.get(aux).getStatus() == 'a'){
+                  if(DAO.ClasseDados.listaCliente.get(aux).getStatus() == "a"){
                 this.controller.telaCadastroCliente.getStatus().setSelected(true);
             }else{
                 this.controller.telaCadastroCliente.getStatus().setSelected(false);

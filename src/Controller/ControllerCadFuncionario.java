@@ -46,11 +46,11 @@ public class ControllerCadFuncionario implements ActionListener, FocusListener{T
         } else if(e.getSource() == this.telaCadastroFuncionario.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroFuncionario.getBody());
         }else if(e.getSource() == this.telaCadastroFuncionario.getGravar()){
-            char on = 's';
+           String on = "";
             if(this.telaCadastroFuncionario.getStatus().isSelected() == true){
-                on = 'a';
+                on = "a";
             }else if(this.telaCadastroFuncionario.getStatus().isSelected() == false){
-                on = 'd';
+                on = "";
             }
             Endereco endereco = DAO.ClasseDados.listaEndereco.get(Integer.parseInt(this.telaCadastroFuncionario.getEndBox().getSelectedItem().toString() )-1);
                if(Integer.parseInt(this.telaCadastroFuncionario.getIdTexto().getText()) > DAO.ClasseDados.listaFuncionario.size()){
