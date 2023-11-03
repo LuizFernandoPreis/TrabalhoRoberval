@@ -106,7 +106,7 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
  
             Connection conexao = ConnectionFactory.getConnection();
         String param = "SELECT cliente.cpf, cliente.rg, "
-                +"cliente.matricula, cliente.carteirinha_id, "
+                +"cliente.matricula, "
                 +"cliente.nome, cliente.fone1, "
                 +"cliente.fone2, cliente.email, cliente.status, "
                 +"cliente.complementoendereco, cliente.endereco_id "
@@ -142,7 +142,7 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                 
                 Endereco endereco = new Endereco();
                 endereco.setId(Integer.parseInt(rst.getString("endereco_id")));
-                
+                /*
                 Bairro bairro = new Bairro();
                 bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
                 bairro.setDescricao(rst.getString("bairro.descricao"));
@@ -152,7 +152,8 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                 cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
                 cidade.setDescricao(rst.getString("cidade.descricao"));
                 cidade.setUf(rst.getString("cidade.uf"));
-                endereco.setCidade(cidade);
+                endereco.setCidade(cidade);*/
+                listaBairro.add(cliente);
             }
            
         } catch (SQLException ex) {
