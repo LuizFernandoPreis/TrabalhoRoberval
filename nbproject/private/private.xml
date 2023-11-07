@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/DAO/FornecedorDAO.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/View/TelaBuscaCliente.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/DAO/EnderecoDAO.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/View/Menu.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/View/TelaCadastroCliente.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/Model/bo/DAO/ConnectionFactory.java</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/aluno/Desktop/exportas/TrabalhoRoberval/src/View/TelaCadastroCidade.java</file>
+        </group>
     </open-files>
 </project-private>
