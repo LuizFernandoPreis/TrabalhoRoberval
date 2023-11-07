@@ -41,11 +41,6 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
         this.telaCadastroCliente.getNewButton().addActionListener(this);
         this.telaCadastroCliente.getBuscarEnd().addActionListener(this);
         Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
-        for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
-            if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
-            }
-                
-        }
         this.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
         this.telaCadastroCliente.getIdTexto().setEnabled(false);
     }

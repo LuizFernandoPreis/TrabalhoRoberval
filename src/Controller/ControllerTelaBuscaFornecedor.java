@@ -4,7 +4,9 @@
  */
 package Controller;
 
+import Model.bo.Endereco;
 import Model.bo.Fornecedor;
+import Service.EnderecoService;
 import Service.FornecedorService;
 import View.TelaCadastroFornecedor;
 import java.awt.event.ActionEvent;
@@ -26,6 +28,7 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
     private DefaultTableModel tabela;
     private ControllerCadFornecedor controller;
     private List<Fornecedor> listaFornecedor = new ArrayList();
+    private List<Endereco> listaEndereco = new ArrayList();
     public ControllerTelaBuscaFornecedor(TelaBucaFornecedor telaBuscaFornecedor, ControllerCadFornecedor controller) {
         DocumentListener listener = new DocumentListener(){
             @Override
@@ -44,6 +47,7 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
             }
             
         };
+        listaEndereco = EnderecoService.carregar();
         this.telaBuscaFornecedor = telaBuscaFornecedor;
         this.controller = controller;
         this.telaBuscaFornecedor.getjButtonCarregar().addActionListener(this);
@@ -76,6 +80,11 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
                 tf.getFone2Texto().setText(listaFornecedor.get(aux).getFone2());
                 tf.getFoneTexto().setText(listaFornecedor.get(aux).getFone1());
                 tf.getEmailTexto().setText(listaFornecedor.get(aux).getEmail());
+                this.controller.telaCadastroFornecedor.getBuscaEndereco().setText(listaEndereco.get(aux).getCep());
+                this.controller.telaCadastroFornecedor.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
+                this.controller.telaCadastroFornecedor.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
+                this.controller.telaCadastroFornecedor.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
+                this.controller.endereco.setId(listaFornecedor.get(aux).getEndereco().getId());
                 if(listaFornecedor.get(aux).getStatus().length() == 1){
                     this.controller.telaCadastroFornecedor.getStatus().setSelected(true);
                 }else{

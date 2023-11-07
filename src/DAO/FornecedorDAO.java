@@ -6,7 +6,6 @@ package DAO;
 
 import Model.bo.Bairro;
 import Model.bo.Cidade;
-import Model.bo.Cliente;
 import Model.bo.DAO.ConnectionFactory;
 import Model.bo.DAO.InterfaceDAO;
 import Model.bo.Endereco;
@@ -20,10 +19,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author luizf
- */
+
 public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
 
     @Override
@@ -132,7 +128,42 @@ public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
 
     @Override
     public void update(Fornecedor objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = " UPDATE tblfornecedor"
+                            + " SET nome = ?,"
+                            + " fone1 = ?,"
+                            + " fone2 = ?,"
+                            + " email = ?,"
+                            + " complementoendereco = ?,"
+                            + " cnpj = ?,"
+                            + " inscricaoEstadual = ?,"
+                            + " razaoSocial = ?,"
+                            + " tblendereco_id = ?,"
+                            + " status = ?"
+                            + " WHERE tblfornecedor.id = ?" ;  
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getNome());
+            pstm.setString(2, objeto.getFone1());
+            pstm.setString(3, objeto.getFone2());
+            pstm.setString(4, objeto.getEmail());
+            pstm.setString(5, objeto.getComplementoEmdereco());
+            pstm.setString(6, objeto.getCnpj());
+            pstm.setString(7, objeto.getInscricaoEstadual());
+            pstm.setString(8, objeto.getRazaoSocial());
+            pstm.setInt(9, objeto.getEndereco().getId());
+            pstm.setString(10, objeto.getStatus());
+            pstm.setInt(11, objeto.getId());
+            
+            pstm.execute(); 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
     }
 
     @Override

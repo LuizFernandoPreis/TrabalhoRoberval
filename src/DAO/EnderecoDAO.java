@@ -84,6 +84,7 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
                 Cidade cidade = new Cidade();
                 cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
                 cidade.setDescricao(rst.getString("tblcidade.descricao"));
+                cidade.setUf(rst.getString("uf"));
                 endereco.setCidade(cidade);
             }
            

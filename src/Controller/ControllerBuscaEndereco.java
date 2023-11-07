@@ -114,6 +114,8 @@ public class ControllerBuscaEndereco implements ActionListener{
                         this.controller.telaCadastroEndereco.getCepTexto().setText(listaEndereco.get(aux).getCep());
                         this.controller.telaCadastroEndereco.getLogradouroTexto().setText(listaEndereco.get(aux).getLogradoura());
                         this.controller.telaCadastroEndereco.getUfText().setText(listaEndereco.get(aux).getCidade().getUf());
+                        this.controller.telaCadastroEndereco.getBairroBox().setSelectedIndex(listaEndereco.get(aux).getBairro().getId()-1);
+                        this.controller.telaCadastroEndereco.getCidadeBox().setSelectedIndex(listaEndereco.get(aux).getCidade().getId()-1);
                         if(listaEndereco.get(aux).getStatus().length() == 1){
                             this.controller.telaCadastroEndereco.getStatus().setSelected(true);
 
