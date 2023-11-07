@@ -51,7 +51,6 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
     }
     
    Endereco endereco = new Endereco();
-   
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.telaCadastroCliente.getCancelar()){

@@ -48,7 +48,7 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
         this.controller = controller;
         this.telaBuscaFornecedor.getjButtonCarregar().addActionListener(this);
         this.telaBuscaFornecedor.getjButtonSair().addActionListener(this);
-        
+        this.telaBuscaFornecedor.getjTFFitrar().getDocument().addDocumentListener(listener);
         tabela = (DefaultTableModel) this.telaBuscaFornecedor.getjTableDados().getModel();
     }
 
@@ -67,16 +67,16 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
       if(e.getSource() == this.telaBuscaFornecedor.getjButtonCarregar()){
                 int aux = this.telaBuscaFornecedor.getjTableDados().getSelectedRow();
                 TelaCadastroFornecedor tf = this.controller.telaCadastroFornecedor;
-                tf.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaFornecedor.get(aux).getId()));
-                tf.getCnpjTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getCnpj());
-                tf.getComplementoTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getComplementoEmdereco());
-                tf.getNomeTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getNome());
-                tf.getRazaoSocialTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getRazaoSocial());
-                tf.getInscricaoEstuadualTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getInscricaoEstadual());
-                tf.getFone2Texto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getFone2());
-                tf.getFoneTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getFone1());
-                tf.getEmailTexto().setText(DAO.ClasseDados.listaFornecedor.get(aux).getEmail());
-                if(DAO.ClasseDados.listaFornecedor.get(aux).getStatus() == "a"){
+                tf.getIdTexto().setText(Integer.toString(listaFornecedor.get(aux).getId()));
+                tf.getCnpjTexto().setText(listaFornecedor.get(aux).getCnpj());
+                tf.getComplementoTexto().setText(listaFornecedor.get(aux).getComplementoEmdereco());
+                tf.getNomeTexto().setText(listaFornecedor.get(aux).getNome());
+                tf.getRazaoSocialTexto().setText(listaFornecedor.get(aux).getRazaoSocial());
+                tf.getInscricaoEstuadualTexto().setText(listaFornecedor.get(aux).getInscricaoEstadual());
+                tf.getFone2Texto().setText(listaFornecedor.get(aux).getFone2());
+                tf.getFoneTexto().setText(listaFornecedor.get(aux).getFone1());
+                tf.getEmailTexto().setText(listaFornecedor.get(aux).getEmail());
+                if(listaFornecedor.get(aux).getStatus().length() == 1){
                     this.controller.telaCadastroFornecedor.getStatus().setSelected(true);
                 }else{
                     this.controller.telaCadastroFornecedor.getStatus().setSelected(false);
