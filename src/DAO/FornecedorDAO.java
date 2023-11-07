@@ -17,6 +17,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,12 +28,96 @@ public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
 
     @Override
     public void create(Fornecedor objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "INSERT tblfornecedor(nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,razaoSocial,inscricaoestadual,cnpj) VALUES(?,?,?,?,?,?,?,?,?,?)";
+             
+        PreparedStatement pstm;
+        pstm = null;
+        try {
+            
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getNome());
+            pstm.setString(2, objeto.getFone1());
+            pstm.setString(3, objeto.getFone2());
+            pstm.setString(4, objeto.getEmail());
+            pstm.setString(5, objeto.getStatus());
+            pstm.setString(6, objeto.getComplementoEmdereco());
+            pstm.setInt(7, objeto.getEndereco().getId());
+            pstm.setString(8, objeto.getRazaoSocial());
+            pstm.setString(9, objeto.getInscricaoEstadual());
+            pstm.setString(10, objeto.getCnpj());
+            pstm.execute();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
     }
 
     @Override
     public List<Fornecedor> retrieve() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        
+            Connection conexao = ConnectionFactory.getConnection();
+        String param = "SELECT * "
+                +"from tblfornecedor "
+                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblfornecedor.tblendereco_id "
+                +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
+                +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id ";
+                
+        String sql = param;
+        String sqlExecutar =sql;
+        PreparedStatement pstm = null;
+        ResultSet rst = null ;
+        List<Fornecedor> listaBairro = new ArrayList<>();
+
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            rst = pstm.executeQuery();
+           
+           
+           
+            while(rst.next()){
+                Fornecedor cliente = new Fornecedor();
+                
+                cliente.setId(rst.getInt("id"));
+                cliente.setComplementoEmdereco(rst.getString("complementoendereco"));
+                cliente.setCnpj(rst.getString("cnpj"));
+                cliente.setEmail(rst.getString("email"));
+                cliente.setRazaoSocial(rst.getString("razaosocial"));
+                cliente.setNome(rst.getString("nome"));
+                cliente.setFone1(rst.getString("fone1"));
+                cliente.setFone2(rst.getString("fone2"));   
+                cliente.setStatus(rst.getString("status"));
+                cliente.setInscricaoEstadual(rst.getString("inscricaoestadual"));
+                
+                Endereco endereco = new Endereco();
+                endereco.setId(Integer.parseInt(rst.getString("tblendereco_id")));
+                endereco.setCep(rst.getString("cep"));
+                
+                Bairro bairro = new Bairro();
+                bairro.setId(Integer.parseInt(rst.getString("tblbairro_id")));
+                bairro.setDescricao(rst.getString("tblbairro.descricao"));
+                endereco.setBairro(bairro);
+                
+                Cidade cidade = new Cidade();
+                cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
+                cidade.setDescricao(rst.getString("tblcidade.descricao"));
+                cidade.setUf(rst.getString("tblcidade.uf"));
+                endereco.setCidade(cidade);
+                cliente.setEndereco(endereco);
+                listaBairro.add(cliente);
+            }
+           
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }finally{
+           
+            ConnectionFactory.closeConnection(conexao, pstm, rst);
+            return listaBairro;
+        }
     }
 
     @Override
@@ -58,7 +144,7 @@ public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
             Connection conexao = ConnectionFactory.getConnection();
         String param = "SELECT * "
                 +"from tblfornecedor "
-                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblcliente.tblendereco_id "
+                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblfornecedor.tblendereco_id "
                 +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
                 +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id "
                 +"where tblfornecedor." + aux + " like ?";
