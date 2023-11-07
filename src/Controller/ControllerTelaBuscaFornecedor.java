@@ -5,9 +5,14 @@
 package Controller;
 
 import Model.bo.Fornecedor;
+import Service.FornecedorService;
 import View.TelaCadastroFornecedor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import view.TelaBucaFornecedor;
 
@@ -20,27 +25,46 @@ public class ControllerTelaBuscaFornecedor implements ActionListener{
     private TelaBucaFornecedor telaBuscaFornecedor;
     private DefaultTableModel tabela;
     private ControllerCadFornecedor controller;
-    
+    private List<Fornecedor> listaFornecedor = new ArrayList();
     public ControllerTelaBuscaFornecedor(TelaBucaFornecedor telaBuscaFornecedor, ControllerCadFornecedor controller) {
+        DocumentListener listener = new DocumentListener(){
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                carregar();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                carregar();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                carregar();
+            }
+            
+        };
         this.telaBuscaFornecedor = telaBuscaFornecedor;
         this.controller = controller;
         this.telaBuscaFornecedor.getjButtonCarregar().addActionListener(this);
-        this.telaBuscaFornecedor.getjButtonFiltrar().addActionListener(this);
         this.telaBuscaFornecedor.getjButtonSair().addActionListener(this);
+        
         tabela = (DefaultTableModel) this.telaBuscaFornecedor.getjTableDados().getModel();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-      if(e.getSource() == telaBuscaFornecedor.getjButtonFiltrar()){
-          System.out.println("a");
-          DAO.ClasseDados.getInstance();
+    public void carregar(){
+        listaFornecedor = FornecedorService.carregarList(this.telaBuscaFornecedor.getjTFFitrar().getText(), this.telaBuscaFornecedor.getBuscaChave().getSelectedItem().toString());
         if(tabela.getDataVector().size() == 0){
-            for (Fornecedor fornecedor : DAO.ClasseDados.listaFornecedor) {
+            for (Fornecedor fornecedor : listaFornecedor) {
             tabela.addRow(new Object[] {fornecedor.getId(), fornecedor.getCnpj(), fornecedor.getNome(), fornecedor.getInscricaoEstadual(), fornecedor.getRazaoSocial()});
         }
         }
-      }else if(e.getSource() == this.telaBuscaFornecedor.getjButtonCarregar()){
+    }
+    
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      if(e.getSource() == this.telaBuscaFornecedor.getjButtonCarregar()){
                 int aux = this.telaBuscaFornecedor.getjTableDados().getSelectedRow();
                 TelaCadastroFornecedor tf = this.controller.telaCadastroFornecedor;
                 tf.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaFornecedor.get(aux).getId()));
