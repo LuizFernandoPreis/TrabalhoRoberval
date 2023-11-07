@@ -23,20 +23,14 @@ public class ControllerCadFuncionario implements ActionListener, FocusListener{T
         this.telaCadastroFuncionario.getNovo().addActionListener(this);
         this.telaCadastroFuncionario.getGravar().addActionListener(this);
         this.telaCadastroFuncionario.getSair().addActionListener(this);
-        this.telaCadastroFuncionario.getEndBox().addFocusListener(this);
         this.telaCadastroFuncionario.getNewbtn().addActionListener(this);
         Controller.utilities.Utilities.ativa(true, this.telaCadastroFuncionario.getBody());
         this.telaCadastroFuncionario.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaFuncionario.size() + 1));
         this.telaCadastroFuncionario.getIdTexto().setEnabled(false);
-        for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
-            if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
-                this.telaCadastroFuncionario.getEndBox().addItem(Integer.toString(DAO.ClasseDados.listaEndereco.get(i).getId()));
-            } 
-        }
         
     }
     
-   
+   Endereco endereco = new Endereco();
    
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,7 +46,6 @@ public class ControllerCadFuncionario implements ActionListener, FocusListener{T
             }else if(this.telaCadastroFuncionario.getStatus().isSelected() == false){
                 on = "";
             }
-            Endereco endereco = DAO.ClasseDados.listaEndereco.get(Integer.parseInt(this.telaCadastroFuncionario.getEndBox().getSelectedItem().toString() )-1);
                if(Integer.parseInt(this.telaCadastroFuncionario.getIdTexto().getText()) > DAO.ClasseDados.listaFuncionario.size()){
                    funcionario Funcionario = new funcionario(this.telaCadastroFuncionario.getCpfTexto().getText(),this.telaCadastroFuncionario.getRgTexto().getText(),this.telaCadastroFuncionario.getUsuarioTexto().getText(),this.telaCadastroFuncionario.getSenhaTexto().getText(),DAO.ClasseDados.listaFuncionario.size() + 1,this.telaCadastroFuncionario.getNomeTexto().getText(), this.telaCadastroFuncionario.getFoneTexto().getText(),this.telaCadastroFuncionario.getFone2Texto().getText(), this.telaCadastroFuncionario.getEmailTexto().getText(), 
                      on,this.telaCadastroFuncionario.getComplementoTexto().getText(), endereco);
@@ -88,12 +81,7 @@ public class ControllerCadFuncionario implements ActionListener, FocusListener{T
 
     @Override
     public void focusGained(FocusEvent e) {
-        this.telaCadastroFuncionario.getEndBox().removeAllItems();
-        for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
-            if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
-                this.telaCadastroFuncionario.getEndBox().addItem(Integer.toString(DAO.ClasseDados.listaEndereco.get(i).getId()));
-            } 
-        }
+
     }
 
     @Override

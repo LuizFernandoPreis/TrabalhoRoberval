@@ -49,7 +49,6 @@ public class ControllerTelaBuscaFuncionario implements ActionListener{
                 this.controller.telaCadastroFuncionario.getFoneTexto().setText(DAO.ClasseDados.listaFuncionario.get(aux).getFone1());
                 this.controller.telaCadastroFuncionario.getFone2Texto().setText(DAO.ClasseDados.listaFuncionario.get(aux).getFone2());
                 this.controller.telaCadastroFuncionario.getEmailTexto().setText(DAO.ClasseDados.listaFuncionario.get(aux).getEmail());
-                this.controller.telaCadastroFuncionario.getEndBox().setSelectedItem(Integer.toString(DAO.ClasseDados.listaFuncionario.get(aux).getEndereco().getId()));
                 if(DAO.ClasseDados.listaFuncionario.get(aux).getStatus() == "a"){
                     this.controller.telaCadastroFuncionario.getStatus().setSelected(true);
                 }else{

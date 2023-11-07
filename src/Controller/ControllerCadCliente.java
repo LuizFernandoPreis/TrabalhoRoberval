@@ -85,7 +85,7 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
             this.telaCadastroCliente.getIdTexto().setEnabled(false);
             
              
-             }else if(DAO.ClasseDados.listaCliente.contains(DAO.ClasseDados.listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText())-1))){
+             }else if(DAO.ClasseDados.listaCliente.contains(listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText())-1))){
                  
             Cliente cl = listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) - 1);
             cl.setNome(this.telaCadastroCliente.getNomeTexto().getText());
@@ -102,7 +102,7 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
            ClienteService.atualizar(cl);
            Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
             Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCliente.getBody());
-            this.telaCadastroCliente.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));
+            this.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
             this.telaCadastroCliente.getIdTexto().setEnabled(false);
         }
             

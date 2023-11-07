@@ -42,7 +42,6 @@ public class ControllerBuscaEndereco implements ActionListener{
         this.telaBuscaEndereco.getjTFFitrar().getDocument().addDocumentListener(listener);
         this.telaBuscaEndereco.getjButtonCarregar().addActionListener(this);
         this.telaBuscaEndereco.getjButtonSair().addActionListener(this);
-        DAO.ClasseDados.getInstance();
         this.tabela = (DefaultTableModel) this.telaBuscaEndereco.getjTableDados().getModel();
     }
     
@@ -84,6 +83,7 @@ public class ControllerBuscaEndereco implements ActionListener{
         }
         }
     }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         int aux = this.telaBuscaEndereco.getjTableDados().getSelectedRow();

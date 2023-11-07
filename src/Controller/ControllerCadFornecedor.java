@@ -19,7 +19,7 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
     
      TelaCadastroFornecedor telaCadastroFornecedor;
      TelaBucaFornecedor telaBusca;
-    
+     Endereco endereco = new Endereco();
     private ControllerTelaBuscaFornecedor controller;
     public ControllerCadFornecedor(TelaCadastroFornecedor telaCadastroFornecedor) {
         this.telaBusca = new TelaBucaFornecedor(null, true);
@@ -31,15 +31,9 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
         this.telaCadastroFornecedor.getGravar().addActionListener(this);
         this.telaCadastroFornecedor.getSair().addActionListener(this);
         this.telaCadastroFornecedor.getNovoEnd().addActionListener(this);
-        this.telaCadastroFornecedor.getEndBox().addFocusListener(this);
         Controller.utilities.Utilities.ativa(true, this.telaCadastroFornecedor.getBody());
         this.telaCadastroFornecedor.getIdTexto().setEnabled(false);
         this.telaCadastroFornecedor.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaFornecedor.size() + 1));
-        for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
-            if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
-                this.telaCadastroFornecedor.getEndBox().addItem(Integer.toString(DAO.ClasseDados.listaEndereco.get(i).getId()));
-            } 
-        }
     }
     
    
@@ -58,7 +52,7 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
             }else if(this.telaCadastroFornecedor.getStatus().isSelected() == false){
                 on = "a";
             }
-            Endereco endereco = DAO.ClasseDados.listaEndereco.get(Integer.parseInt(this.telaCadastroFornecedor.getEndBox().getSelectedItem().toString() )-1);
+            
             if(Integer.parseInt(this.telaCadastroFornecedor.getIdTexto().getText()) > DAO.ClasseDados.listaFornecedor.size()){
                 Fornecedor fornecedor = new Fornecedor(this.telaCadastroFornecedor.getCnpjTexto().getText(), this.telaCadastroFornecedor.getInscricaoEstuadualTexto().getText(), 
                         this.telaCadastroFornecedor.getRazaoSocialTexto().getText(), Integer.parseInt(this.telaCadastroFornecedor.getIdTexto().getText()), this.telaCadastroFornecedor.getNomeTexto().getText(),
@@ -94,12 +88,6 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
 
     @Override
     public void focusGained(FocusEvent e) {
-        this.telaCadastroFornecedor.getEndBox().removeAllItems();
-        for(int i = 0; i < DAO.ClasseDados.listaEndereco.size(); i++){
-            if(DAO.ClasseDados.listaEndereco.get(i).getStatus() == "a"){
-                this.telaCadastroFornecedor.getEndBox().addItem(Integer.toString(DAO.ClasseDados.listaEndereco.get(i).getId()));
-            } 
-        }
     }
 
     @Override
