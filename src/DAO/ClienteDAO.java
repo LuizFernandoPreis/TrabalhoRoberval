@@ -16,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,21 +27,39 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
 
     @Override
     public void create(Cliente objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = "INSERT tblcliente(cpf,rg,matricula,nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,datanascimento) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+             
+        PreparedStatement pstm;
+        pstm = null;
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1,objeto.getCpf());
+            pstm.setString(2, objeto.getRg());
+            pstm.setString(3, objeto.getMatricula());
+            pstm.setString(4, objeto.getNome());
+            pstm.setString(5, objeto.getFone1());
+            pstm.setString(6, objeto.getFone2());
+            pstm.setString(7, objeto.getEmail());
+            pstm.setString(8, objeto.getStatus());
+            pstm.setString(9, objeto.getComplementoEmdereco());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getDataNascimento());
+            
+            pstm.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
     }
 
     @Override
     public List<Cliente> retrieve() {
-    /*
+        
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT endereco.id, endereco.cep, "
-                +"endereco.logradouro, endereco.cidade_id, "
-                +"endereco.bairro_id, endereco.status, "
-                +"bairro.descricao, cidade.descricao, "
-                +"cidade.uf "
-                +"from Endereco "
-                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
-                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id ";
+        String param = "SELECT * "
+                +"from tblcliente ";
                 
         String sql = param;
         String sqlExecutar =sql;
@@ -54,22 +74,24 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
            
            
             while(rst.next()){
+                Cliente cliente = new Cliente();
+                cliente.setId(rst.getInt("id"));
+                cliente.setComplementoEmdereco(rst.getString("complementoendereco"));
+                cliente.setCpf(rst.getString("cpf"));
+                cliente.setEmail(rst.getString("email"));
+                cliente.setMatricula(rst.getString("matricula"));
+                cliente.setNome(rst.getString("nome"));
+                cliente.setFone1(rst.getString("fone1"));
+                cliente.setFone2(rst.getString("fone2"));   
+                cliente.setRg(rst.getString("rg"));
+                cliente.setStatus(rst.getString("status"));
+                cliente.setDataNascimento(rst.getString("datanascimento"));
+                
                 Endereco endereco = new Endereco();
-                endereco.setId(rst.getInt("id"));
-                endereco.setCep(rst.getString("cep"));
-                endereco.setLogradoura(rst.getString("logradouro"));
-                endereco.setStatus( ""+rst.getString("status"));
-                listaBairro.add(endereco);
+                endereco.setId(Integer.parseInt(rst.getString("tblendereco_id")));
                 
-                Bairro bairro = new Bairro();
-                bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
-                bairro.setDescricao(rst.getString("bairro.descricao"));
-                endereco.setBairro(bairro);
-                
-                Cidade cidade = new Cidade();
-                cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
-                cidade.setDescricao(rst.getString("cidade.descricao"));
-                endereco.setCidade(cidade);
+                cliente.setEndereco(endereco);
+                listaBairro.add(cliente);
             }
            
         } catch (SQLException ex) {
@@ -78,9 +100,7 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
            
             ConnectionFactory.closeConnection(conexao, pstm, rst);
             return listaBairro;
-        }   */
-    List<Cliente> a = new ArrayList<>();
-    return a;
+        }
     }
 
     @Override
@@ -95,7 +115,44 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
 
     @Override
     public void update(Cliente objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = " UPDATE tblcliente"
+                            + " SET nome = ?,"
+                            + " fone1 = ?,"
+                            + " fone2 = ?,"
+                            + " email = ?,"
+                            + " complementoendereco = ?,"
+                            + " cpf = ?,"
+                            + " rg = ?,"
+                            + " matricula = ?,"
+                            + " dataNascimento = ?,"
+                            + " tblendereco_id = ?,"
+                            + " status = ?"
+                            + " WHERE tblcliente.id = ?" ;  
+        
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, objeto.getNome());
+            pstm.setString(2, objeto.getFone1());
+            pstm.setString(3, objeto.getFone2());
+            pstm.setString(4, objeto.getEmail());
+            pstm.setString(5, objeto.getComplementoEmdereco());
+            pstm.setString(6, objeto.getCpf());
+            pstm.setString(7, objeto.getRg());
+            pstm.setString(8, objeto.getMatricula());
+            pstm.setString(9, objeto.getDataNascimento());
+            pstm.setInt(10, objeto.getEndereco().getId());
+            pstm.setString(11, objeto.getStatus());
+            pstm.setInt(12, objeto.getId());
+            
+            pstm.execute(); 
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
     }
 
     @Override
@@ -106,11 +163,11 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
  
             Connection conexao = ConnectionFactory.getConnection();
         String param = "SELECT * "
-                +"from cliente "
-                +"LEFT OUTER JOIN ENDERECO ON ENDERECO.id = cliente.endereco_id "
-                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
-                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id "
-                +"where CLIENTE." + aux + " like ?";
+                +"from tblcliente "
+                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblcliente.tblendereco_id "
+                +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
+                +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id "
+                +"where tblCLIENTE." + aux + " like ?";
                 
         String sql = param;
         String sqlExecutar =sql;
@@ -140,18 +197,18 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                 cliente.setDataNascimento(rst.getString("datanascimento"));
                 
                 Endereco endereco = new Endereco();
-                endereco.setId(Integer.parseInt(rst.getString("endereco_id")));
+                endereco.setId(Integer.parseInt(rst.getString("tblendereco_id")));
                 endereco.setCep(rst.getString("cep"));
                 
                 Bairro bairro = new Bairro();
-                bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
-                bairro.setDescricao(rst.getString("bairro.descricao"));
+                bairro.setId(Integer.parseInt(rst.getString("tblbairro_id")));
+                bairro.setDescricao(rst.getString("tblbairro.descricao"));
                 endereco.setBairro(bairro);
                 
                 Cidade cidade = new Cidade();
-                cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
-                cidade.setDescricao(rst.getString("cidade.descricao"));
-                cidade.setUf(rst.getString("cidade.uf"));
+                cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
+                cidade.setDescricao(rst.getString("tblcidade.descricao"));
+                cidade.setUf(rst.getString("tblcidade.uf"));
                 endereco.setCidade(cidade);
                 cliente.setEndereco(endereco);
                 listaBairro.add(cliente);

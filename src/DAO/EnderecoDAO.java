@@ -23,9 +23,9 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
     @Override
     public void create(Endereco objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO Endereco (cep,logradouro, status,bairro_id,cidade_id) VALUES(?,?,?,"
-                + "(SELECT id FROM bairro WHERE descricao LIKE ?),"
-                + "(SELECT id FROM cidade WHERE descricao LIKE ?))";
+        String sqlExecutar = "INSERT INTO tblEndereco (cep,logradouro, status,tblbairro_id,tblcidade_id) VALUES(?,?,?,"
+                + "(SELECT id FROM tblbairro WHERE descricao LIKE ?),"
+                + "(SELECT id FROM tblcidade WHERE descricao LIKE ?))";
        
         PreparedStatement pstm;
         pstm = null;
@@ -47,14 +47,14 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
     public List<Endereco> retrieve() {
         
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT endereco.id, endereco.cep, "
-                +"endereco.logradouro, endereco.cidade_id, "
-                +"endereco.bairro_id, endereco.status, "
-                +"bairro.descricao, cidade.descricao, "
-                +"cidade.uf "
-                +"from Endereco "
-                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
-                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id ";
+        String param = "SELECT tblendereco.id, tblendereco.cep, "
+                +"tblendereco.logradouro, tblendereco.tblcidade_id, "
+                +"tblendereco.tblbairro_id, tblendereco.status, "
+                +"tblbairro.descricao, tblcidade.descricao, "
+                +"tblcidade.uf "
+                +"from tblEndereco "
+                +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
+                +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id ";
                 
         String sql = param;
         String sqlExecutar =sql;
@@ -77,13 +77,13 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
                 listaBairro.add(endereco);
                 
                 Bairro bairro = new Bairro();
-                bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
-                bairro.setDescricao(rst.getString("bairro.descricao"));
+                bairro.setId(Integer.parseInt(rst.getString("tblbairro_id")));
+                bairro.setDescricao(rst.getString("tblbairro.descricao"));
                 endereco.setBairro(bairro);
                 
                 Cidade cidade = new Cidade();
-                cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
-                cidade.setDescricao(rst.getString("cidade.descricao"));
+                cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
+                cidade.setDescricao(rst.getString("tblcidade.descricao"));
                 endereco.setCidade(cidade);
             }
            
@@ -110,13 +110,13 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
     public void update(Endereco objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE endereco"
-                           + " SET endereco.cep = ?,"
-                           + " endereco.logradouro = ?,"
-                           + " endereco.cidade_id = ?,"
-                           + " endereco.bairro_id = ?,"
-                           + " endereco.status = ?"
-                           + " WHERE endereco.id = ?" ;  
+        String sqlExecutar = " UPDATE tblendereco"
+                           + " SET tblendereco.cep = ?,"
+                           + " tblendereco.logradouro = ?,"
+                           + " tblendereco.tblcidade_id = ?,"
+                           + " tblendereco.tblbairro_id = ?,"
+                           + " tblendereco.status = ?"
+                           + " WHERE tblendereco.id = ?" ;  
         
         PreparedStatement pstm = null;
         
@@ -145,15 +145,15 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
      public List<Endereco> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT endereco.id, endereco.cep, "
-                +"endereco.logradouro, endereco.cidade_id, "
-                +"endereco.bairro_id, endereco.status, "
-                +"bairro.descricao, cidade.descricao, "
-                +"cidade.uf "
-                +"from Endereco "
-                +"LEFT OUTER JOIN BAIRRO ON BAIRRO.id = endereco.bairro_id "
-                +"LEFT OUTER JOIN CIDADE ON CIDADE.id = endereco.cidade_id "
-                +"where ENDERECO." + aux + " like ?";
+        String param = "SELECT tblendereco.id, tblendereco.cep, "
+                +"tblendereco.logradouro, tblendereco.tblcidade_id, "
+                +"tblendereco.tblbairro_id, tblendereco.status, "
+                +"tblbairro.descricao, tblcidade.descricao, "
+                +"tblcidade.uf "
+                +"from tblEndereco "
+                +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
+                +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id "
+                +"where tblENDERECO." + aux + " like ?";
                 
         String sql = param;
         String sqlExecutar =sql;
@@ -177,14 +177,14 @@ public class EnderecoDAO implements InterfaceDAO <Endereco> {
                 listaBairro.add(endereco);
                 
                 Bairro bairro = new Bairro();
-                bairro.setId(Integer.parseInt(rst.getString("bairro_id")));
-                bairro.setDescricao(rst.getString("bairro.descricao"));
+                bairro.setId(Integer.parseInt(rst.getString("tblbairro_id")));
+                bairro.setDescricao(rst.getString("tblbairro.descricao"));
                 endereco.setBairro(bairro);
                 
                 Cidade cidade = new Cidade();
-                cidade.setId(Integer.parseInt(rst.getString("cidade_id")));
-                cidade.setDescricao(rst.getString("cidade.descricao"));
-                cidade.setUf(rst.getString("cidade.uf"));
+                cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
+                cidade.setDescricao(rst.getString("tblcidade.descricao"));
+                cidade.setUf(rst.getString("tblcidade.uf"));
                 endereco.setCidade(cidade);
             }
            

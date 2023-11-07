@@ -75,6 +75,7 @@ private List<Cliente> listaCliente = new ArrayList();
                  this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(aux).getEndereco().getBairro().getDescricao());
                  this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(aux).getEndereco().getCidade().getDescricao());
                  this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(aux).getEndereco().getCidade().getUf());
+                 this.controller.endereco.setId(listaCliente.get(aux).getEndereco().getId());
                   if(listaCliente.get(aux).getStatus().length() == 1){
                 this.controller.telaCadastroCliente.getStatus().setSelected(true);
             }else{

@@ -6,12 +6,16 @@ package Controller;
 
 import Model.bo.Cliente;
 import Model.bo.Endereco;
+import Service.ClienteService;
+import Service.EnderecoService;
 import View.TelaCadastroCliente;
 import View.TelaCadastroEndereco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
+import java.util.List;
 import view.TelaBuscaCliente;
 import view.TelaBuscaEndereco;
 
@@ -21,7 +25,11 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
     TelaCadastroCliente telaCadastroCliente;
     view.TelaBuscaCliente telaBusca;
      ControllerTelaBuscaCliente controller;
+    private  List<Cliente> listaCliente = new ArrayList();
+    private  List<Endereco> listaEndereco = new ArrayList();
     public ControllerCadCliente(TelaCadastroCliente telaCadastroCliente) {
+        listaCliente = ClienteService.carregar();
+        listaEndereco = EnderecoService.carregar();
         this.telaCadastroCliente = telaCadastroCliente;
         this.telaBusca = new TelaBuscaCliente(null, true);
         this.controller = new ControllerTelaBuscaCliente(telaBusca,this);
@@ -38,7 +46,7 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
             }
                 
         }
-        this.telaCadastroCliente.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));
+        this.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
         this.telaCadastroCliente.getIdTexto().setEnabled(false);
     }
     
@@ -52,24 +60,34 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroCliente.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCliente.getBody());
         }else if(e.getSource() == this.telaCadastroCliente.getGravar()){
+            
             String on = "";
             if(this.telaCadastroCliente.getStatus().isSelected() == true){
                 on = "a";
             }else if(this.telaCadastroCliente.getStatus().isSelected() == false){
                 on = "";
             }
-             if(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) > DAO.ClasseDados.listaCliente.size()){
+            endereco.setCep(this.telaCadastroCliente.getCpfTexto().getText());
+            
+           
+            
+             if(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) > listaCliente.size()){
+                 
                  Cliente cliente = new Cliente(this.telaCadastroCliente.getCpfTexto().getText(), this.telaCadastroCliente.getRgTexto().getText(),
                     this.telaCadastroCliente.getMatriculaTexto().getText(),this.telaCadastroCliente.getDataNascimentoTexto().getText(),
                     Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()), this.telaCadastroCliente.getNomeTexto().getText(), this.telaCadastroCliente.getFoneTexto().getText(), 
                     this.telaCadastroCliente.getFone2Texto().getText(),this.telaCadastroCliente.getEmailTexto().getText(), on,this.telaCadastroCliente.getComplementoTexto().getText(), endereco );
-            DAO.ClasseDados.listaCliente.add(cliente);
+                cliente.setCpf(this.telaCadastroCliente.getCpfTexto().getText());
+                 ClienteService.adicionar(cliente);
             Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
             Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCliente.getBody());
             this.telaCadastroCliente.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));
             this.telaCadastroCliente.getIdTexto().setEnabled(false);
+            
+             
              }else if(DAO.ClasseDados.listaCliente.contains(DAO.ClasseDados.listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText())-1))){
-            Cliente cl = DAO.ClasseDados.listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) - 1);
+                 
+            Cliente cl = listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) - 1);
             cl.setNome(this.telaCadastroCliente.getNomeTexto().getText());
            cl.setCpf(this.telaCadastroCliente.getCpfTexto().getText());
            cl.setDataNascimento(this.telaCadastroCliente.getDataNascimentoTexto().getText());
@@ -81,6 +99,7 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
            cl.setEmail(this.telaCadastroCliente.getEmailTexto().getText());
            cl.setEndereco(endereco);
            cl.setStatus(on);
+           ClienteService.atualizar(cl);
            Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
             Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCliente.getBody());
             this.telaCadastroCliente.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));

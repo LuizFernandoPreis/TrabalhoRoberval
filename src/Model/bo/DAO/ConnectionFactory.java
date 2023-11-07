@@ -46,7 +46,7 @@ public class ConnectionFactory {
            
                  public static void closeConnection(Connection conexao, PreparedStatement pstm){
                try{
-                   pstm.close();
+                    pstm.close();
                    conexao.close();
                }
                catch(SQLException ex){

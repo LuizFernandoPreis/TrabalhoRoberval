@@ -57,9 +57,6 @@ public class ControllerCadEndereco implements ActionListener{
         this.telaCadastroEndereco.getBairroBox().addActionListener(this);
         this.telaCadastroEndereco.getCidadeBox().addActionListener(this);
     }
-    
-    
-   
    
     @Override
     public void actionPerformed(ActionEvent e) {

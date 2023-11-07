@@ -16,7 +16,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     public void create(Bairro objeto) {
        
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO bairro (descricao) VALUES(?)";
+        String sqlExecutar = "INSERT INTO tblbairro (descricao) VALUES(?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -35,7 +35,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     public List<Bairro> retrieve() {
        
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM bairro";
+        String sqlExecutar = "SELECT tblbairro.id, tblbairro.descricao FROM tblbairro";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         List<Bairro> listaBairro = new ArrayList<>();
@@ -67,7 +67,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     @Override
     public Bairro retrieve(int parPK) {
      Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT bairro.id, bairro.descricao FROM bairro where bairro.id = ?";
+        String sqlExecutar = "SELECT tblbairro.id, tblbairro.descricao FROM tblbairro where tblbairro.id = ?";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         Bairro listaBairro = new Bairro();
@@ -95,7 +95,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
         }
     }
     public Bairro retrieve(String parString, String aux) {
-        String param = "SELECT bairro.id, bairro.descricao, bairro.uf FROM cidade where bairro." + aux + " = ?";
+        String param = "SELECT tblbairro.id, tblbairro.descricao, tblbairro.uf FROM tblbairro where tblbairro." + aux + " = ?";
         String sql = param;
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = sql;
@@ -131,7 +131,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     public Bairro retrieve(String parString) {
  
             Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar ="SELECT bairro.id, bairro.descricao FROM bairro where bairro.descricao = ?";
+        String sqlExecutar ="SELECT tblbairro.id, tblbairro.descricao FROM tblbairro where tblbairro.descricao = ?";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         Bairro listaBairro = new Bairro();
@@ -165,9 +165,9 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     @Override
     public void update(Bairro objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE bairro"
-                           + " SET bairro.descricao = ?"
-                           + " WHERE bairro.id = ?" ;  
+        String sqlExecutar = " UPDATE tblbairro"
+                           + " SET tblbairro.descricao = ?"
+                           + " WHERE tblbairro.id = ?" ;  
         PreparedStatement pstm = null;
         
         try {
@@ -190,7 +190,7 @@ public class BairroDAO implements InterfaceDAO <Bairro> {
     public List<Bairro> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT bairro.id, bairro.descricao FROM bairro where bairro." + aux + " like ?";
+        String param = "SELECT tblbairro.id, tblbairro.descricao FROM tblbairro where tblbairro." + aux + " like ?";
                 
         String sql = param;
         String sqlExecutar =sql;

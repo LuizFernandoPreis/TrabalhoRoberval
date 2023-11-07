@@ -18,7 +18,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     @Override
     public void create(Cidade objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO cidade (descricao,uf) VALUES(?,?)";
+        String sqlExecutar = "INSERT INTO tblcidade (descricao,uf) VALUES(?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -37,7 +37,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     @Override
     public List<Cidade> retrieve() {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade";
+        String sqlExecutar = "SELECT tblcidade.id, tblcidade.descricao, tblcidade.uf FROM tblcidade";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         List<Cidade> listaCidade = new ArrayList<>();
@@ -70,7 +70,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     public Cidade retrieve(int parPK) {
         
      Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade where cidade.id = ?";
+        String sqlExecutar = "SELECT id, descricao, uf FROM tblcidade where tblcidade.id = ?";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         Cidade listaBairro = new Cidade();
@@ -102,7 +102,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     @Override
     public Cidade retrieve(String parString) {
          Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar ="SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade where cidade.descricao = ?";
+        String sqlExecutar ="SELECT id, descricao, uf FROM tblcidade where tblcidade.descricao = ?";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         Cidade listaBairro = new Cidade();
@@ -136,10 +136,10 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     @Override
     public void update(Cidade objeto) {
          Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE cidade"
-                           + " SET cidade.descricao = ?,"
-                           + " cidade.uf = ? "
-                           + " WHERE cidade.id = ?" ;  
+        String sqlExecutar = " UPDATE tblcidade"
+                           + " SET tblcidade.descricao = ?,"
+                           + " tblcidade.uf = ? "
+                           + " WHERE tblcidade.id = ?" ;  
         PreparedStatement pstm = null;
         
         try {
@@ -164,7 +164,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
     public List<Cidade> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
-            String param = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade where cidade." + aux + " like ?";
+            String param = "SELECT tblcidade.id, tblcidade.descricao, tblcidade.uf FROM tblcidade where tblcidade." + aux + " like ?";
         String sql = param;
         String sqlExecutar = sql;
         PreparedStatement pstm = null;
@@ -199,7 +199,7 @@ public class CidadeDAO implements InterfaceDAO <Cidade> {
 
     
     public Cidade retrieve(String parString, String aux) {
-        String param = "SELECT cidade.id, cidade.descricao, cidade.uf FROM cidade where cidade." + aux + " = ?";
+        String param = "SELECT tblcidade.id, tblcidade.descricao, tblcidade.uf FROM tblcidade where tblcidade." + aux + " = ?";
         String sql = param;
         Connection conexao = ConnectionFactory.getConnection();
         String sqlExecutar = sql;

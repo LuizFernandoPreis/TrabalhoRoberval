@@ -104,6 +104,7 @@ public class ControllerBuscaEndereco implements ActionListener{
                 this.controllerCliente.telaCadastroCliente.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
                 this.controllerCliente.telaCadastroCliente.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
                 this.controllerCliente.telaCadastroCliente.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
+                this.controllerCliente.endereco.setId(listaEndereco.get(aux).getId());
             }
             Controller.utilities.Utilities.limpaTabela(tabela);
             this.telaBuscaEndereco.dispose();
