@@ -24,7 +24,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public void create(Produto objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO tbçproduto (descricao, codigoBarra, status) VALUES(?,?,?)";
+        String sqlExecutar = "INSERT INTO tblproduto (descricao, codigoBarra, status) VALUES(?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;

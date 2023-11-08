@@ -65,7 +65,7 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(102, 51, 0));
-        jPanel1.setPreferredSize(jLabel1.getPreferredSize());
+        jPanel1.setMinimumSize(new java.awt.Dimension(924, 395));
 
         jLabel9.setForeground(new java.awt.Color(240, 240, 240));
 

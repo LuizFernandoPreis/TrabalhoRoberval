@@ -43,7 +43,7 @@ public class ControllerTelaBuscaProduto implements ActionListener {
         tabela = (DefaultTableModel) this.telaBuscaProduto.getjTableDados().getModel();
         this.telaBuscaProduto.getjButtonCarregar().addActionListener(this);
         this.telaBuscaProduto.getjButtonSair().addActionListener(this);
-        listaProduto = ProdutoService.carregar();
+        
         telaBuscaProduto.getjTFFitrar().getDocument().addDocumentListener(listener);
     }
     
@@ -67,6 +67,7 @@ public class ControllerTelaBuscaProduto implements ActionListener {
         }
     }
     public void carregar(){
+        listaProduto = ProdutoService.carregar();
         Controller.utilities.Utilities.limpaTabela(tabela);
         if(telaBuscaProduto.getjTFFitrar().getText().length() == 0){
                         if(tabela.getDataVector().size() == 0){
