@@ -161,9 +161,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         buscaEnd = new javax.swing.JTextField();
         buscarEnd = new javax.swing.JButton();
         cpfTexto = new javax.swing.JFormattedTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        foneTexto = new javax.swing.JFormattedTextField();
         fone2Texto = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        rgTexto = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -329,7 +329,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## #####-####")));
+            foneTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -341,7 +341,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+            rgTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -379,7 +379,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addComponent(rgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jFormattedTextField2))
+                                .addComponent(rgTexto))
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,7 +398,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                                     .addComponent(fone2Label))
                                 .addGap(25, 25, 25)
                                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextField1)
+                                    .addComponent(foneTexto)
                                     .addComponent(fone2Texto)))
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addComponent(cpfLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -483,7 +483,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rgLabel)
-                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(rgTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
                         .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -492,7 +492,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addGap(16, 16, 16)))
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(foneLabel)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(foneTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(complementoLabel)
                     .addComponent(complementoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -653,10 +653,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel fone2Label;
     private javax.swing.JFormattedTextField fone2Texto;
     private javax.swing.JLabel foneLabel;
+    private javax.swing.JFormattedTextField foneTexto;
     private javax.swing.JButton gravar;
     private javax.swing.JTextField idTexto;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -682,6 +681,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JButton novo;
     private javax.swing.JButton novoEnd;
     private javax.swing.JLabel rgLabel;
+    private javax.swing.JFormattedTextField rgTexto;
     private javax.swing.JButton sair;
     private javax.swing.JLabel senhaLabel;
     private javax.swing.JTextField senhaTexto;

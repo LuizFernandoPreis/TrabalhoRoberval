@@ -24,7 +24,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public void create(Produto objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO produto (descricao, codigoBarra, status) VALUES(?,?,?)";
+        String sqlExecutar = "INSERT INTO tbçproduto (descricao, codigoBarra, status) VALUES(?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -45,7 +45,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public List<Produto> retrieve() {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT produto.id, produto.descricao, produto.codigoBarra, produto.status FROM produto";
+        String sqlExecutar = "SELECT tblproduto.id, tblproduto.descricao, tblproduto.codigoBarra, tblproduto.status FROM tblproduto";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         List<Produto> listaProduto = new ArrayList<>();
@@ -82,7 +82,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     @Override
     public Produto retrieve(String parString) {
          Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT cantina.produto.id, cantina.produto.descricao, cantina.produto.codigoBarra, cantina.produto.status from produto  where produto.descricao = ?";
+        String param = "SELECT * from tblproduto  where tblproduto.descricao = ?";
         String sql = param;
         String sqlExecutar = sql;
         PreparedStatement pstm = null;
@@ -117,11 +117,11 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     @Override
     public void update(Produto objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE produto"
-                           + " SET produto.descricao = ?,"
-                           + " produto.codigoBarra = ?, "
-                           + " produto.status = ?"
-                           + " WHERE produto.id = ?" ;  
+        String sqlExecutar = " UPDATE tblproduto"
+                           + " SET descricao = ?,"
+                           + " codigoBarra = ?, "
+                           + " status = ?"
+                           + " WHERE tblproduto.id = ?" ;  
         PreparedStatement pstm = null;
         
         try {
@@ -146,7 +146,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public List<Produto> retrieveList(String parString, String aux) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String param = "SELECT produto.id, produto.descricao, produto.codigoBarra, produto.status from produto where produto."  + aux + " like ?";
+        String param = "SELECT *  from tblproduto where tblproduto."  + aux + " like ?";
         String sql = param;
         String sqlExecutar = sql;
         PreparedStatement pstm = null;
