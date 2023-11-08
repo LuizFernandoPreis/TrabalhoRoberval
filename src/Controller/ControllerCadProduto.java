@@ -23,6 +23,7 @@ public class ControllerCadProduto  implements ActionListener{
     List<Produto> listaProduto = new ArrayList<Produto>();
     
     public ControllerCadProduto(CadastroProduto telaCadastroProduto) {
+        listaProduto = ProdutoService.carregar();
         telaBusca = new TelaBuscaProduto(null,true);
         this.cotrollerTelaBuscaProduto = new ControllerTelaBuscaProduto(telaBusca,this);
         this.telaCadastroProduto = telaCadastroProduto;
@@ -31,7 +32,7 @@ public class ControllerCadProduto  implements ActionListener{
         this.telaCadastroProduto.getNovo().addActionListener(this);
         this.telaCadastroProduto.getGravar().addActionListener(this);
         this.telaCadastroProduto.getSair().addActionListener(this);
-        this.telaCadastroProduto.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaProduto.size() + 1));
+        this.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.size() + 1));
         this.telaCadastroProduto.getIdTexto().setEnabled(false);
         Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
         listaProduto = ProdutoService.carregar();
@@ -51,23 +52,23 @@ public class ControllerCadProduto  implements ActionListener{
             if(this.telaCadastroProduto.getStatus().isSelected() == true){
                 on = "a";
             }else if(this.telaCadastroProduto.getStatus().isSelected() == false){
-                on = "dd";
+                on = "";
             }
-            if(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()) > DAO.ClasseDados.listaProduto.size()){
+            if(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()) > listaProduto.size()){
                 Produto produto = new Produto(listaProduto.size() + 1, this.telaCadastroProduto.getDescTexto().getText(), this.telaCadastroProduto.getCodTexto().getText(),on);
                 ProdutoService.adicionar(produto);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());
                 this.telaCadastroProduto.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaProduto.size() + 1));
             }else{
-                Produto produto = DAO.ClasseDados.listaProduto.get(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText())-1);
+                Produto produto = listaProduto.get(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText())-1);
                 produto.setDescricao(this.telaCadastroProduto.getDescTexto().getText());
                 produto.setCodigoBarra(this.telaCadastroProduto.getCodTexto().getText());
                 produto.setStatus(on);
                 ProdutoService.atualizar(produto);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());
-                this.telaCadastroProduto.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaProduto.size() + 1));
+                this.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.size() + 1));
             }
             
             

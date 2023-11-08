@@ -98,7 +98,7 @@
                               </Group>
                               <Component id="cpfTexto" max="32767" attributes="0"/>
                               <Component id="rgTexto" alignment="0" max="32767" attributes="0"/>
-                              <Component id="datanascimentoTexto" alignment="0" max="32767" attributes="0"/>
+                              <Component id="dataNascimentoTexto" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -139,7 +139,7 @@
                           <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="foneLabel" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -205,7 +205,6 @@
                                       <Component id="nomeTexto" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="fone2Label" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
@@ -235,7 +234,7 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="dataNascimentoLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="datanascimentoTexto" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="dataNascimentoTexto" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -535,7 +534,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="datanascimentoTexto">
+        <Component class="javax.swing.JFormattedTextField" name="dataNascimentoTexto">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="0" type="1"/>

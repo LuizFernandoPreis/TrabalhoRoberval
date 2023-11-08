@@ -73,7 +73,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         fone2Texto = new javax.swing.JFormattedTextField();
         cpfTexto = new javax.swing.JFormattedTextField();
         rgTexto = new javax.swing.JFormattedTextField();
-        datanascimentoTexto = new javax.swing.JFormattedTextField();
+        dataNascimentoTexto = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -228,7 +228,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        datanascimentoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        dataNascimentoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
 
         javax.swing.GroupLayout BodyLayout = new javax.swing.GroupLayout(Body);
         Body.setLayout(BodyLayout);
@@ -266,7 +266,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                                 .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(cpfTexto)
                             .addComponent(rgTexto)
-                            .addComponent(datanascimentoTexto))))
+                            .addComponent(dataNascimentoTexto))))
                 .addGap(18, 18, 18)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BodyLayout.createSequentialGroup()
@@ -296,7 +296,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                                 .addComponent(complementoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
-                        .addGap(0, 9, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(foneLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -350,7 +350,6 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                                     .addComponent(nomeLabel)
                                     .addComponent(nomeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(fone2Label))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(BodyLayout.createSequentialGroup()
                                         .addGap(6, 6, 6)
@@ -374,7 +373,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(dataNascimentoLabel)
-                                    .addComponent(datanascimentoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(dataNascimentoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel2))
                             .addGroup(BodyLayout.createSequentialGroup()
@@ -612,7 +611,7 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private javax.swing.JLabel cpfLabel;
     private javax.swing.JFormattedTextField cpfTexto;
     private javax.swing.JLabel dataNascimentoLabel;
-    private javax.swing.JFormattedTextField datanascimentoTexto;
+    private javax.swing.JFormattedTextField dataNascimentoTexto;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTexto;
     private javax.swing.JLabel fone2Label;
