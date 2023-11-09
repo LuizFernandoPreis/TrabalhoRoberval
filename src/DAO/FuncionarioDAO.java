@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package DAO;
 
 import Model.bo.Bairro;
@@ -10,6 +7,7 @@ import Model.bo.Cliente;
 import Model.bo.DAO.ConnectionFactory;
 import Model.bo.DAO.InterfaceDAO;
 import Model.bo.Endereco;
+import Model.bo.funcionario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,16 +17,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author luizf
- */
-public class ClienteDAO  implements InterfaceDAO <Cliente>{
+public class FuncionarioDAO implements InterfaceDAO<funcionario>{
 
     @Override
-    public void create(Cliente objeto) {
+    public void create(funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT tblcliente(cpf,rg,matricula,nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,datanascimento) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sqlExecutar = "INSERT tblfuncionario(cpf,rg,usuario,nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,senha) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
              
         PreparedStatement pstm;
         pstm = null;
@@ -36,7 +30,7 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
             pstm = conexao.prepareStatement(sqlExecutar);
             pstm.setString(1,objeto.getCpf());
             pstm.setString(2, objeto.getRg());
-            pstm.setString(3, objeto.getMatricula());
+            pstm.setString(3, objeto.getUsuario());
             pstm.setString(4, objeto.getNome());
             pstm.setString(5, objeto.getFone1());
             pstm.setString(6, objeto.getFone2());
@@ -44,7 +38,7 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
             pstm.setString(8, objeto.getStatus());
             pstm.setString(9, objeto.getComplementoEmdereco());
             pstm.setInt(10, objeto.getEndereco().getId());
-            pstm.setString(11, objeto.getDataNascimento());
+            pstm.setString(11, objeto.getSenha()); 
             
             pstm.execute();
         } catch (SQLException ex) {
@@ -52,20 +46,24 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
         }finally {
             ConnectionFactory.closeConnection(conexao, pstm);
         }
+
     }
 
     @Override
-    public List<Cliente> retrieve() {
-        
+    public List<funcionario> retrieve() {
+       
             Connection conexao = ConnectionFactory.getConnection();
         String param = "SELECT * "
-                +"from tblcliente ";
+                +"from tblfuncionario "
+                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblfuncionario.tblendereco_id "
+                +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
+                +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id ";
                 
         String sql = param;
         String sqlExecutar =sql;
         PreparedStatement pstm = null;
         ResultSet rst = null ;
-        List<Cliente> listaBairro = new ArrayList<>();
+        List<funcionario> listaBairro = new ArrayList<>();
 
         try {
             pstm = conexao.prepareStatement(sqlExecutar);
@@ -74,24 +72,38 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
            
            
             while(rst.next()){
-                Cliente cliente = new Cliente();
+                
+                funcionario cliente = new funcionario();
+                
                 cliente.setId(rst.getInt("id"));
                 cliente.setComplementoEmdereco(rst.getString("complementoendereco"));
                 cliente.setCpf(rst.getString("cpf"));
                 cliente.setEmail(rst.getString("email"));
-                cliente.setMatricula(rst.getString("matricula"));
+                cliente.setUsuario(rst.getString("usuario"));
                 cliente.setNome(rst.getString("nome"));
                 cliente.setFone1(rst.getString("fone1"));
                 cliente.setFone2(rst.getString("fone2"));   
                 cliente.setRg(rst.getString("rg"));
                 cliente.setStatus(rst.getString("status"));
-                cliente.setDataNascimento(rst.getString("datanascimento"));
+                cliente.setSenha(rst.getString("senha"));
                 
                 Endereco endereco = new Endereco();
                 endereco.setId(Integer.parseInt(rst.getString("tblendereco_id")));
+                endereco.setCep(rst.getString("cep"));
                 
+                Bairro bairro = new Bairro();
+                bairro.setId(Integer.parseInt(rst.getString("tblbairro_id")));
+                bairro.setDescricao(rst.getString("tblbairro.descricao"));
+                endereco.setBairro(bairro);
+                
+                Cidade cidade = new Cidade();
+                cidade.setId(Integer.parseInt(rst.getString("tblcidade_id")));
+                cidade.setDescricao(rst.getString("tblcidade.descricao"));
+                cidade.setUf(rst.getString("tblcidade.uf"));
+                endereco.setCidade(cidade);
                 cliente.setEndereco(endereco);
                 listaBairro.add(cliente);
+                
             }
            
         } catch (SQLException ex) {
@@ -104,19 +116,19 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
     }
 
     @Override
-    public Cliente retrieve(int parPK) {
+    public funcionario retrieve(int parPK) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Cliente retrieve(String parString) {
+    public funcionario retrieve(String parString) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void update(Cliente objeto) {
+    public void update(funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = " UPDATE tblcliente"
+        String sqlExecutar = " UPDATE tblfuncionario"
                             + " SET nome = ?,"
                             + " fone1 = ?,"
                             + " fone2 = ?,"
@@ -124,11 +136,11 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
                             + " complementoendereco = ?,"
                             + " cpf = ?,"
                             + " rg = ?,"
-                            + " matricula = ?,"
-                            + " dataNascimento = ?,"
+                            + " usuario = ?,"
+                            + " senha = ?,"
                             + " tblendereco_id = ?,"
                             + " status = ?"
-                            + " WHERE tblcliente.id = ?" ;  
+                            + " WHERE tblfuncionario.id = ?" ;  
         
         PreparedStatement pstm = null;
         
@@ -141,8 +153,8 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
             pstm.setString(5, objeto.getComplementoEmdereco());
             pstm.setString(6, objeto.getCpf());
             pstm.setString(7, objeto.getRg());
-            pstm.setString(8, objeto.getMatricula());
-            pstm.setString(9, objeto.getDataNascimento());
+            pstm.setString(8, objeto.getUsuario());
+            pstm.setString(9, objeto.getSenha());
             pstm.setInt(10, objeto.getEndereco().getId());
             pstm.setString(11, objeto.getStatus());
             pstm.setInt(12, objeto.getId());
@@ -156,25 +168,25 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
     }
 
     @Override
-    public void delete(Cliente objeto) {
+    public void delete(funcionario objeto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-     public List<Cliente> retrieveList(String parString, String aux) {
+    public List<funcionario> retrieveList(String parString, String aux) {
  
             Connection conexao = ConnectionFactory.getConnection();
         String param = "SELECT * "
-                +"from tblcliente "
-                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblcliente.tblendereco_id "
+                +"from tblfuncionario "
+                +"LEFT OUTER JOIN tblENDERECO ON tblENDERECO.id = tblfuncionario.tblendereco_id "
                 +"LEFT OUTER JOIN tblBAIRRO ON tblBAIRRO.id = tblendereco.tblbairro_id "
                 +"LEFT OUTER JOIN tblCIDADE ON tblCIDADE.id = tblendereco.tblcidade_id "
-                +"where tblCLIENTE." + aux + " like ?";
+                +"where tblfuncionario." + aux + " like ?";
                 
         String sql = param;
         String sqlExecutar =sql;
         PreparedStatement pstm = null;
         ResultSet rst = null ;
-        List<Cliente> listaBairro = new ArrayList<>();
+        List<funcionario> listaBairro = new ArrayList<>();
 
         try {
             pstm = conexao.prepareStatement(sqlExecutar);
@@ -185,19 +197,19 @@ public class ClienteDAO  implements InterfaceDAO <Cliente>{
            
             while(rst.next()){
                 
-                Cliente cliente = new Cliente();
+                funcionario cliente = new funcionario();
                 
                 cliente.setId(rst.getInt("id"));
                 cliente.setComplementoEmdereco(rst.getString("complementoendereco"));
                 cliente.setCpf(rst.getString("cpf"));
                 cliente.setEmail(rst.getString("email"));
-                cliente.setMatricula(rst.getString("matricula"));
+                cliente.setUsuario(rst.getString("usuario"));
                 cliente.setNome(rst.getString("nome"));
                 cliente.setFone1(rst.getString("fone1"));
                 cliente.setFone2(rst.getString("fone2"));   
                 cliente.setRg(rst.getString("rg"));
                 cliente.setStatus(rst.getString("status"));
-                cliente.setDataNascimento(rst.getString("datanascimento"));
+                cliente.setSenha(rst.getString("senha"));
                 
                 Endereco endereco = new Endereco();
                 endereco.setId(Integer.parseInt(rst.getString("tblendereco_id")));

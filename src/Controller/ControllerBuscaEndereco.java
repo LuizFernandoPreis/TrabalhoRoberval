@@ -23,6 +23,7 @@ public class ControllerBuscaEndereco implements ActionListener{
     List<Endereco> listaEndereco = new ArrayList<Endereco>();
     ControllerCadCliente controllerCliente;
     ControllerCadFornecedor controllerFornecedor;
+    ControllerCadFuncionario controllerFuncionario;
     int origem = 0;
     
     
@@ -45,6 +46,11 @@ public class ControllerBuscaEndereco implements ActionListener{
        inicia(telaBuscaEndereco);
         this.controllerFornecedor = controller;
        this.origem = 2;
+    }
+    public ControllerBuscaEndereco(TelaBuscaEndereco telaBuscaEndereco, ControllerCadFuncionario controller) {
+       inicia(telaBuscaEndereco);
+        this.controllerFuncionario = controller;
+       this.origem = 3;
     }
     
     
@@ -136,6 +142,13 @@ public class ControllerBuscaEndereco implements ActionListener{
                         this.controllerFornecedor.telaCadastroFornecedor.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
                         this.controllerFornecedor.telaCadastroFornecedor.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
                         this.controllerFornecedor.endereco.setId(listaEndereco.get(aux).getId());
+                    break;
+                case 3:
+                        this.controllerFuncionario.telaCadastroFuncionario.getBuscaEndecero().setText(listaEndereco.get(aux).getCep());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
+                        this.controllerFuncionario.endereco.setId(listaEndereco.get(aux).getId());
                     break;
             }
             Controller.utilities.Utilities.limpaTabela(tabela);

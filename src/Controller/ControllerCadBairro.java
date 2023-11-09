@@ -1,12 +1,17 @@
 
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Bairro;
 import View.TelaCadastroBairro;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import service.BairroService;
 
 public class ControllerCadBairro implements ActionListener{
@@ -40,8 +45,12 @@ public class ControllerCadBairro implements ActionListener{
         } else if(e.getSource() == this.telaCadastroBairro.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroBairro.getBody());
         }else if(e.getSource() == this.telaCadastroBairro.getGravar()){
-            
-            if(Integer.parseInt(this.telaCadastroBairro.getIdTexto().getText()) > listaBairros.size()){
+            Component componente = Utilities.testaCampos(this.telaCadastroBairro.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
+                if(Integer.parseInt(this.telaCadastroBairro.getIdTexto().getText()) > listaBairros.size()){
                 
                 Bairro bairro = new Bairro(listaBairros.size() + 1,this.telaCadastroBairro.getDescricaoTexto().getText());
                 BairroService.adicionar(bairro);
@@ -59,7 +68,9 @@ public class ControllerCadBairro implements ActionListener{
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroBairro.getBody());
                 this.telaCadastroBairro.getIdTexto().setText( Integer.toString(listaBairros.size() + 1));
             
+            }   
             }
+            
             
         }else if(e.getSource() == this.telaCadastroBairro.getBuscar()){
             this.a.setVisible(true);

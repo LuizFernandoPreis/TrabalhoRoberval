@@ -2,6 +2,7 @@
 package Controller;
 
 
+import Controller.utilities.Utilities;
 import Model.bo.Bairro;
 import Model.bo.Cidade;
 import Model.bo.Endereco;
@@ -11,12 +12,16 @@ import View.TelaCadastroBairro;
 import View.TelaCadastroCidade;
 import View.TelaCadastroEndereco;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import service.BairroService;
 
 public class ControllerCadEndereco implements ActionListener{
@@ -68,7 +73,11 @@ public class ControllerCadEndereco implements ActionListener{
             
             
         }else if(e.getSource() == this.telaCadastroEndereco.getGravar()){
-            
+           Component componente = Utilities.testaCampos(this.telaCadastroEndereco.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
             String on = "";
             if(this.telaCadastroEndereco.getStatus().isSelected() == true){
                 on = "a";
@@ -106,7 +115,7 @@ public class ControllerCadEndereco implements ActionListener{
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroEndereco.getBody());
                 
                 this.telaCadastroEndereco.getIdTexto().setText( Integer.toString(listaEndereco.size() + 1));
-            }
+            }}
             
             
             

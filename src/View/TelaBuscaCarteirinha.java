@@ -7,6 +7,7 @@ package view;
 
 import Controller.ControllerTelaBuscaCarteirinha;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -29,9 +30,15 @@ public class TelaBuscaCarteirinha extends javax.swing.JDialog {
         return jButtonCarregar;
     }
 
-    public JButton getjButtonFiltrar() {
-        return jButtonFiltrar;
+    public JComboBox<String> getBuscaChave() {
+        return buscaChave;
     }
+
+    public void setBuscaChave(JComboBox<String> buscaChave) {
+        this.buscaChave = buscaChave;
+    }
+
+   
 
     public JButton getjButtonSair() {
         return jButtonSair;
@@ -64,7 +71,7 @@ public class TelaBuscaCarteirinha extends javax.swing.JDialog {
         jTableDados = new javax.swing.JTable();
         jPanFiltro = new javax.swing.JPanel();
         jTFFitrar = new javax.swing.JTextField();
-        jButtonFiltrar = new javax.swing.JButton();
+        buscaChave = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -157,21 +164,17 @@ public class TelaBuscaCarteirinha extends javax.swing.JDialog {
         jPanFiltro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanFiltro.setEnabled(false);
 
-        jButtonFiltrar.setText("Filtrar");
-        jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFiltrarActionPerformed(evt);
-            }
-        });
+        buscaChave.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "codigoBarra", "dataGeracao", "dataCancelamento" }));
 
         javax.swing.GroupLayout jPanFiltroLayout = new javax.swing.GroupLayout(jPanFiltro);
         jPanFiltro.setLayout(jPanFiltroLayout);
         jPanFiltroLayout.setHorizontalGroup(
             jPanFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanFiltroLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanFiltroLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(buscaChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jTFFitrar, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanFiltroLayout.setVerticalGroup(
@@ -180,7 +183,7 @@ public class TelaBuscaCarteirinha extends javax.swing.JDialog {
                 .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(jPanFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTFFitrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltrar))
+                    .addComponent(buscaChave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -212,10 +215,6 @@ public class TelaBuscaCarteirinha extends javax.swing.JDialog {
     private void jButtonCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCarregarActionPerformed
-
-    private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
 dispose();        // TODO add your handling code here:
@@ -264,8 +263,8 @@ dispose();        // TODO add your handling code here:
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> buscaChave;
     private javax.swing.JButton jButtonCarregar;
-    private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanBotoes;

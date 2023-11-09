@@ -203,6 +203,11 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
         jLabel7.setText("Bairro");
 
         buscarEnd.setText("Buscar");
+        buscarEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarEndActionPerformed(evt);
+            }
+        });
 
         try {
             foneTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("## #####-####")));
@@ -228,7 +233,12 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
-        dataNascimentoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        dataNascimentoTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        dataNascimentoTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dataNascimentoTextoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BodyLayout = new javax.swing.GroupLayout(Body);
         Body.setLayout(BodyLayout);
@@ -563,6 +573,14 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
     private void mostraBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostraBairroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_mostraBairroActionPerformed
+
+    private void buscarEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscarEndActionPerformed
+
+    private void dataNascimentoTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataNascimentoTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dataNascimentoTextoActionPerformed
 
     /**
      * @param args the command line arguments

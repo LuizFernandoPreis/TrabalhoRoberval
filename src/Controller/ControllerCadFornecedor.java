@@ -4,17 +4,22 @@
  */
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Endereco;
 import Model.bo.Fornecedor;
 import Service.FornecedorService;
 import View.TelaCadastroEndereco;
 import View.TelaCadastroFornecedor;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import view.TelaBucaFornecedor;
 import view.TelaBuscaEndereco;
 
@@ -52,6 +57,11 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroFornecedor.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroFornecedor.getBody());
         }else if(e.getSource() == this.telaCadastroFornecedor.getGravar()){
+           Component componente = Utilities.testaCampos(this.telaCadastroFornecedor.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
             String on = "";
             if(this.telaCadastroFornecedor.getStatus().isSelected() == true){
                 on = "a";
@@ -84,7 +94,7 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroFornecedor.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroFornecedor.getBody());
                 this.telaCadastroFornecedor.getIdTexto().setText(Integer.toString(listaFornecedor.size() + 1));
-            }
+            }}
         }else if(e.getSource() == this.telaCadastroFornecedor.getNovoEnd()){
             TelaCadastroEndereco a = new TelaCadastroEndereco();
             a.setVisible(true);

@@ -4,13 +4,18 @@
  */
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Cidade;
 import Service.CidadeService;
 import View.TelaCadastroCidade;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import view.TelaBuscaCidade;
 
 /**
@@ -49,8 +54,12 @@ public class ControllerCadCidade implements ActionListener{
         } else if(e.getSource() == this.telaCadastroCidade.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCidade.getBody());
         }else if(e.getSource() == this.telaCadastroCidade.getGravar()){
-            
-            if(Integer.parseInt(this.telaCadastroCidade.getIdTexto().getText()) > listaCidade.size()){
+            Component componente = Utilities.testaCampos(this.telaCadastroCidade.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
+                 if(Integer.parseInt(this.telaCadastroCidade.getIdTexto().getText()) > listaCidade.size()){
                 Cidade cidade = new Cidade(listaCidade.size() + 1,this.telaCadastroCidade.getDescricaoTexto().getText(), this.telaCadastroCidade.getjTextField1().getText());
                 CidadeService.adicionar(cidade);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCidade.getBody());
@@ -68,6 +77,8 @@ public class ControllerCadCidade implements ActionListener{
             }else{
                 
             }
+            }
+           
         }else if (e.getSource() == this.telaCadastroCidade.getBuscar()){
             System.out.println("a");
             a.setVisible(true);

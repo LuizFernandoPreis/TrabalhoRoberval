@@ -19,9 +19,28 @@ import view.TelaBuscaCliente;
 public class ControllerTelaBuscaCliente implements ActionListener{
 public TelaBuscaCliente telaBuscaCliente;
 private ControllerCadCliente controller;
+private ControllerCadCarteirinha controllerCarteirinha;
 private DefaultTableModel tabela;
 private List<Cliente> listaCliente = new ArrayList();
+int origem = 0;
+
+
+ public ControllerTelaBuscaCliente(TelaBuscaCliente telaBuscaCliente, ControllerCadCarteirinha controller) {
+     origem = 1;
+     this.controllerCarteirinha = controller;
+     inicia(telaBuscaCliente);
+ }
+
+
     public ControllerTelaBuscaCliente(TelaBuscaCliente telaBuscaCliente, ControllerCadCliente controller) {
+        inicia(telaBuscaCliente);
+        this.controller = controller;
+       
+    }
+    
+    
+    public void inicia(TelaBuscaCliente telaBuscaCliente){
+        
          DocumentListener listener = new DocumentListener(){
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -40,13 +59,13 @@ private List<Cliente> listaCliente = new ArrayList();
              
          };
         this.telaBuscaCliente = telaBuscaCliente;
-        this.controller = controller;
         tabela =(DefaultTableModel) this.telaBuscaCliente.getjTableDados().getModel();
         this.telaBuscaCliente.getjButtonCarregar().addActionListener(this);
         this.telaBuscaCliente.getjTFFitrar().getDocument().addDocumentListener(listener);
         this.telaBuscaCliente.getjButtonSair().addActionListener(this);
-       
     }
+    
+    
     public void carregar(){
         Controller.utilities.Utilities.limpaTabela(tabela);
          listaCliente = ClienteService.carregarList(this.telaBuscaCliente.getjTFFitrar().getText(),this.telaBuscaCliente.getBuscaChave().getSelectedItem().toString());
@@ -61,26 +80,32 @@ private List<Cliente> listaCliente = new ArrayList();
         if(e.getSource() == this.telaBuscaCliente.getjButtonCarregar()){
                  int aux = this.telaBuscaCliente.getjTableDados().getSelectedRow();
 
-                 this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(aux+1));
-                 this.controller.telaCadastroCliente.getComplementoTexto().setText(listaCliente.get(aux).getComplementoEmdereco());
-                 this.controller.telaCadastroCliente.getCpfTexto().setText(listaCliente.get(aux).getCpf());
-                 this.controller.telaCadastroCliente.getNomeTexto().setText(listaCliente.get(aux).getNome());
-                 this.controller.telaCadastroCliente.getRgTexto().setText(listaCliente.get(aux).getRg());
-                 this.controller.telaCadastroCliente.getMatriculaTexto().setText(listaCliente.get(aux).getMatricula());
-                 this.controller.telaCadastroCliente.getDataNascimentoTexto().setText(listaCliente.get(aux).getDataNascimento());
-                 this.controller.telaCadastroCliente.getFoneTexto().setText(listaCliente.get(aux).getFone1());
-                 this.controller.telaCadastroCliente.getFone2Texto().setText(listaCliente.get(aux).getFone2());
-                 this.controller.telaCadastroCliente.getEmailTexto().setText(listaCliente.get(aux).getEmail());
-                 this.controller.telaCadastroCliente.getBuscaEnd().setText(listaCliente.get(aux).getEndereco().getCep());
-                 this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(aux).getEndereco().getBairro().getDescricao());
-                 this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(aux).getEndereco().getCidade().getDescricao());
-                 this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(aux).getEndereco().getCidade().getUf());
-                 this.controller.endereco.setId(listaCliente.get(aux).getEndereco().getId());
-                  if(listaCliente.get(aux).getStatus().length() == 1){
-                this.controller.telaCadastroCliente.getStatus().setSelected(true);
-            }else{
-                this.controller.telaCadastroCliente.getStatus().setSelected(false);
-            }
+                 if(origem ==0){
+                        this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(aux+1));
+                        this.controller.telaCadastroCliente.getComplementoTexto().setText(listaCliente.get(aux).getComplementoEmdereco());
+                        this.controller.telaCadastroCliente.getCpfTexto().setText(listaCliente.get(aux).getCpf());
+                        this.controller.telaCadastroCliente.getNomeTexto().setText(listaCliente.get(aux).getNome());
+                        this.controller.telaCadastroCliente.getRgTexto().setText(listaCliente.get(aux).getRg());
+                        this.controller.telaCadastroCliente.getMatriculaTexto().setText(listaCliente.get(aux).getMatricula());
+                        this.controller.telaCadastroCliente.getDataNascimentoTexto().setText(listaCliente.get(aux).getDataNascimento());
+                        this.controller.telaCadastroCliente.getFoneTexto().setText(listaCliente.get(aux).getFone1());
+                        this.controller.telaCadastroCliente.getFone2Texto().setText(listaCliente.get(aux).getFone2());
+                        this.controller.telaCadastroCliente.getEmailTexto().setText(listaCliente.get(aux).getEmail());
+                        this.controller.telaCadastroCliente.getBuscaEnd().setText(listaCliente.get(aux).getEndereco().getCep());
+                        this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(aux).getEndereco().getBairro().getDescricao());
+                        this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(aux).getEndereco().getCidade().getDescricao());
+                        this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(aux).getEndereco().getCidade().getUf());
+                        this.controller.endereco.setId(listaCliente.get(aux).getEndereco().getId());
+                         if(listaCliente.get(aux).getStatus().length() == 1){
+                       this.controller.telaCadastroCliente.getStatus().setSelected(true);
+                   }else{
+                       this.controller.telaCadastroCliente.getStatus().setSelected(false);
+                   }
+                 }else{
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraCpf().setText(listaCliente.get(aux).getCpf());
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraNome().setText(listaCliente.get(aux).getNome());
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getClienteBox().setSelectedItem(""+listaCliente.get(aux).getId());
+                 }
             Controller.utilities.Utilities.limpaTabela(tabela);
             this.telaBuscaCliente.dispose();
        }

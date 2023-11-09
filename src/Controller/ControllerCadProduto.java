@@ -4,14 +4,19 @@
  */
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Produto;
 import Service.ProdutoService;
 import View.CadastroProduto;
 import View.TelaCadastroBairro;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import view.TelaBuscaProduto;
 
 
@@ -48,6 +53,11 @@ public class ControllerCadProduto  implements ActionListener{
         } else if(e.getSource() == this.telaCadastroProduto.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroProduto.getBody());
         }else if(e.getSource() == this.telaCadastroProduto.getGravar()){
+           Component componente = Utilities.testaCampos(this.telaCadastroProduto.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
              String on = "";
             if(this.telaCadastroProduto.getStatus().isSelected() == true){
                 on = "a";
@@ -69,6 +79,7 @@ public class ControllerCadProduto  implements ActionListener{
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());
                 this.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.size() + 1));
+            }
             }
             
             

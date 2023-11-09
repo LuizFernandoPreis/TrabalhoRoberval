@@ -44,8 +44,18 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     public JButton getNovo() {
         return novo;
     }
-
-
+    public JTextField getMostraCidade(){
+        return mostraCidade;
+    }
+    public JTextField getMostraBairro(){
+        return mostraBairro;
+    }
+    public JTextField getMostraUf(){
+        return mostraUf;
+    }
+    public JTextField getBuscaEndecero(){
+        return buscaEndereco;
+    }
 
     public JTextField getComplementoTexto() {
         return complementoTexto;
@@ -80,11 +90,11 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     }
 
     public JTextField getBuscaEnd() {
-        return buscaEnd;
+        return buscaEndereco;
     }
 
     public void setBuscaEnd(JTextField buscaEnd) {
-        this.buscaEnd = buscaEnd;
+        this.buscaEndereco = buscaEnd;
     }
 
     public JButton getBuscarEnd() {
@@ -153,12 +163,12 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         newbtn = new javax.swing.JButton();
         status1 = new javax.swing.JCheckBox();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        mostraUf = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        mostraCidade = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
-        buscaEnd = new javax.swing.JTextField();
+        mostraBairro = new javax.swing.JTextField();
+        buscaEndereco = new javax.swing.JTextField();
         buscarEnd = new javax.swing.JButton();
         cpfTexto = new javax.swing.JFormattedTextField();
         foneTexto = new javax.swing.JFormattedTextField();
@@ -300,18 +310,18 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel9.setText("UF");
 
-        jTextField4.setEditable(false);
+        mostraUf.setEditable(false);
 
         jLabel10.setText("Cidade");
 
-        jTextField5.setEditable(false);
+        mostraCidade.setEditable(false);
 
         jLabel11.setText("Bairro");
 
-        jTextField6.setEditable(false);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        mostraBairro.setEditable(false);
+        mostraBairro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                mostraBairroActionPerformed(evt);
             }
         });
 
@@ -410,7 +420,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BodyLayout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(buscaEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(buscaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(BodyLayout.createSequentialGroup()
                                     .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
@@ -433,15 +443,15 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BodyLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mostraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mostraUf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(jLabel11)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mostraBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(buscarEnd)
                         .addGap(18, 18, 18)
@@ -500,15 +510,15 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(fone2Label)
                     .addComponent(fone2Texto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(buscaEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscaEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostraUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostraBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscarEnd)
                     .addComponent(newbtn))
                 .addGap(31, 31, 31)
@@ -573,9 +583,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_newbtnActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void mostraBairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostraBairroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_mostraBairroActionPerformed
 
     public JCheckBox getStatus() {
         return status1;
@@ -639,7 +649,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Body;
-    private javax.swing.JTextField buscaEnd;
+    private javax.swing.JTextField buscaEndereco;
     private javax.swing.JButton buscar;
     private javax.swing.JButton buscarEnd;
     private javax.swing.JButton cancelar;
@@ -672,9 +682,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField mostraBairro;
+    private javax.swing.JTextField mostraCidade;
+    private javax.swing.JTextField mostraUf;
     private javax.swing.JButton newbtn;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JTextField nomeTexto;

@@ -4,10 +4,12 @@
  */
 package Controller.utilities;
 
+import java.awt.Checkbox;
 import java.awt.Component;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
@@ -15,6 +17,43 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Utilities {
+    
+    public static boolean testaCampo( JPanel painel) {
+        boolean aux = false;
+        Component[] componentes  = painel.getComponents();
+        for (Component componente : componentes) {
+           if(componente instanceof JFormattedTextField){
+                    if(((JFormattedTextField) componente).getText().length() == 0){
+                        aux = true;
+                    }
+                }
+            if(componente instanceof JTextField){
+                    if(((JTextField) componente).getText().length() == 0){
+                        aux = true;
+                    }
+                }
+        }
+        return aux;
+    }
+    
+     public static Component testaCampos( JPanel painel) {
+        Component aux = new JButton();
+        Component[] componentes  = painel.getComponents();
+        for (Component componente : componentes) {
+           if(componente instanceof JFormattedTextField){
+                    if(((JFormattedTextField) componente).getText().length() == 0){
+                        return componente;
+                    }
+                }
+            if(componente instanceof JTextField){
+                    if(((JTextField) componente).getText().length() == 0){
+                        return componente;
+                    }
+                }
+        }
+        return aux;
+    }
+     
     public static void ativa(boolean ativa, JPanel painel) {
         Component[] componentes  = painel.getComponents();
         for (Component componente : componentes) {

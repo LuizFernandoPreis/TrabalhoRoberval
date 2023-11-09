@@ -4,18 +4,23 @@
  */
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Cliente;
 import Model.bo.Endereco;
 import Service.ClienteService;
 import Service.EnderecoService;
 import View.TelaCadastroCliente;
 import View.TelaCadastroEndereco;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import view.TelaBuscaCliente;
 import view.TelaBuscaEndereco;
 
@@ -54,8 +59,12 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroCliente.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCliente.getBody());
         }else if(e.getSource() == this.telaCadastroCliente.getGravar()){
-            
-            String on = "";
+           Component componente = Utilities.testaCampos(this.telaCadastroCliente.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
+                String on = "";
             if(this.telaCadastroCliente.getStatus().isSelected() == true){
                 on = "a";
             }else if(this.telaCadastroCliente.getStatus().isSelected() == false){
@@ -75,11 +84,11 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
                  ClienteService.adicionar(cliente);
             Controller.utilities.Utilities.ativa(true, this.telaCadastroCliente.getBody());
             Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCliente.getBody());
-            this.telaCadastroCliente.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));
+            this.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
             this.telaCadastroCliente.getIdTexto().setEnabled(false);
             
              
-             }else if(DAO.ClasseDados.listaCliente.contains(listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText())-1))){
+             }else if(listaCliente.contains(listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText())-1))){
                  
             Cliente cl = listaCliente.get(Integer.parseInt(this.telaCadastroCliente.getIdTexto().getText()) - 1);
             cl.setNome(this.telaCadastroCliente.getNomeTexto().getText());
@@ -99,6 +108,8 @@ public class ControllerCadCliente implements ActionListener, FocusListener{
             this.telaCadastroCliente.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
             this.telaCadastroCliente.getIdTexto().setEnabled(false);
         }
+            }
+            
             
         }else if(e.getSource() == this.telaCadastroCliente.getNewButton()){
             TelaCadastroEndereco end = new TelaCadastroEndereco();

@@ -1,15 +1,25 @@
 
 package Controller;
 
+import Controller.utilities.Utilities;
 import Model.bo.Carteirinha;
 import Model.bo.Cliente;
+import Service.CarteirinhaService;
+import Service.ClienteService;
 import View.TelaCadastroBairro;
 import View.TelaCadastroCarteirinha;
 import View.TelaCadastroCliente;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import view.TelaBuscaCliente;
 
 
 public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
@@ -17,7 +27,10 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
     TelaCadastroCarteirinha telaCadastroCarteirinha;
     view.TelaBuscaCarteirinha telaBusca; 
     ControllerTelaBuscaCarteirinha controller;
+    List<Carteirinha> listaCarteirinha = new ArrayList();
+    List<Cliente> listaCliente = new ArrayList();
     public ControllerCadCarteirinha(TelaCadastroCarteirinha telaCadastroCarteirinha) {
+        listaCliente = ClienteService.carregar();
         this.telaCadastroCarteirinha = telaCadastroCarteirinha;
         this.telaBusca = new view.TelaBuscaCarteirinha(null,true);
         controller = new ControllerTelaBuscaCarteirinha(telaBusca,this);
@@ -27,12 +40,12 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         this.telaCadastroCarteirinha.getGravar().addActionListener(this);
         this.telaCadastroCarteirinha.getSair().addActionListener(this);
         this.telaCadastroCarteirinha.getNovoCliente().addActionListener(this);
-        this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCliente.size() + 1));
+        this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
         this.telaCadastroCarteirinha.getIdTexto().setEnabled(false);
         this.telaCadastroCarteirinha.getClienteBox().addFocusListener(this);
-        for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
-            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == "a"){
-                 this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(DAO.ClasseDados.listaCliente.get(i).getId()));
+        for(int i = 0; i < listaCliente.size();i++){
+            if(listaCliente.get(i).getStatus().length() == 1){
+                 this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(listaCliente.get(i).getId()));
             }
            
         }
@@ -50,24 +63,40 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         } else if(e.getSource() == this.telaCadastroCarteirinha.getNovo()){
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCarteirinha.getBody());
         }else if(e.getSource() == this.telaCadastroCarteirinha.getGravar()){
-            if(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText()) > DAO.ClasseDados.listaCarteirinha.size()){
-                Cliente cliente = DAO.ClasseDados.listaCliente.get(Integer.parseInt(this.telaCadastroCarteirinha.getClienteBox().getSelectedItem().toString() )-1);
-                Carteirinha carteirinha = new Carteirinha(DAO.ClasseDados.listaCarteirinha.size() + 1, this.telaCadastroCarteirinha.getCodigoBarrasTexto().getText(), this.telaCadastroCarteirinha.getDataInicio().getText(),this.telaCadastroCarteirinha.getDataCancelamentoTexto().getText(), cliente);
-                DAO.ClasseDados.listaCarteirinha.add(carteirinha);
+            Component componente = Utilities.testaCampos(this.telaCadastroCarteirinha.getBody());
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+                JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
+                componente.requestFocus();
+            }else{
+                  
+            if(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText()) > listaCarteirinha.size()){
+                Cliente cliente = new Cliente();
+                cliente.setId(this.telaCadastroCarteirinha.getClienteBox().getSelectedIndex()+1);
+                Carteirinha carteirinha = new Carteirinha(listaCarteirinha.size() + 1, this.telaCadastroCarteirinha.getCodigoBarrasTexto().getText(), this.telaCadastroCarteirinha.getDataInicio().getText(),this.telaCadastroCarteirinha.getDataCancelamentoTexto().getText(), cliente);
+                
+                
+                CarteirinhaService.adicionar(carteirinha);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCarteirinha.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCarteirinha.getBody());
                 this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCarteirinha.size() + 1));
-            }else if(DAO.ClasseDados.listaCarteirinha.contains(DAO.ClasseDados.listaCarteirinha.get(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText())-1))){
-                Cliente cl = DAO.ClasseDados.listaCliente.get(this.telaCadastroCarteirinha.getClienteBox().getSelectedIndex());
-                Carteirinha ct = DAO.ClasseDados.listaCarteirinha.get(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText()) - 1);
+            }else if(listaCarteirinha.contains(listaCarteirinha.get(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText())-1))){
+                
+                
+                Cliente cl = listaCliente.get(this.telaCadastroCarteirinha.getClienteBox().getSelectedIndex());
+                Carteirinha ct = listaCarteirinha.get(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText()) - 1);
                 ct.setCodigoBarra(this.telaCadastroCarteirinha.getCodigoBarrasTexto().getText());
                 ct.setDataCancelamento(this.telaCadastroCarteirinha.getDataCancelamentoTexto().getText());
                 ct.setDataGeração(this.telaCadastroCarteirinha.getDataInicio().getText());
                 ct.setCliente(cl);
+                CarteirinhaService.atualizar(ct);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCarteirinha.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCarteirinha.getBody());
                 this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCarteirinha.size() + 1));
             }
+            }
+          
+            
+            
         }else if(e.getSource() == this.telaCadastroCarteirinha.getBuscar()){
             this.telaCadastroCarteirinha.getClienteBox().removeAllItems();
             for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
@@ -77,17 +106,14 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         }else if(e.getSource() == this.telaCadastroCarteirinha.getNovoCliente()){
             TelaCadastroCliente tcc = new TelaCadastroCliente();
             tcc.setVisible(true);
+        }else if(e.getSource() == this.telaCadastroCarteirinha.getBuscaCliente()){
+            System.out.println("asd");
+            
         }
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        this.telaCadastroCarteirinha.getClienteBox().removeAllItems();
-        for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
-            if(DAO.ClasseDados.listaCliente.get(i).getStatus() == "a"){
-            this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(DAO.ClasseDados.listaCliente.get(i).getId()));
-            }
-        }
     }
 
     @Override

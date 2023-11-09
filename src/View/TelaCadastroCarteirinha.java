@@ -5,6 +5,7 @@
 package View;
 
 import Controller.ControllerCadCarteirinha;
+import Controller.ControllerTelaBuscaCliente;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -20,9 +21,10 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
     /**
      * Creates new form Template
      */
+   ControllerCadCarteirinha controllerCadCarteirinha;
     public TelaCadastroCarteirinha() {
         initComponents();
-        ControllerCadCarteirinha controllerCadCarteirinha = new ControllerCadCarteirinha(this);
+        controllerCadCarteirinha = new ControllerCadCarteirinha(this);
     }
 
     public JPanel getBody() {
@@ -55,6 +57,22 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
 
     public JTextField getCodigoBarrasTexto() {
         return codigoBarrasTexto;
+    }
+
+    public JTextField getMostraCpf() {
+        return mostraCpf;
+    }
+
+    public void setMostraCpf(JTextField mostraCpf) {
+        this.mostraCpf = mostraCpf;
+    }
+
+    public JTextField getMostraNome() {
+        return mostraNome;
+    }
+
+    public void setMostraNome(JTextField mostraNome) {
+        this.mostraNome = mostraNome;
     }
 
     public JTextField getDataCancelamentoTexto() {
@@ -102,8 +120,9 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
         novoCliente = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        mostraNome = new javax.swing.JTextField();
+        mostraCpf = new javax.swing.JTextField();
+        buscaCliente = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
@@ -177,9 +196,16 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
 
         jLabel5.setText("CPF");
 
-        jTextField1.setEditable(false);
+        mostraNome.setEditable(false);
 
-        jTextField2.setEditable(false);
+        mostraCpf.setEditable(false);
+
+        buscaCliente.setText("Buscar");
+        buscaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscaClienteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout BodyLayout = new javax.swing.GroupLayout(Body);
         Body.setLayout(BodyLayout);
@@ -214,8 +240,8 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
                                 .addComponent(novoCliente))
                             .addComponent(jLabel5)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(mostraNome, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(mostraCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(BodyLayout.createSequentialGroup()
                         .addComponent(gravar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
@@ -225,7 +251,9 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addComponent(cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
-                .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(sair, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscaCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -248,7 +276,8 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
                     .addComponent(idLabel)
                     .addComponent(clienteBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(novoCliente))
+                    .addComponent(novoCliente)
+                    .addComponent(buscaCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoBarraLabel)
@@ -256,13 +285,13 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigoBarrasTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(mostraNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(BodyLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(mostraCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BodyLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(jLabel3)
@@ -315,6 +344,20 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gravarActionPerformed
 
+    private void buscaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaClienteActionPerformed
+         view.TelaBuscaCliente tb = new view.TelaBuscaCliente(null,true);
+            ControllerTelaBuscaCliente controller = new ControllerTelaBuscaCliente(tb, controllerCadCarteirinha);
+            tb.setVisible(true);
+    }//GEN-LAST:event_buscaClienteActionPerformed
+
+    public JButton getBuscaCliente() {
+        return buscaCliente;
+    }
+
+    public void setBuscaCliente(JButton buscaCliente) {
+        this.buscaCliente = buscaCliente;
+    }
+
     public JButton getNovoCliente() {
         return novoCliente;
     }
@@ -356,6 +399,7 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Body;
+    private javax.swing.JButton buscaCliente;
     private javax.swing.JButton buscar;
     private javax.swing.JButton cancelar;
     private javax.swing.JComboBox<String> clienteBox;
@@ -373,8 +417,8 @@ public class TelaCadastroCarteirinha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField mostraCpf;
+    private javax.swing.JTextField mostraNome;
     private javax.swing.JButton novo;
     private javax.swing.JButton novoCliente;
     private javax.swing.JButton sair;
