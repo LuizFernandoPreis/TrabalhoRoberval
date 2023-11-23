@@ -46,6 +46,7 @@ public class ControllerTelaBuscaCidade implements ActionListener{
     }
     
     public void carregar(){
+        listaCidade = CidadeService.carregar();
         Controller.utilities.Utilities.limpaTabela(tabela);
             if(telaBuscaCidade.getjTFFitrar().getText().length() == 0){
             if(tabela.getDataVector().size() == 0){

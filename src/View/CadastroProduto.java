@@ -145,6 +145,8 @@ public class CadastroProduto extends javax.swing.JFrame {
 
         jLabel4.setText("Código de Barras");
 
+        idTexto.setName("id"); // NOI18N
+
         Status.setText("Status");
         Status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

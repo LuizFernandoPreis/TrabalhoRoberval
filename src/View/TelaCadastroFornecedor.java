@@ -167,6 +167,7 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
 
         jLabel2.setText("Id");
 
+        idTexto.setName("id"); // NOI18N
         idTexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idTextoActionPerformed(evt);
@@ -332,8 +333,8 @@ public class TelaCadastroFornecedor extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(idTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(3, 3, 3)
-                .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cnpjLabel)
+                .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cnpjLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(cnpjTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

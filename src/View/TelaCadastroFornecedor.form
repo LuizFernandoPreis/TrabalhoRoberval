@@ -182,9 +182,9 @@
                       <Component id="idTexto" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cnpjLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="cnpjTexto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cnpjTexto" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -409,6 +409,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="idTexto">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="id" noResource="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="idTextoActionPerformed"/>
           </Events>

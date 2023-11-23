@@ -28,7 +28,7 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
     view.TelaBuscaCarteirinha telaBusca; 
     ControllerTelaBuscaCarteirinha controller;
     List<Carteirinha> listaCarteirinha = new ArrayList();
-    List<Cliente> listaCliente = new ArrayList();
+    public List<Cliente> listaCliente = new ArrayList();
     public ControllerCadCarteirinha(TelaCadastroCarteirinha telaCadastroCarteirinha) {
         listaCliente = ClienteService.carregar();
         this.telaCadastroCarteirinha = telaCadastroCarteirinha;
@@ -42,7 +42,8 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         this.telaCadastroCarteirinha.getNovoCliente().addActionListener(this);
         this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
         this.telaCadastroCarteirinha.getIdTexto().setEnabled(false);
-        this.telaCadastroCarteirinha.getClienteBox().addFocusListener(this);
+        this.telaCadastroCarteirinha.getClienteBox().addActionListener(this);
+        this.telaCadastroCarteirinha.getDataInicio().addActionListener(this);
         for(int i = 0; i < listaCliente.size();i++){
             if(listaCliente.get(i).getStatus().length() == 1){
                  this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(listaCliente.get(i).getId()));
@@ -108,12 +109,27 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
             tcc.setVisible(true);
         }else if(e.getSource() == this.telaCadastroCarteirinha.getBuscaCliente()){
             System.out.println("asd");
+        }else if (e.getSource() == this.telaCadastroCarteirinha.getClienteBox()){
+            Cliente cl = new Cliente();
+            for(int i = 0; i < listaCliente.size(); i++){
+                if(listaCliente.get(i).getId() == Integer.parseInt(this.telaCadastroCarteirinha.getClienteBox().getSelectedItem().toString()) ){
+                    cl = listaCliente.get(i);
+                }
+            }
             
+        this.telaCadastroCarteirinha.getMostraNome().setText(cl.getNome());
+        this.telaCadastroCarteirinha.getMostraCpf().setText(cl.getCpf());
+        }else if(e.getSource() == this.telaCadastroCarteirinha.getDataInicio()){
+            String txt = this.telaCadastroCarteirinha.getDataInicio().getText();
+            int aux = Integer.parseInt(txt.substring(8, 10)) +1;
+            String finaltxt = txt.substring(0, 8) + aux;
+            this.telaCadastroCarteirinha.getDataCancelamentoTexto().setText(finaltxt);
         }
     }
 
     @Override
     public void focusGained(FocusEvent e) {
+        
     }
 
     @Override

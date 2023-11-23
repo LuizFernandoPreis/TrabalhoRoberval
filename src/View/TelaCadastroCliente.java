@@ -185,6 +185,8 @@ public class TelaCadastroCliente extends javax.swing.JFrame {
 
         jLabel4.setText("ID");
 
+        idTexto.setName("id"); // NOI18N
+
         jLabel5.setText("UF");
 
         mostraUf.setEditable(false);

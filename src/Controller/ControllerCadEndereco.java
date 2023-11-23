@@ -61,6 +61,8 @@ public class ControllerCadEndereco implements ActionListener{
         this.telaCadastroEndereco.getIdTexto().setEnabled(false);
         this.telaCadastroEndereco.getBairroBox().addActionListener(this);
         this.telaCadastroEndereco.getCidadeBox().addActionListener(this);
+        this.telaCadastroEndereco.getNovaCidade().addActionListener(this);
+        this.telaCadastroEndereco.getNovoBairro().addActionListener(this);
     }
    
     @Override
@@ -131,4 +133,14 @@ public class ControllerCadEndereco implements ActionListener{
         }else if(e.getSource() == this.telaCadastroEndereco.getCidadeBox()){
             this.telaCadastroEndereco.getUfText().setText(cidades.get( this.telaCadastroEndereco.getCidadeBox().getSelectedIndex()).getUf());
            
-    }}}
+    }else if(e.getSource() == this.telaCadastroEndereco.getNovaCidade()){
+        TelaCadastroCidade tl = new TelaCadastroCidade();
+        ControllerCadCidade cc = new ControllerCadCidade(tl);
+        tl.setVisible(true);
+    }else if(e.getSource() == this.telaCadastroEndereco.getNovoBairro()){
+        TelaCadastroBairro tl = new TelaCadastroBairro();
+        ControllerCadBairro cb = new ControllerCadBairro(tl);
+        tl.setVisible(true);
+    }
+    }
+}

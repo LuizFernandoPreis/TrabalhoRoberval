@@ -250,6 +250,9 @@
         <Component class="javax.swing.JTextField" name="descTexto">
         </Component>
         <Component class="javax.swing.JTextField" name="idTexto">
+          <Properties>
+            <Property name="name" type="java.lang.String" value="id" noResource="true"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
         </Component>

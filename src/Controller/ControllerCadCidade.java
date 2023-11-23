@@ -55,7 +55,7 @@ public class ControllerCadCidade implements ActionListener{
             Controller.utilities.Utilities.ativa(false, this.telaCadastroCidade.getBody());
         }else if(e.getSource() == this.telaCadastroCidade.getGravar()){
             Component componente = Utilities.testaCampos(this.telaCadastroCidade.getBody());
-            if( componente instanceof JFormattedTextField || componente instanceof JTextField){
+            if( componente instanceof JFormattedTextField || componente instanceof JTextField && componente.getName() != "id"){
                 JOptionPane.showMessageDialog(null, "Há Campos Vazios!!!");
                 componente.requestFocus();
             }else{
@@ -72,7 +72,7 @@ public class ControllerCadCidade implements ActionListener{
                 CidadeService.atualizar(cidade);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCidade.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCidade.getBody());
-                this.telaCadastroCidade.getIdTexto().setText( Integer.toString(DAO.ClasseDados.listaCidade.size() + 1));
+                this.telaCadastroCidade.getIdTexto().setText( Integer.toString(listaCidade.size() + 1));
             
             }else{
                 

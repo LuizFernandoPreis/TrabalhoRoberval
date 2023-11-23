@@ -290,6 +290,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel3.setText("ID");
 
+        idTexto.setName("id"); // NOI18N
         idTexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idTextoActionPerformed(evt);
@@ -383,8 +384,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
             .addGroup(BodyLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(BodyLayout.createSequentialGroup()
+                .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
                         .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addComponent(rgLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +416,7 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cpfTexto)))
                         .addGap(28, 28, 28)
-                        .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BodyLayout.createSequentialGroup()
                                     .addComponent(jLabel8)
@@ -439,8 +440,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addComponent(complementoLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(complementoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, BodyLayout.createSequentialGroup()
+                                .addComponent(complementoTexto)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(BodyLayout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(mostraCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -455,8 +457,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(buscarEnd)
                         .addGap(18, 18, 18)
-                        .addComponent(newbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(newbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         BodyLayout.setVerticalGroup(
             BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
