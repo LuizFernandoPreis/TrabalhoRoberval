@@ -113,16 +113,17 @@ public class ControllerBuscaEndereco implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         int aux = this.telaBuscaEndereco.getjTableDados().getSelectedRow();
+        int auxx = Integer.parseInt(this.telaBuscaEndereco.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
         if(e.getSource() == this.telaBuscaEndereco.getjButtonCarregar()){
             switch(this.origem){
                 case 0:
-                        this.controller.telaCadastroEndereco.getIdTexto().setText(Integer.toString(listaEndereco.get(aux).getId()));
-                        this.controller.telaCadastroEndereco.getCepTexto().setText(listaEndereco.get(aux).getCep());
-                        this.controller.telaCadastroEndereco.getLogradouroTexto().setText(listaEndereco.get(aux).getLogradoura());
-                        this.controller.telaCadastroEndereco.getUfText().setText(listaEndereco.get(aux).getCidade().getUf());
-                        this.controller.telaCadastroEndereco.getBairroBox().setSelectedIndex(listaEndereco.get(aux).getBairro().getId()-1);
-                        this.controller.telaCadastroEndereco.getCidadeBox().setSelectedIndex(listaEndereco.get(aux).getCidade().getId()-1);
-                        if(listaEndereco.get(aux).getStatus().length() == 1){
+                        this.controller.telaCadastroEndereco.getIdTexto().setText(Integer.toString(listaEndereco.get(auxx).getId()));
+                        this.controller.telaCadastroEndereco.getCepTexto().setText(listaEndereco.get(auxx).getCep());
+                        this.controller.telaCadastroEndereco.getLogradouroTexto().setText(listaEndereco.get(auxx).getLogradoura());
+                        this.controller.telaCadastroEndereco.getUfText().setText(listaEndereco.get(auxx).getCidade().getUf());
+                        this.controller.telaCadastroEndereco.getBairroBox().setSelectedIndex(listaEndereco.get(auxx).getBairro().getId()-1);
+                        this.controller.telaCadastroEndereco.getCidadeBox().setSelectedIndex(listaEndereco.get(auxx).getCidade().getId()-1);
+                        if(listaEndereco.get(auxx).getStatus().length() == 1){
                             this.controller.telaCadastroEndereco.getStatus().setSelected(true);
 
                          }else{
@@ -130,25 +131,25 @@ public class ControllerBuscaEndereco implements ActionListener{
                         }
                     break;
                 case 1:
-                        this.controllerCliente.telaCadastroCliente.getBuscaEnd().setText(listaEndereco.get(aux).getCep());
-                        this.controllerCliente.telaCadastroCliente.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
-                        this.controllerCliente.telaCadastroCliente.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
-                        this.controllerCliente.telaCadastroCliente.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
-                        this.controllerCliente.endereco.setId(listaEndereco.get(aux).getId());
+                        this.controllerCliente.telaCadastroCliente.getBuscaEnd().setText(listaEndereco.get(auxx).getCep());
+                        this.controllerCliente.telaCadastroCliente.getMostraBairro().setText(listaEndereco.get(auxx).getBairro().getDescricao());
+                        this.controllerCliente.telaCadastroCliente.getMostraCidade().setText(listaEndereco.get(auxx).getCidade().getDescricao());
+                        this.controllerCliente.telaCadastroCliente.getMostraUf().setText(listaEndereco.get(auxx).getCidade().getUf());
+                        this.controllerCliente.endereco.setId(listaEndereco.get(auxx).getId());
                     break;
                 case 2:
-                        this.controllerFornecedor.telaCadastroFornecedor.getBuscaEndereco().setText(listaEndereco.get(aux).getCep());
-                        this.controllerFornecedor.telaCadastroFornecedor.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
-                        this.controllerFornecedor.telaCadastroFornecedor.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
-                        this.controllerFornecedor.telaCadastroFornecedor.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
-                        this.controllerFornecedor.endereco.setId(listaEndereco.get(aux).getId());
+                        this.controllerFornecedor.telaCadastroFornecedor.getBuscaEndereco().setText(listaEndereco.get(auxx).getCep());
+                        this.controllerFornecedor.telaCadastroFornecedor.getMostraBairro().setText(listaEndereco.get(auxx).getBairro().getDescricao());
+                        this.controllerFornecedor.telaCadastroFornecedor.getMostraCidade().setText(listaEndereco.get(auxx).getCidade().getDescricao());
+                        this.controllerFornecedor.telaCadastroFornecedor.getMostraUf().setText(listaEndereco.get(auxx).getCidade().getUf());
+                        this.controllerFornecedor.endereco.setId(listaEndereco.get(auxx).getId());
                     break;
                 case 3:
-                        this.controllerFuncionario.telaCadastroFuncionario.getBuscaEndecero().setText(listaEndereco.get(aux).getCep());
-                        this.controllerFuncionario.telaCadastroFuncionario.getMostraBairro().setText(listaEndereco.get(aux).getBairro().getDescricao());
-                        this.controllerFuncionario.telaCadastroFuncionario.getMostraCidade().setText(listaEndereco.get(aux).getCidade().getDescricao());
-                        this.controllerFuncionario.telaCadastroFuncionario.getMostraUf().setText(listaEndereco.get(aux).getCidade().getUf());
-                        this.controllerFuncionario.endereco.setId(listaEndereco.get(aux).getId());
+                        this.controllerFuncionario.telaCadastroFuncionario.getBuscaEndecero().setText(listaEndereco.get(auxx).getCep());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraBairro().setText(listaEndereco.get(auxx).getBairro().getDescricao());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraCidade().setText(listaEndereco.get(auxx).getCidade().getDescricao());
+                        this.controllerFuncionario.telaCadastroFuncionario.getMostraUf().setText(listaEndereco.get(auxx).getCidade().getUf());
+                        this.controllerFuncionario.endereco.setId(listaEndereco.get(auxx).getId());
                     break;
             }
             Controller.utilities.Utilities.limpaTabela(tabela);

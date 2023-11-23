@@ -73,9 +73,10 @@ public class ControllerTelaBuscaCidade implements ActionListener{
         if(e.getSource() == this.telaBuscaCidade.getjButtonCarregar()){
             
             int aux = this.telaBuscaCidade.getjTableDados().getSelectedRow();
-            this.controllerCadCidade.telaCadastroCidade.getDescricaoTexto().setText(listaCidade.get(aux).getDescricao());
-            this.controllerCadCidade.telaCadastroCidade.getIdTexto().setText(Integer.toString(listaCidade.get(aux).getId()));
-            this.controllerCadCidade.telaCadastroCidade.getjTextField1().setText(listaCidade.get(aux).getUf());
+            int auxx = Integer.parseInt(this.telaBuscaCidade.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
+            this.controllerCadCidade.telaCadastroCidade.getDescricaoTexto().setText(listaCidade.get(auxx).getDescricao());
+            this.controllerCadCidade.telaCadastroCidade.getIdTexto().setText(Integer.toString(listaCidade.get(auxx).getId()));
+            this.controllerCadCidade.telaCadastroCidade.getjTextField1().setText(listaCidade.get(auxx).getUf());
             
             this.telaBuscaCidade.dispose();
         }

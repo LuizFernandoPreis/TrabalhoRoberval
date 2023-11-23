@@ -52,7 +52,7 @@ public class ControllerBuscaBairro implements ActionListener{
     
     public void carregar(){
         
-        
+        listaBairros = BairroService.carregar();
         Controller.utilities.Utilities.limpaTabela(tabela);
                     if(telaBuscaBairro.getjTFFitrar().getText().length() == 0){
                         if(tabela.getDataVector().size() == 0){
@@ -89,8 +89,9 @@ public class ControllerBuscaBairro implements ActionListener{
     }
      if(e.getSource() == this.telaBuscaBairro.getjButtonCarregar()){
             int aux = this.telaBuscaBairro.getjTableDados().getSelectedRow();
-            this.controller.telaCadastroBairro.getIdTexto().setText(Integer.toString(listaBairros.get(aux).getId()));
-            this.controller.telaCadastroBairro.getDescricaoTexto().setText(listaBairros.get(aux).getDescricao());
+            int auxx = Integer.parseInt(this.telaBuscaBairro.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
+            this.controller.telaCadastroBairro.getIdTexto().setText(Integer.toString(listaBairros.get(auxx).getId()));
+            this.controller.telaCadastroBairro.getDescricaoTexto().setText(listaBairros.get(auxx).getDescricao());
             Controller.utilities.Utilities.limpaTabela(tabela);
             this.telaBuscaBairro.dispose();
     }
