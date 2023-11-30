@@ -63,23 +63,23 @@ public class ControllerTelaBuscaFuncionario implements ActionListener{
     public void actionPerformed(ActionEvent e) {
          if (e.getSource() == this.telaBuscaFuncionario.getjButtonCarregar()){
                 int aux = this.telaBuscaFuncionario.getjTableDados().getSelectedRow();
-
+                int auxx = Integer.parseInt(this.telaBuscaFuncionario.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
                 this.controller.endereco.setId(listaFuncionario.get(aux).getEndereco().getId());
-                this.controller.telaCadastroFuncionario.getIdTexto().setText(Integer.toString(listaFuncionario.get(aux).getId()));
-                this.controller.telaCadastroFuncionario.getComplementoTexto().setText(listaFuncionario.get(aux).getComplementoEmdereco());
-                this.controller.telaCadastroFuncionario.getCpfTexto().setText(listaFuncionario.get(aux).getCpf());
-                this.controller.telaCadastroFuncionario.getNomeTexto().setText(listaFuncionario.get(aux).getNome());
-                this.controller.telaCadastroFuncionario.getRgTexto().setText(listaFuncionario.get(aux).getRg());
-                this.controller.telaCadastroFuncionario.getUsuarioTexto().setText(listaFuncionario.get(aux).getUsuario());
-                this.controller.telaCadastroFuncionario.getSenhaTexto().setText(listaFuncionario.get(aux).getSenha());
-                this.controller.telaCadastroFuncionario.getFoneTexto().setText(listaFuncionario.get(aux).getFone1());
-                this.controller.telaCadastroFuncionario.getFone2Texto().setText(listaFuncionario.get(aux).getFone2());
-                this.controller.telaCadastroFuncionario.getEmailTexto().setText(listaFuncionario.get(aux).getEmail());
-                this.controller.telaCadastroFuncionario.getBuscaEnd().setText(listaFuncionario.get(aux).getEndereco().getCep());
-                this.controller.telaCadastroFuncionario.getMostraBairro().setText(listaFuncionario.get(aux).getEndereco().getBairro().getDescricao());
-                this.controller.telaCadastroFuncionario.getMostraCidade().setText(listaFuncionario.get(aux).getEndereco().getCidade().getDescricao());
-                this.controller.telaCadastroFuncionario.getMostraUf().setText(listaFuncionario.get(aux).getEndereco().getCidade().getUf());
-                if(listaFuncionario.get(aux).getStatus().length() == 1){
+                this.controller.telaCadastroFuncionario.getIdTexto().setText(Integer.toString(listaFuncionario.get(auxx).getId()));
+                this.controller.telaCadastroFuncionario.getComplementoTexto().setText(listaFuncionario.get(auxx).getComplementoEmdereco());
+                this.controller.telaCadastroFuncionario.getCpfTexto().setText(listaFuncionario.get(auxx).getCpf());
+                this.controller.telaCadastroFuncionario.getNomeTexto().setText(listaFuncionario.get(auxx).getNome());
+                this.controller.telaCadastroFuncionario.getRgTexto().setText(listaFuncionario.get(auxx).getRg());
+                this.controller.telaCadastroFuncionario.getUsuarioTexto().setText(listaFuncionario.get(auxx).getUsuario());
+                this.controller.telaCadastroFuncionario.getSenhaTexto().setText(listaFuncionario.get(auxx).getSenha());
+                this.controller.telaCadastroFuncionario.getFoneTexto().setText(listaFuncionario.get(auxx).getFone1());
+                this.controller.telaCadastroFuncionario.getFone2Texto().setText(listaFuncionario.get(auxx).getFone2());
+                this.controller.telaCadastroFuncionario.getEmailTexto().setText(listaFuncionario.get(auxx).getEmail());
+                this.controller.telaCadastroFuncionario.getBuscaEnd().setText(listaFuncionario.get(auxx).getEndereco().getCep());
+                this.controller.telaCadastroFuncionario.getMostraBairro().setText(listaFuncionario.get(auxx).getEndereco().getBairro().getDescricao());
+                this.controller.telaCadastroFuncionario.getMostraCidade().setText(listaFuncionario.get(auxx).getEndereco().getCidade().getDescricao());
+                this.controller.telaCadastroFuncionario.getMostraUf().setText(listaFuncionario.get(auxx).getEndereco().getCidade().getUf());
+                if(listaFuncionario.get(auxx).getStatus().length() == 1){
                     this.controller.telaCadastroFuncionario.getStatus().setSelected(true);
                 }else{
                     this.controller.telaCadastroFuncionario.getStatus().setSelected(false);

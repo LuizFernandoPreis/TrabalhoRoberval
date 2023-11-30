@@ -91,8 +91,6 @@ public class ControllerBuscaEndereco implements ActionListener{
     
     
     
-    
-    
     public void carregar(){
            listaEndereco = EnderecoService.carregarList(this.telaBuscaEndereco.getjTFFitrar().getText(), this.telaBuscaEndereco.getBuscaChave().getSelectedItem().toString());
             Controller.utilities.Utilities.limpaTabela(tabela);

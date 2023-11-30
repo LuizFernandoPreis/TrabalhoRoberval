@@ -79,32 +79,32 @@ int origem = 0;
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.telaBuscaCliente.getjButtonCarregar()){
                  int aux = this.telaBuscaCliente.getjTableDados().getSelectedRow();
-
+                 int auxx = Integer.parseInt(this.telaBuscaCliente.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
                  if(origem ==0){
-                        this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(aux+1));
-                        this.controller.telaCadastroCliente.getComplementoTexto().setText(listaCliente.get(aux).getComplementoEmdereco());
-                        this.controller.telaCadastroCliente.getCpfTexto().setText(listaCliente.get(aux).getCpf());
-                        this.controller.telaCadastroCliente.getNomeTexto().setText(listaCliente.get(aux).getNome());
-                        this.controller.telaCadastroCliente.getRgTexto().setText(listaCliente.get(aux).getRg());
-                        this.controller.telaCadastroCliente.getMatriculaTexto().setText(listaCliente.get(aux).getMatricula());
-                        this.controller.telaCadastroCliente.getDataNascimentoTexto().setText(listaCliente.get(aux).getDataNascimento());
-                        this.controller.telaCadastroCliente.getFoneTexto().setText(listaCliente.get(aux).getFone1());
-                        this.controller.telaCadastroCliente.getFone2Texto().setText(listaCliente.get(aux).getFone2());
-                        this.controller.telaCadastroCliente.getEmailTexto().setText(listaCliente.get(aux).getEmail());
-                        this.controller.telaCadastroCliente.getBuscaEnd().setText(listaCliente.get(aux).getEndereco().getCep());
-                        this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(aux).getEndereco().getBairro().getDescricao());
-                        this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(aux).getEndereco().getCidade().getDescricao());
-                        this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(aux).getEndereco().getCidade().getUf());
-                        this.controller.endereco.setId(listaCliente.get(aux).getEndereco().getId());
-                         if(listaCliente.get(aux).getStatus().length() == 1){
+                        this.controller.telaCadastroCliente.getIdTexto().setText(Integer.toString(auxx+1));
+                        this.controller.telaCadastroCliente.getComplementoTexto().setText(listaCliente.get(auxx).getComplementoEmdereco());
+                        this.controller.telaCadastroCliente.getCpfTexto().setText(listaCliente.get(auxx).getCpf());
+                        this.controller.telaCadastroCliente.getNomeTexto().setText(listaCliente.get(auxx).getNome());
+                        this.controller.telaCadastroCliente.getRgTexto().setText(listaCliente.get(auxx).getRg());
+                        this.controller.telaCadastroCliente.getMatriculaTexto().setText(listaCliente.get(auxx).getMatricula());
+                        this.controller.telaCadastroCliente.getDataNascimentoTexto().setText(listaCliente.get(auxx).getDataNascimento());
+                        this.controller.telaCadastroCliente.getFoneTexto().setText(listaCliente.get(auxx).getFone1());
+                        this.controller.telaCadastroCliente.getFone2Texto().setText(listaCliente.get(auxx).getFone2());
+                        this.controller.telaCadastroCliente.getEmailTexto().setText(listaCliente.get(auxx).getEmail());
+                        this.controller.telaCadastroCliente.getBuscaEnd().setText(listaCliente.get(auxx).getEndereco().getCep());
+                        this.controller.telaCadastroCliente.getMostraBairro().setText(listaCliente.get(auxx).getEndereco().getBairro().getDescricao());
+                        this.controller.telaCadastroCliente.getMostraCidade().setText(listaCliente.get(auxx).getEndereco().getCidade().getDescricao());
+                        this.controller.telaCadastroCliente.getMostraUf().setText(listaCliente.get(auxx).getEndereco().getCidade().getUf());
+                        this.controller.endereco.setId(listaCliente.get(auxx).getEndereco().getId());
+                         if(listaCliente.get(auxx).getStatus().length() == 1){
                        this.controller.telaCadastroCliente.getStatus().setSelected(true);
                    }else{
                        this.controller.telaCadastroCliente.getStatus().setSelected(false);
                    }
                  }else{
-                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraCpf().setText(listaCliente.get(aux).getCpf());
-                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraNome().setText(listaCliente.get(aux).getNome());
-                     this.controllerCarteirinha.telaCadastroCarteirinha.getClienteBox().setSelectedItem(""+listaCliente.get(aux).getId());
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraCpf().setText(listaCliente.get(auxx).getCpf());
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getMostraNome().setText(listaCliente.get(auxx).getNome());
+                     this.controllerCarteirinha.telaCadastroCarteirinha.getClienteBox().setSelectedItem(""+listaCliente.get(auxx).getId());
                  }
             Controller.utilities.Utilities.limpaTabela(tabela);
             this.telaBuscaCliente.dispose();

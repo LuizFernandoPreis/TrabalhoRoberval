@@ -51,13 +51,14 @@ public class ControllerTelaBuscaProduto implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.telaBuscaProduto.getjButtonCarregar()){
             int aux = this.telaBuscaProduto.getjTableDados().getSelectedRow();
-            this.controller.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.get(aux).getId()));
-            this.controller.telaCadastroProduto.getDescTexto().setText(listaProduto.get(aux).getDescricao());
-            this.controller.telaCadastroProduto.getCodTexto().setText(listaProduto.get(aux).getCodigoBarra());
-            System.out.println(listaProduto.get(aux).getStatus().getClass());
-            System.out.println(listaProduto.get(aux).getStatus().length());
-            if(listaProduto.get(aux).getStatus().length() == 1){
-                System.out.println(listaProduto.get(aux).getStatus());
+            int auxx = Integer.parseInt(this.telaBuscaProduto.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
+            this.controller.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.get(auxx).getId()));
+            this.controller.telaCadastroProduto.getDescTexto().setText(listaProduto.get(auxx).getDescricao());
+            this.controller.telaCadastroProduto.getCodTexto().setText(listaProduto.get(auxx).getCodigoBarra());
+            System.out.println(listaProduto.get(auxx).getStatus().getClass());
+            System.out.println(listaProduto.get(auxx).getStatus().length());
+            if(listaProduto.get(auxx).getStatus().length() == 1){
+                System.out.println(listaProduto.get(auxx).getStatus());
                 this.controller.telaCadastroProduto.getStatus().setSelected(true);
             }else{
                 this.controller.telaCadastroProduto.getStatus().setSelected(false);

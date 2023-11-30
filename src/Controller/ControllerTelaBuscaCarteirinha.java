@@ -65,13 +65,14 @@ public class ControllerTelaBuscaCarteirinha implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.telaBuscaCarteirinha.getjButtonCarregar()){
             int aux = this.telaBuscaCarteirinha.getjTableDados().getSelectedRow();
-            this.controller.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCarteirinha.get(aux).getId()));
-            this.controller.telaCadastroCarteirinha.getCodigoBarrasTexto().setText(listaCarteirinha.get(aux).getCodigoBarra());
-            this.controller.telaCadastroCarteirinha.getClienteBox().setSelectedItem(Integer.toString(listaCarteirinha.get(aux).getCliente().getId()));
-            this.controller.telaCadastroCarteirinha.getDataInicio().setText(listaCarteirinha.get(aux).getDataGeração());
-            this.controller.telaCadastroCarteirinha.getDataCancelamentoTexto().setText(listaCarteirinha.get(aux).getDataCancelamento());
-            this.controller.telaCadastroCarteirinha.getMostraCpf().setText(listaCarteirinha.get(aux).getCliente().getCpf());
-            this.controller.telaCadastroCarteirinha.getMostraNome().setText(listaCarteirinha.get(aux).getCliente().getNome());
+            int auxx = Integer.parseInt(this.telaBuscaCarteirinha.getjTableDados().getModel().getValueAt(aux, 0).toString())-1;
+            this.controller.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCarteirinha.get(auxx).getId()));
+            this.controller.telaCadastroCarteirinha.getCodigoBarrasTexto().setText(listaCarteirinha.get(auxx).getCodigoBarra());
+            this.controller.telaCadastroCarteirinha.getClienteBox().setSelectedItem(Integer.toString(listaCarteirinha.get(auxx).getCliente().getId()));
+            this.controller.telaCadastroCarteirinha.getDataInicio().setText(listaCarteirinha.get(auxx).getDataGeração());
+            this.controller.telaCadastroCarteirinha.getDataCancelamentoTexto().setText(listaCarteirinha.get(auxx).getDataCancelamento());
+            this.controller.telaCadastroCarteirinha.getMostraCpf().setText(listaCarteirinha.get(auxx).getCliente().getCpf());
+            this.controller.telaCadastroCarteirinha.getMostraNome().setText(listaCarteirinha.get(auxx).getCliente().getNome());
             this.telaBuscaCarteirinha.dispose();
             Controller.utilities.Utilities.limpaTabela(tabela);
            
