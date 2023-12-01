@@ -59,10 +59,6 @@ public class ClasseDados {
         Cliente cliente1 = new Cliente("123123123", "123123123", "123123123", "1807200", 2, "Gabriel", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", "a", "casa", endereco1);
         Cliente cliente2= new Cliente("123123123", "123123123", "123123123", "1807200", 3, "David", "48996558607", "48996558607", "luizfernandopreis4@gmail.com", "a", "casa", endereco2);
         
-        Produto produto = new Produto(1, "caixa", "123123", "a");
-        Produto produto1 = new Produto(2, "bombom", "123123", "a");
-        Produto produto2 = new Produto(3, "leite", "123123", "a");
-        
         Carteirinha carteirinha = new Carteirinha(1, "123123", "18072021", "18072022",cliente);
         Carteirinha carteirinha1 = new Carteirinha(2, "123123", "18082023", "18082024",cliente1);
         Carteirinha carteirinha2 = new Carteirinha(3, "123123", "18092020", "18092021",cliente2);
@@ -94,10 +90,6 @@ public class ClasseDados {
         listaCliente.add(cliente);
         listaCliente.add(cliente1);
         listaCliente.add(cliente2);
-    
-        listaProduto.add(produto);
-        listaProduto.add(produto1);
-        listaProduto.add(produto2);
         
         listaCarteirinha.add(carteirinha);
         listaCarteirinha.add(carteirinha1);

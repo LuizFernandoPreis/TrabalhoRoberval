@@ -65,7 +65,7 @@ public class ControllerCadProduto  implements ActionListener{
                 on = "";
             }
             if(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()) > listaProduto.size()){
-                Produto produto = new Produto(listaProduto.size() + 1, this.telaCadastroProduto.getDescTexto().getText(), this.telaCadastroProduto.getCodTexto().getText(),on);
+                Produto produto = new Produto(listaProduto.size() + 1, this.telaCadastroProduto.getDescTexto().getText(), this.telaCadastroProduto.getCodTexto().getText(),on, Float.parseFloat(this.telaCadastroProduto.getValorTexto().getText()));
                 ProdutoService.adicionar(produto);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());
@@ -75,6 +75,7 @@ public class ControllerCadProduto  implements ActionListener{
                 produto.setDescricao(this.telaCadastroProduto.getDescTexto().getText());
                 produto.setCodigoBarra(this.telaCadastroProduto.getCodTexto().getText());
                 produto.setStatus(on);
+                produto.setValor(Float.parseFloat(this.telaCadastroProduto.getValorTexto().getText()));
                 ProdutoService.atualizar(produto);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());

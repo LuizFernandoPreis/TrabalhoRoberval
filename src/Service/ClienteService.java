@@ -5,10 +5,6 @@ import DAO.ClienteDAO;
 import Model.bo.Cliente;
 import java.util.List;
 
-/**
- *
- * @author luizf
- */
 public class ClienteService {
         public static void adicionar (Cliente objeto){
         ClienteDAO bairroDAO = new ClienteDAO();

@@ -47,6 +47,7 @@ public class Menu extends javax.swing.JFrame {
         menuEndereco = new javax.swing.JMenuItem();
         menucarteirinha = new javax.swing.JMenuItem();
         menuProduto = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         menuSair = new javax.swing.JMenuItem();
         menuMovimentos = new javax.swing.JMenu();
@@ -171,6 +172,15 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuProduto);
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItem1.setText("Venda");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator4);
 
         menuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ESCAPE, 0));
@@ -265,6 +275,11 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuSairActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        CadastroVendas venda = new CadastroVendas();
+        venda.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
  
     public static void main(String args[]) {
         
@@ -285,6 +300,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;

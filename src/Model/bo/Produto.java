@@ -14,15 +14,17 @@ public class Produto {
     private String descricao;
     private String codigoBarra;
     private String status;
-
+    private float valor;
+    
     public Produto() {
     }
 
-    public Produto(int id, String descricao, String codigoBarra, String status) {
+    public Produto(int id, String descricao, String codigoBarra, String status,float valor) {
         this.id = id;
         this.descricao = descricao;
         this.codigoBarra = codigoBarra;
         this.status = status;
+        this.valor = valor;
     }
 
     public int getId() {
@@ -31,6 +33,14 @@ public class Produto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
 
     public String getDescricao() {

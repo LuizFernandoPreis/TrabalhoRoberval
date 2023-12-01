@@ -8,19 +8,19 @@ import java.time.LocalDateTime;
 
 public class Venda {
     private int id;
-    private LocalDateTime dataHoraVenda;
-    private float valorDesconto;
+    private String dataHoraVenda;
+    private float valorDesconto = 0;
     private char flagTipoDesconto;
-    private String observacao;
+    private String observacao = "";
     private char status;
-    
+    private funcionario funcionario;
     private Carteirinha carteirinha;
-    
+    private ItemVenda itemVenda;
     
     public Venda() {
     }
 
-    public Venda(int id, LocalDateTime dataHoraVenda, float valorDesconto, char flagTipoDesconto, String observacao, char status, Carteirinha carteirinha, ItemVenda itemVenda) {
+    public Venda(int id, String dataHoraVenda, float valorDesconto, char flagTipoDesconto, String observacao, char status, Carteirinha carteirinha, ItemVenda itemVenda, funcionario func) {
         this.id = id;
         this.dataHoraVenda = dataHoraVenda;
         this.valorDesconto = valorDesconto;
@@ -28,7 +28,16 @@ public class Venda {
         this.observacao = observacao;
         this.status = status;
         this.carteirinha = carteirinha;
-       
+        this.funcionario = func;
+       this.itemVenda = itemVenda;
+    }
+
+    public funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
     public int getId() {
@@ -39,11 +48,11 @@ public class Venda {
         this.id = id;
     }
 
-    public LocalDateTime getDataHoraVenda() {
+    public String getDataHoraVenda() {
         return dataHoraVenda;
     }
 
-    public void setDataHoraVenda(LocalDateTime dataHoraVenda) {
+    public void setDataHoraVenda(String dataHoraVenda) {
         this.dataHoraVenda = dataHoraVenda;
     }
 

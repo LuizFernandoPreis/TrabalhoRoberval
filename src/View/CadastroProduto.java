@@ -28,6 +28,14 @@ public class CadastroProduto extends javax.swing.JFrame {
         return Body;
     }
 
+    public JTextField getValorTexto() {
+        return valorTexto;
+    }
+
+    public void setValorTexto(JTextField valorTexto) {
+        this.valorTexto = valorTexto;
+    }
+
     public JCheckBox getStatus() {
         return Status;
     }
@@ -90,6 +98,8 @@ public class CadastroProduto extends javax.swing.JFrame {
         idTexto = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         Status = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
+        valorTexto = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -154,6 +164,8 @@ public class CadastroProduto extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("valor");
+
         javax.swing.GroupLayout BodyLayout = new javax.swing.GroupLayout(Body);
         Body.setLayout(BodyLayout);
         BodyLayout.setHorizontalGroup(
@@ -192,6 +204,10 @@ public class CadastroProduto extends javax.swing.JFrame {
                             .addComponent(descTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(BodyLayout.createSequentialGroup()
                                 .addComponent(idTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(138, 138, 138)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(valorTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Status, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(80, 80, 80)))))
@@ -208,7 +224,9 @@ public class CadastroProduto extends javax.swing.JFrame {
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(idTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Status))
+                    .addComponent(Status)
+                    .addComponent(jLabel5)
+                    .addComponent(valorTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(BodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -303,10 +321,12 @@ public class CadastroProduto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton novo;
     private javax.swing.JButton sair;
     private javax.swing.JLabel titulo;
+    private javax.swing.JTextField valorTexto;
     // End of variables declaration//GEN-END:variables
 }

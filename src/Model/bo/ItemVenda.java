@@ -14,7 +14,6 @@ public class ItemVenda {
     private float qtdeProduto;
     private float valorUnitario;
     private char status;
-    
     private Produto produto;
     private Venda venda;
     public ItemVenda() {

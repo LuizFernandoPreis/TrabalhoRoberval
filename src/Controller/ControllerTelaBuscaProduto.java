@@ -89,7 +89,7 @@ public class ControllerTelaBuscaProduto implements ActionListener {
                                         List<Produto> bairros = new ArrayList<>();
                                 bairros = ProdutoService.carregarList(telaBuscaProduto.getjTFFitrar().getText(), telaBuscaProduto.getBuscaChave().getSelectedItem().toString());
                                 for (Produto bairroAtual : bairros) {
-                                    tabela.addRow(new Object[] {bairroAtual.getId(), bairroAtual.getDescricao()});
+                                    tabela.addRow(new Object[] {bairroAtual.getId(), bairroAtual.getDescricao(),bairroAtual.getCodigoBarra(),bairroAtual.getStatus()});
                                 }
                                     }
 

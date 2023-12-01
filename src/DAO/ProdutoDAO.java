@@ -24,7 +24,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public void create(Produto objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO tblproduto (descricao, codigoBarra, status) VALUES(?,?,?)";
+        String sqlExecutar = "INSERT INTO tblproduto (descricao, codigoBarra, status,valor) VALUES(?,?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -33,6 +33,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
             pstm.setString(1, objeto.getDescricao());
             pstm.setString(2, objeto.getCodigoBarra());
             pstm.setString(3, objeto.getStatus());
+            pstm.setFloat(4, objeto.getValor());
             pstm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -45,7 +46,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public List<Produto> retrieve() {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "SELECT tblproduto.id, tblproduto.descricao, tblproduto.codigoBarra, tblproduto.status FROM tblproduto";
+        String sqlExecutar = "SELECT tblproduto.id, tblproduto.descricao, tblproduto.codigoBarra, tblproduto.status, tblproduto.valor FROM tblproduto";
         PreparedStatement pstm = null;
         ResultSet rst = null ;
         List<Produto> listaProduto = new ArrayList<>();
@@ -62,6 +63,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
                 produto.setDescricao(rst.getString("descricao"));
                 produto.setCodigoBarra(rst.getString("codigoBarra"));
                 produto.setStatus("" + rst.getString("status"));
+                produto.setValor(rst.getFloat("valor"));
                 listaProduto.add(produto);
             }
            
