@@ -58,7 +58,7 @@ public class CadastroVendas extends javax.swing.JFrame {
         buscarBotao = new javax.swing.JButton();
         cadastrarBotao = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        nomeTexto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(766, 389));
@@ -216,7 +216,7 @@ public class CadastroVendas extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(descontoTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(funcionarioBox, 0, 86, Short.MAX_VALUE)
-                                    .addComponent(jTextField3))))
+                                    .addComponent(nomeTexto))))
                         .addGap(70, 70, 70))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -318,7 +318,7 @@ public class CadastroVendas extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(buscarBotao)
                                         .addComponent(cadastrarBotao))
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(nomeTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 7, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,7 +418,7 @@ public class CadastroVendas extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField nomeTexto;
     private javax.swing.JButton novo;
     private javax.swing.JTable produtosTabela;
     private javax.swing.JButton sair;

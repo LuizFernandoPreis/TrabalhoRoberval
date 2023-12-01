@@ -76,7 +76,7 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="descontoTexto" min="-2" pref="72" max="-2" attributes="0"/>
                                   <Component id="funcionarioBox" pref="86" max="32767" attributes="0"/>
-                                  <Component id="jTextField3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="nomeTexto" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -213,7 +213,7 @@
                                       <Component id="buscarBotao" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="cadastrarBotao" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="jTextField3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nomeTexto" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
                           </Group>
@@ -500,7 +500,7 @@
         <Property name="text" type="java.lang.String" value="Nome"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="nomeTexto">
     </Component>
   </SubComponents>
 </Form>
