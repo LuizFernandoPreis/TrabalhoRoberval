@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class Venda {
     private int id;
     private String dataHoraVenda;
-    private float valorDesconto = 0;
+    private float valorDesconto = 0.0f;
     private char flagTipoDesconto;
     private String observacao = "";
     private char status;

@@ -11,15 +11,16 @@ package Model.bo;
  */
 public class ItemVenda {
     private int id;
-    private float qtdeProduto;
+    private int qtdeProduto;
     private float valorUnitario;
     private char status;
     private Produto produto;
     private Venda venda;
+    private Carteirinha carteirinha;
     public ItemVenda() {
     }
 
-    public ItemVenda(int id, float qtdeProduto, float valorUnitario, char status, Produto produto, Venda venda) {
+    public ItemVenda(int id, int qtdeProduto, float valorUnitario, char status, Produto produto, Venda venda) {
         this.id = id;
         this.qtdeProduto = qtdeProduto;
         this.valorUnitario = valorUnitario;
@@ -31,15 +32,31 @@ public class ItemVenda {
         return id;
     }
 
+    public Carteirinha getCarteirinha() {
+        return carteirinha;
+    }
+
+    public void setCarteirinha(Carteirinha carteirinha) {
+        this.carteirinha = carteirinha;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public float getQtdeProduto() {
+    public Venda getVenda() {
+        return venda;
+    }
+
+    public void setVenda(Venda venda) {
+        this.venda = venda;
+    }
+
+    public int getQtdeProduto() {
         return qtdeProduto;
     }
 
-    public void setQtdeProduto(float qtdeProduto) {
+    public void setQtdeProduto(int qtdeProduto) {
         this.qtdeProduto = qtdeProduto;
     }
 

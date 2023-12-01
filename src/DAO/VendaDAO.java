@@ -31,9 +31,7 @@ public class VendaDAO implements InterfaceDAO<Venda>{
     @Override
     public void create(Venda objeto) {
      Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO tblvenda (dataHoraVenda,ValorDesconto,observacao,tblfuncionario_id, tblcarteirinha_id) VALUES(?,?,?,"
-                + "(SELECT id FROM tblfuncionario WHERE cpf LIKE ?),"
-                + "(SELECT id FROM tblcarteirinha WHERE codigobarra LIKE ?))";
+        String sqlExecutar = "INSERT INTO tblvenda (dataHoraVenda,ValorDesconto,observacao,tblfuncionario_id, tblcarteirinha_id) VALUES(?,?,?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -41,10 +39,10 @@ public class VendaDAO implements InterfaceDAO<Venda>{
             pstm = conexao.prepareStatement(sqlExecutar);
             pstm.setString(1, objeto.getDataHoraVenda());
             pstm.setFloat(2, objeto.getValorDesconto());
-            pstm.setString(4, objeto.getFuncionario().getCpf());
-            pstm.setString(5, objeto.getCarteirinha().getCodigoBarra());
+            pstm.setInt(4, objeto.getFuncionario().getId());
+            pstm.setInt(5, objeto.getCarteirinha().getId());
             pstm.setString(3, objeto.getObservacao());
-            pstm.execute();
+              pstm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally {

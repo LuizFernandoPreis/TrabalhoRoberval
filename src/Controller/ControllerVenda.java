@@ -9,6 +9,7 @@ import Model.bo.ItemVenda;
 import Model.bo.Produto;
 import Model.bo.Venda;
 import Model.bo.funcionario;
+import Service.ItemVendaService;
 import Service.ProdutoService;
 import Service.VendaService;
 import View.CadastroVendas;
@@ -92,6 +93,9 @@ public class ControllerVenda implements ActionListener{
     }
         
     
+    
+    
+    
     public void addProduto(){
         
         int quantidade = 1;
@@ -133,7 +137,6 @@ public class ControllerVenda implements ActionListener{
         dataHoraAtual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
-        ItemVenda itemVenda = new ItemVenda();
         
         Venda venda = new Venda();
         funcionario funcionario = new funcionario();
@@ -141,6 +144,7 @@ public class ControllerVenda implements ActionListener{
         
         venda.setDataHoraVenda(""+dataHoraAtual.format(formato));
         venda.setValorDesconto(0);
+        venda.setId(listaVendas.size() + 1);
         
         carteirinha.setId(carteirinhaId);
         funcionario.setId(funcionarioId);
@@ -148,6 +152,20 @@ public class ControllerVenda implements ActionListener{
         venda.setCarteirinha(carteirinha);
         venda.setFuncionario(funcionario);
         
+        for(int i = 0; i < tabela.getRowCount();i++)
+        {
+            Produto produto = new Produto();
+            ItemVenda itemVenda = new ItemVenda();
+            
+            produto.setId(Integer.parseInt(tabela.getValueAt(i, 0).toString()));
+            produto.setValor(Float.parseFloat(tabela.getValueAt(i, 4).toString()));
+            itemVenda.setQtdeProduto(Integer.parseInt(tabela.getValueAt(i, 3).toString()));
+            itemVenda.setCarteirinha(carteirinha);
+            itemVenda.setVenda(venda);
+            itemVenda.setProduto(produto);
+            
+            ItemVendaService.adicionar(itemVenda);
+        }
         VendaService.adicionar(venda);
     }
     
