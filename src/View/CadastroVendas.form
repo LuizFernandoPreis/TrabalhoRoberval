@@ -365,8 +365,6 @@
               </Table>
             </Property>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
-            <Property name="showHorizontalLines" type="boolean" value="false"/>
-            <Property name="showVerticalLines" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>

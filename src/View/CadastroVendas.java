@@ -137,8 +137,6 @@ public class CadastroVendas extends javax.swing.JFrame {
             }
         ));
         produtosTabela.setName(""); // NOI18N
-        produtosTabela.setShowHorizontalLines(false);
-        produtosTabela.setShowVerticalLines(false);
         jScrollPane1.setViewportView(produtosTabela);
 
         idTexto.setName("id"); // NOI18N
