@@ -74,8 +74,6 @@ public class CadastroVendas extends javax.swing.JFrame {
             }
         ));
         produtosTabela.setName(""); // NOI18N
-        produtosTabela.setShowHorizontalLines(false);
-        produtosTabela.setShowVerticalLines(false);
         jScrollPane1.setViewportView(produtosTabela);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
