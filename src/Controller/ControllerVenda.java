@@ -44,7 +44,7 @@ public class ControllerVenda implements ActionListener{
         this.data = data;
         listaprodutos = ProdutoService.carregar();
         tabela = (DefaultTableModel) this.vendas.getProdutosTabela().getModel();
-        listaVendas = VendaService.carregar();
+        
         
         
         DocumentListener listener = new DocumentListener() {
@@ -137,6 +137,7 @@ public class ControllerVenda implements ActionListener{
         dataHoraAtual = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         
+        listaVendas = VendaService.carregar();
         
         Venda venda = new Venda();
         funcionario funcionario = new funcionario();
@@ -167,6 +168,9 @@ public class ControllerVenda implements ActionListener{
             ItemVendaService.adicionar(itemVenda);
         }
         VendaService.adicionar(venda);
+        
+        tabela.setRowCount(0);
+        this.vendas.getCodigobarraTexto().setText("");
     }
     
     
