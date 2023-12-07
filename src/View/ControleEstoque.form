@@ -127,11 +127,7 @@
                       <Component id="carregarBotao" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="registrarBotao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="122" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="acrescentarBotao" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="sairBotao" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -157,9 +153,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="carregarBotao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="sairBotao" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="acrescentarBotao" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="registrarBotao" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="jButton1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
@@ -183,7 +177,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="buscaBox" min="-2" pref="99" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="100" max="32767" attributes="0"/>
                   <Component id="jTFFitrar1" min="-2" pref="500" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -282,28 +276,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sairBotaoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="acrescentarBotao">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/Database.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Acrescentar item"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="registrarBotao">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagens/Create.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar novo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/Dollar.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Movimento"/>
       </Properties>
     </Component>
   </SubComponents>

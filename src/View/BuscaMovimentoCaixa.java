@@ -37,8 +37,8 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDados = new javax.swing.JTable();
         jPanFiltro = new javax.swing.JPanel();
-        jTFFitrar = new javax.swing.JTextField();
-        jButtonFiltrar = new javax.swing.JButton();
+        filtroTexto = new javax.swing.JTextField();
+        filtroBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -50,7 +50,7 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
         jLabelTitulo.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabelTitulo.setForeground(new java.awt.Color(102, 255, 0));
         jLabelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitulo.setText("Titulo");
+        jLabelTitulo.setText("Busca Movimento Caixa");
 
         javax.swing.GroupLayout jPanTituloLayout = new javax.swing.GroupLayout(jPanTitulo);
         jPanTitulo.setLayout(jPanTituloLayout);
@@ -127,31 +127,27 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
         jPanFiltro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanFiltro.setEnabled(false);
 
-        jButtonFiltrar.setText("Filtrar");
-        jButtonFiltrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonFiltrarActionPerformed(evt);
-            }
-        });
+        filtroBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Observacao", "Valor", "Data", "Hora" }));
 
         javax.swing.GroupLayout jPanFiltroLayout = new javax.swing.GroupLayout(jPanFiltro);
         jPanFiltro.setLayout(jPanFiltroLayout);
         jPanFiltroLayout.setHorizontalGroup(
             jPanFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanFiltroLayout.createSequentialGroup()
-                .addComponent(jTFFitrar, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonFiltrar, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(filtroBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(filtroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanFiltroLayout.setVerticalGroup(
             jPanFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanFiltroLayout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
+            .addGroup(jPanFiltroLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanFiltroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFFitrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonFiltrar))
-                .addContainerGap())
+                    .addComponent(filtroBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtroTexto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,7 +167,7 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
                 .addComponent(jPanFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jPanBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -182,10 +178,6 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
     private void jButtonCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCarregarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonCarregarActionPerformed
-
-    private void jButtonFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFiltrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonFiltrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,8 +222,9 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> filtroBox;
+    private javax.swing.JTextField filtroTexto;
     private javax.swing.JButton jButtonCarregar;
-    private javax.swing.JButton jButtonFiltrar;
     private javax.swing.JButton jButtonSair;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanBotoes;
@@ -239,7 +232,6 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
     private javax.swing.JPanel jPanFiltro;
     private javax.swing.JPanel jPanTitulo;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFFitrar;
     private javax.swing.JTable jTableDados;
     // End of variables declaration//GEN-END:variables
 }
