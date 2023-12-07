@@ -26,7 +26,7 @@ public class ItemVendaDAO implements InterfaceDAO <ItemVenda>{
         try {
             pstm = conexao.prepareStatement(sqlExecutar);
             pstm.setInt(1, objeto.getQtdeProduto());
-            pstm.setFloat(2, objeto.getValorUnitario());
+            pstm.setFloat(2, objeto.getProduto().getValor());
             pstm.setInt(3, objeto.getVenda().getId()-1);
             pstm.setInt(5, objeto.getCarteirinha().getId());
             pstm.setInt(4, objeto.getProduto().getId());
