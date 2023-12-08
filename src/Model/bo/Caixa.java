@@ -19,11 +19,20 @@ public class Caixa {
     private float valorFechamento;
     private String observacao;
     private char status;
-    
+    private funcionario funcionario;
     private MovimentoCaixa movimentoCaixa;
 
     public Caixa() {
     }
+
+    public funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+    
 
     public Caixa(int id, LocalDateTime dataHoraAbertura, LocalDateTime dataHoraFechamento, float valorAbertura, float valorFechamento, String observacao, char status, MovimentoCaixa movimentoCaixa) {
         this.id = id;

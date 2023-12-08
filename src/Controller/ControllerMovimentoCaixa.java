@@ -13,28 +13,17 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ControllerMovimentoCaixa implements ActionListener{
+public class ControllerMovimentoCaixa extends Controllers implements ActionListener{
     private TelaMovimentoCaixa tela;
     private LocalDateTime data;
     private List<MovimentoCaixa> listaMovimentoCaixa;
+    
+    
+    
     public ControllerMovimentoCaixa(TelaMovimentoCaixa tela) {
         this.tela = tela;
-       getData();
+        Utilities.setDatas(tela.getDataTexto(), tela.getHoraTexto(),this);
     }
-    
-    public void getData(){
-         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        
-        Runnable getData = () -> {
-            data = LocalDateTime.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            data.format(formato);
-            this.tela.getHoraTexto().setText(""+data.getHour() + ":"+data.getMinute() +":"+ data.getSecond());  
-            this.tela.getDataTexto().setText(""+data.getDayOfMonth()+"/"+data.getMonthValue()+"/"+data.getYear());
-    };
-        scheduler.scheduleAtFixedRate(getData, 0, 1, TimeUnit.SECONDS);
-    }
-    
     
 
     @Override

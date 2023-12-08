@@ -4,8 +4,15 @@
  */
 package Controller.utilities;
 
+import Controller.Controllers;
 import java.awt.Checkbox;
 import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
@@ -18,22 +25,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class Utilities {
     
-    public static boolean testaCampo( JPanel painel) {
-        boolean aux = false;
-        Component[] componentes  = painel.getComponents();
-        for (Component componente : componentes) {
-           if(componente instanceof JFormattedTextField){
-                    if(((JFormattedTextField) componente).getText().length() == 0){
-                        aux = true;
-                    }
-                }
-            if(componente instanceof JTextField){
-                    if(((JTextField) componente).getText().length() == 0){
-                        aux = true;
-                    }
-                }
-        }
-        return aux;
+    public static void setDatas(JTextField data, JTextField hora, Controllers c){
+         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        
+        Runnable getData = () -> {
+            LocalDateTime datas = LocalDateTime.now();
+            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            datas.format(formato);
+            hora.setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());  
+            data.setText(""+datas.getDayOfMonth()+"/"+datas.getMonthValue()+"/"+datas.getYear());
+            if(c.getOn() == 0)
+            {
+                scheduler.shutdown();
+            }
+    };
+        scheduler.scheduleAtFixedRate(getData, 0, 1, TimeUnit.SECONDS);
     }
     
      public static Component testaCampos( JPanel painel) {
