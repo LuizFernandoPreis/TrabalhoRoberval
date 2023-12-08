@@ -2,6 +2,7 @@
 package Controller;
 
 import Controller.utilities.Utilities;
+import Model.bo.MovimentoCaixa;
 import View.TelaMovimentoCaixa;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class ControllerMovimentoCaixa implements ActionListener{
     private TelaMovimentoCaixa tela;
     private LocalDateTime data;
-    private List<TelaMovimentoCaixa> listaMovimentoCaixa;
+    private List<MovimentoCaixa> listaMovimentoCaixa;
     public ControllerMovimentoCaixa(TelaMovimentoCaixa tela) {
         this.tela = tela;
        getData();

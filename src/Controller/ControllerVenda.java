@@ -153,6 +153,7 @@ public class ControllerVenda implements ActionListener{
         venda.setCarteirinha(carteirinha);
         venda.setFuncionario(funcionario);
         
+        VendaService.adicionar(venda);
         for(int i = 0; i < tabela.getRowCount();i++)
         {
             Produto produto = new Produto();
@@ -167,7 +168,7 @@ public class ControllerVenda implements ActionListener{
             
             ItemVendaService.adicionar(itemVenda);
         }
-        VendaService.adicionar(venda);
+       
         
         tabela.setRowCount(0);
         this.vendas.getCodigobarraTexto().setText("");
