@@ -8,6 +8,7 @@ package View;
  *
  * @author luizf
  */
+import Controller.ControllerMovimentoCaixa;
 import view.TelaBuscaCliente;
 import View.TelaCadastroCliente;
 public class Menu extends javax.swing.JFrame {
@@ -54,6 +55,7 @@ public class Menu extends javax.swing.JFrame {
         menuContas = new javax.swing.JMenu();
         itemReceber = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
@@ -211,6 +213,14 @@ public class Menu extends javax.swing.JFrame {
 
         menuMovimentos.add(menuContas);
 
+        jMenuItem2.setText("Movimento Caixa");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuMovimentos.add(jMenuItem2);
+
         jMenuBar1.add(menuMovimentos);
 
         jMenu3.setText("Relatórios");
@@ -280,6 +290,12 @@ public class Menu extends javax.swing.JFrame {
         venda.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TelaMovimentoCaixa tela = new TelaMovimentoCaixa();
+        ControllerMovimentoCaixa a = new ControllerMovimentoCaixa(tela);
+        tela.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
  
     public static void main(String args[]) {
         
@@ -302,6 +318,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

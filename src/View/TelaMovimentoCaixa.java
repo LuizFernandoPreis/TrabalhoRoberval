@@ -5,16 +5,21 @@
  */
 package View;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author aluno
  */
-public class MovimentoCaixa extends javax.swing.JFrame {
+public class TelaMovimentoCaixa extends javax.swing.JFrame {
 
     /**
      * Creates new form MovimentoCaixa
      */
-    public MovimentoCaixa() {
+    public TelaMovimentoCaixa() {
         initComponents();
     }
 
@@ -70,6 +75,7 @@ public class MovimentoCaixa extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("ID");
 
+        idTexto.setEditable(false);
         idTexto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idTextoActionPerformed(evt);
@@ -90,9 +96,16 @@ public class MovimentoCaixa extends javax.swing.JFrame {
 
         jCheckBox1.setText("Status");
 
+        dataTexto.setEditable(false);
         dataTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
+        horaTexto.setEditable(false);
         horaTexto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT))));
+        horaTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horaTextoActionPerformed(evt);
+            }
+        });
 
         gravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/OK.png"))); // NOI18N
         gravar.setText("Gravar");
@@ -235,6 +248,98 @@ public class MovimentoCaixa extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_sairActionPerformed
 
+    private void horaTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaTextoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_horaTextoActionPerformed
+
+    public JButton getBuscar() {
+        return buscar;
+    }
+
+    public void setBuscar(JButton buscar) {
+        this.buscar = buscar;
+    }
+
+    public JButton getCancelar() {
+        return cancelar;
+    }
+
+    public void setCancelar(JButton cancelar) {
+        this.cancelar = cancelar;
+    }
+
+    public JFormattedTextField getDataTexto() {
+        return dataTexto;
+    }
+
+    public void setDataTexto(JFormattedTextField dataTexto) {
+        this.dataTexto = dataTexto;
+    }
+
+    public JButton getGravar() {
+        return gravar;
+    }
+
+    public void setGravar(JButton gravar) {
+        this.gravar = gravar;
+    }
+
+    public JFormattedTextField getHoraTexto() {
+        return horaTexto;
+    }
+
+    public void setHoraTexto(JFormattedTextField horaTexto) {
+        this.horaTexto = horaTexto;
+    }
+
+    public JTextField getIdTexto() {
+        return idTexto;
+    }
+
+    public void setIdTexto(JTextField idTexto) {
+        this.idTexto = idTexto;
+    }
+
+    public JCheckBox getjCheckBox1() {
+        return jCheckBox1;
+    }
+
+    public void setjCheckBox1(JCheckBox jCheckBox1) {
+        this.jCheckBox1 = jCheckBox1;
+    }
+
+    public JButton getNovo() {
+        return novo;
+    }
+
+    public void setNovo(JButton novo) {
+        this.novo = novo;
+    }
+
+    public JTextField getObservacaoTexto() {
+        return observacaoTexto;
+    }
+
+    public void setObservacaoTexto(JTextField observacaoTexto) {
+        this.observacaoTexto = observacaoTexto;
+    }
+
+    public JButton getSair() {
+        return sair;
+    }
+
+    public void setSair(JButton sair) {
+        this.sair = sair;
+    }
+
+    public JTextField getValorTexto() {
+        return valorTexto;
+    }
+
+    public void setValorTexto(JTextField valorTexto) {
+        this.valorTexto = valorTexto;
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -252,20 +357,21 @@ public class MovimentoCaixa extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaMovimentoCaixa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MovimentoCaixa().setVisible(true);
+                new TelaMovimentoCaixa().setVisible(true);
             }
         });
     }

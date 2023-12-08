@@ -9,12 +9,12 @@ package view;
  *
  * @author house
  */
-public class TemplateBuscas2023 extends javax.swing.JDialog {
+public class BuscaMovimentoCaixa extends javax.swing.JDialog {
 
     /**
      * Creates new form TemplateBuscas2023
      */
-    public TemplateBuscas2023(java.awt.Frame parent, boolean modal) {
+    public BuscaMovimentoCaixa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -209,7 +209,7 @@ public class TemplateBuscas2023 extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TemplateBuscas2023 dialog = new TemplateBuscas2023(new javax.swing.JFrame(), true);
+                BuscaMovimentoCaixa dialog = new BuscaMovimentoCaixa(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
