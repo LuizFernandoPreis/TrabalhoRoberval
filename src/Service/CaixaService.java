@@ -24,5 +24,9 @@ public class CaixaService {
         CaixaDAO bairroDAO = new CaixaDAO();
         return bairroDAO.retrieve();
     }
+    public static void atualizar(Caixa objeto){
+         CaixaDAO bairroDAO = new CaixaDAO();
+         bairroDAO.update(objeto);
+     }
    
 }

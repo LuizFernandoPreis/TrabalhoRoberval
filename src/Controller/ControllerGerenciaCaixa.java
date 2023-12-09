@@ -29,23 +29,22 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     private Menu global;
     private List<Caixa> listaCaixa;
     private List<funcionario> listaFuncionario;
-      ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-      ScheduledExecutorService scheduler1 = Executors.newScheduledThreadPool(1);
-    private int on = 1;
+    private LocalDateTime dataAbertura;
+    private LocalDateTime dataFechamento;
+    
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    ScheduledExecutorService scheduler1 = Executors.newScheduledThreadPool(1);
 
-    public int getOn() {
-        return on;
-    }
 
-    public void setOn(int on) {
-        this.on = on;
-    }
     public ControllerGerenciaCaixa(GerenciamentoCaixa tela, Menu global) {
         this.tela = tela;
         this.global = global;
         listaCaixa = CaixaService.carregar();
         listaFuncionario = FuncionarioService.carregar();
         tela.getAbrirCaixa().addActionListener(this);
+        tela.getFecharCaixa().addActionListener(this);
+        tela.getSaldoFechamento().setText("0");
         for(funcionario f : listaFuncionario)
         {
             tela.getUsuarioBox().addItem(f.getNome());
@@ -56,7 +55,7 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
         
          Runnable getData = () -> {
             LocalDateTime datas = LocalDateTime.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+            
             datas.format(formato);
            this.tela.getHoraAbertura().setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());  
            this.tela.getDataAbertura().setText(""+datas.getDayOfMonth()+"/"+datas.getMonthValue()+"/"+datas.getYear());
@@ -64,7 +63,6 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     };
          Runnable getData1 = () -> {
             LocalDateTime datas = LocalDateTime.now();
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
             datas.format(formato);
            this.tela.getHoraFechamento().setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());  
            this.tela.getDataFechamento().setText(""+datas.getDayOfMonth()+"/"+datas.getMonthValue()+"/"+datas.getYear());
@@ -77,13 +75,38 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == tela.getAbrirCaixa())
+        if(e.getSource() == this.tela.getAbrirCaixa())
         {
          scheduler.shutdown();
-        }
-        if(e.getSource() == tela.getFecharCaixa())
+         dataAbertura = LocalDateTime.now();
+         dataFechamento = LocalDateTime.now();
+         
+         Caixa caixa = new Caixa();
+         funcionario funcionario = new funcionario();
+         
+         caixa.setId(listaCaixa.size()+1);
+         caixa.setDataHoraAbertura(dataAbertura);
+         caixa.setValorAbertura(Float.parseFloat(tela.getSaldoAbertura().getText()));
+         funcionario = listaFuncionario.get(tela.getUsuarioBox().getSelectedIndex());
+         caixa.setDataHoraFechamento(dataFechamento);
+         caixa.setValorFechamento(Float.parseFloat(tela.getSaldoFechamento().getText()));
+         caixa.setObservacao(tela.getObservaçãoTexto().getText());
+         caixa.setFuncionario(funcionario);
+         CaixaService.adicionar(caixa);
+        } else if(e.getSource() == this.tela.getFecharCaixa())
         {
+            System.out.println("c");
+            
             scheduler1.shutdown();
+            dataFechamento = LocalDateTime.now();
+            
+            Caixa caixa = new Caixa();
+            caixa.setDataHoraFechamento(dataFechamento);
+            caixa.setValorFechamento(Float.parseFloat(tela.getSaldoFechamento().getText()));
+            caixa.setObservacao(tela.getObservaçãoTexto().getText());
+            caixa.setId(listaCaixa.size());
+            
+            CaixaService.atualizar(caixa);
         }
     }
     

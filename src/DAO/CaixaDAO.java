@@ -85,7 +85,27 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
 
     @Override
     public void update(Caixa objeto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection conexao = ConnectionFactory.getConnection();
+        String sqlExecutar = " UPDATE tblcaixa"
+                           + " SET datahorafechamento = ?,"
+                           + "valorFechamento = ?,"
+                           +"observacao = ?"
+                           + " WHERE tblcaixa.id = ?" ;  
+        PreparedStatement pstm = null;
+        
+        try {
+            pstm = conexao.prepareStatement(sqlExecutar);
+            pstm.setString(1, ""+objeto.getDataHoraFechamento());
+            pstm.setFloat(2, objeto.getValorFechamento());
+            pstm.setString(3, objeto.getObservacao());
+            pstm.setInt(4, objeto.getId());
+            pstm.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally{
+            ConnectionFactory.closeConnection(conexao, pstm);
+        }
+
     }
 
     @Override
