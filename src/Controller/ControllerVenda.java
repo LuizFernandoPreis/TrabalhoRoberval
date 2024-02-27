@@ -36,7 +36,7 @@ public class ControllerVenda implements ActionListener{
     private List<Produto> listaprodutos;
     private boolean qtd = false;
     private LocalDateTime dataHoraAtual;
-    private int funcionarioId = 1;
+    private int funcionarioId = 4;
     DefaultTableModel tabela;
     
     public ControllerVenda(CadastroVendas vendas) {
@@ -44,7 +44,7 @@ public class ControllerVenda implements ActionListener{
         this.data = data;
         listaprodutos = ProdutoService.carregar();
         tabela = (DefaultTableModel) this.vendas.getProdutosTabela().getModel();
-        
+        System.out.println(listaprodutos);
         
         
         DocumentListener listener = new DocumentListener() {
@@ -103,6 +103,8 @@ public class ControllerVenda implements ActionListener{
         String codigoBarra = this.vendas.getCodigobarraTexto().getText();
         if(codigoBarra.length() == 13)
         {
+                            System.out.println("c");
+
             if(qtd == true)
             {
                 quantidade = Integer.parseInt(JOptionPane.showInputDialog("Digite a Quantidade de Produtos"));

@@ -67,14 +67,16 @@ public class ControllerCadProduto  implements ActionListener{
             if(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()) > listaProduto.size()){
                 Produto produto = new Produto(listaProduto.size() + 1, this.telaCadastroProduto.getDescTexto().getText(), this.telaCadastroProduto.getCodTexto().getText(),on, Float.parseFloat(this.telaCadastroProduto.getValorTexto().getText()));
                 ProdutoService.adicionar(produto);
+                produto.setId(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()));
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroProduto.getBody());
-                this.telaCadastroProduto.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaProduto.size() + 1));
+                this.telaCadastroProduto.getIdTexto().setText(Integer.toString(listaProduto.size() + 1));
             }else{
                 Produto produto = listaProduto.get(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText())-1);
                 produto.setDescricao(this.telaCadastroProduto.getDescTexto().getText());
                 produto.setCodigoBarra(this.telaCadastroProduto.getCodTexto().getText());
                 produto.setStatus(on);
+                produto.setId(Integer.parseInt(this.telaCadastroProduto.getIdTexto().getText()));
                 produto.setValor(Float.parseFloat(this.telaCadastroProduto.getValorTexto().getText()));
                 ProdutoService.atualizar(produto);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroProduto.getBody());

@@ -40,18 +40,20 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
         this.telaCadastroCarteirinha.getGravar().addActionListener(this);
         this.telaCadastroCarteirinha.getSair().addActionListener(this);
         this.telaCadastroCarteirinha.getNovoCliente().addActionListener(this);
-        this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCliente.size() + 1));
+        this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCliente.size()));
         this.telaCadastroCarteirinha.getIdTexto().setEnabled(false);
         this.telaCadastroCarteirinha.getClienteBox().addActionListener(this);
         this.telaCadastroCarteirinha.getDataInicio().addActionListener(this);
         for(int i = 0; i < listaCliente.size();i++){
             if(listaCliente.get(i).getStatus().length() == 1){
                  this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(listaCliente.get(i).getId()));
-            }
+                this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(listaCliente.get(i).getId()));
+        }
            
         }
         
         Controller.utilities.Utilities.ativa(true, this.telaCadastroCarteirinha.getBody());
+        
     }
     
    
@@ -74,12 +76,12 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
                 Cliente cliente = new Cliente();
                 cliente.setId(this.telaCadastroCarteirinha.getClienteBox().getSelectedIndex()+1);
                 Carteirinha carteirinha = new Carteirinha(listaCarteirinha.size() + 1, this.telaCadastroCarteirinha.getCodigoBarrasTexto().getText(), this.telaCadastroCarteirinha.getDataInicio().getText(),this.telaCadastroCarteirinha.getDataCancelamentoTexto().getText(), cliente);
-                
+                carteirinha.setId(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText()));
                 
                 CarteirinhaService.adicionar(carteirinha);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCarteirinha.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCarteirinha.getBody());
-                this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCarteirinha.size() + 1));
+                this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCarteirinha.size() + 1));
             }else if(listaCarteirinha.contains(listaCarteirinha.get(Integer.parseInt(this.telaCadastroCarteirinha.getIdTexto().getText())-1))){
                 
                 
@@ -92,7 +94,8 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
                 CarteirinhaService.atualizar(ct);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroCarteirinha.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroCarteirinha.getBody());
-                this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(DAO.ClasseDados.listaCarteirinha.size() + 1));
+                this.telaCadastroCarteirinha.getIdTexto().setText(Integer.toString(listaCarteirinha.size() + 1));
+                
             }
             }
           
@@ -100,8 +103,8 @@ public class ControllerCadCarteirinha  implements ActionListener, FocusListener{
             
         }else if(e.getSource() == this.telaCadastroCarteirinha.getBuscar()){
             this.telaCadastroCarteirinha.getClienteBox().removeAllItems();
-            for(int i = 0; i < DAO.ClasseDados.listaCliente.size();i++){
-            this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(DAO.ClasseDados.listaCliente.get(i).getId()));
+            for(int i = 0; i < listaCliente.size();i++){
+            this.telaCadastroCarteirinha.getClienteBox().addItem(Integer.toString(listaCliente.get(i).getId()));
         }
             telaBusca.setVisible(true);
         }else if(e.getSource() == this.telaCadastroCarteirinha.getNovoCliente()){

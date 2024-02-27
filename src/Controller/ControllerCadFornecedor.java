@@ -90,6 +90,7 @@ public class ControllerCadFornecedor implements ActionListener, FocusListener{
                 fn.setStatus(on);
                 fn.setComplementoEmdereco(this.telaCadastroFornecedor.getComplementoTexto().getText());
                 fn.setEndereco(endereco);
+                fn.setId(Integer.parseInt(this.telaCadastroFornecedor.getIdTexto().getText()));
                 FornecedorService.atualizar(fn);
                 Controller.utilities.Utilities.ativa(true, this.telaCadastroFornecedor.getBody());
                 Controller.utilities.Utilities.limpaComponentes(true, this.telaCadastroFornecedor.getBody());

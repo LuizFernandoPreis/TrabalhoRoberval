@@ -24,7 +24,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
     public void create(Produto objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO tblproduto (descricao, codigoBarra, status,valor) VALUES(?,?,?,?)";
+        String sqlExecutar = "INSERT INTO tblproduto (descricao, codigoBarra, status,valor,id) VALUES(?,?,?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -34,6 +34,7 @@ public class ProdutoDAO implements InterfaceDAO <Produto> {
             pstm.setString(2, objeto.getCodigoBarra());
             pstm.setString(3, objeto.getStatus());
             pstm.setFloat(4, objeto.getValor());
+            pstm.setInt(5, objeto.getId());
             pstm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);

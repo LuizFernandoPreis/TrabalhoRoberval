@@ -70,6 +70,7 @@ public class ControllerCadFuncionario implements ActionListener, FocusListener{T
                 this.telaCadastroFuncionario.getIdTexto().setText(Integer.toString(listaFuncionario.size() + 1));
                }else if(listaFuncionario.contains(listaFuncionario.get(Integer.parseInt(this.telaCadastroFuncionario.getIdTexto().getText())-1))){
                    funcionario F =  listaFuncionario.get(Integer.parseInt(this.telaCadastroFuncionario.getIdTexto().getText()) - 1);
+                   F.setId(Integer.parseInt(this.telaCadastroFuncionario.getIdTexto().getText()));
                    F.setCpf(this.telaCadastroFuncionario.getCpfTexto().getText());
                    F.setRg(this.telaCadastroFuncionario.getRgTexto().getText());
                    F.setUsuario(this.telaCadastroFuncionario.getUsuarioTexto().getText());

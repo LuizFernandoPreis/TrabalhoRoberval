@@ -77,7 +77,7 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha>{
     @Override
     public void create(Carteirinha objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT tblcarteirinha(codigoBarra,dataGeracao,dataCancelamento,tblcliente_id) VALUES(?,?,?,?)";
+        String sqlExecutar = "INSERT tblcarteirinha(codigoBarra,dataGeracao,dataCancelamento,tblcliente_id,id) VALUES(?,?,?,?,?)";
              
         PreparedStatement pstm;
         pstm = null;
@@ -87,8 +87,8 @@ public class CarteirinhaDAO implements InterfaceDAO<Carteirinha>{
             pstm.setString(1,objeto.getCodigoBarra());
             pstm.setString(2, objeto.getDataGeração());
             pstm.setString(3, objeto.getDataCancelamento());
-            pstm.setInt(4, objeto.getCliente().getId());
-            
+            pstm.setInt(4, 1);
+            pstm.setInt(5, objeto.getId());
             pstm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDAO.class.getName()).log(Level.SEVERE, null, ex);

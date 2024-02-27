@@ -22,7 +22,7 @@ public class FuncionarioDAO implements InterfaceDAO<funcionario>{
     @Override
     public void create(funcionario objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT tblfuncionario(cpf,rg,usuario,nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,senha) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        String sqlExecutar = "INSERT tblfuncionario(cpf,rg,usuario,nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,senha,id) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
              
         PreparedStatement pstm;
         pstm = null;
@@ -38,7 +38,8 @@ public class FuncionarioDAO implements InterfaceDAO<funcionario>{
             pstm.setString(8, objeto.getStatus());
             pstm.setString(9, objeto.getComplementoEmdereco());
             pstm.setInt(10, objeto.getEndereco().getId());
-            pstm.setString(11, objeto.getSenha()); 
+            pstm.setString(11, objeto.getSenha());
+            pstm.setInt(12, objeto.getId());
             
             pstm.execute();
         } catch (SQLException ex) {
