@@ -26,7 +26,7 @@ public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
     public void create(Fornecedor objeto) {
         
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT tblfornecedor(nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,razaoSocial,inscricaoestadual,cnpj) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String sqlExecutar = "INSERT tblfornecedor(nome,fone1,fone2,email,status,complementoendereco,tblendereco_id,razaoSocial,inscricaoestadual,cnpj,id) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
              
         PreparedStatement pstm;
         pstm = null;
@@ -43,6 +43,7 @@ public class FornecedorDAO implements InterfaceDAO <Fornecedor>{
             pstm.setString(8, objeto.getRazaoSocial());
             pstm.setString(9, objeto.getInscricaoEstadual());
             pstm.setString(10, objeto.getCnpj());
+            pstm.setInt(11, objeto.getId());
             pstm.execute();
             
         } catch (SQLException ex) {

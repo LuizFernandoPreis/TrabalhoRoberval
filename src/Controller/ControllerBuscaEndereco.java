@@ -152,7 +152,9 @@ public class ControllerBuscaEndereco implements ActionListener{
             }
             Controller.utilities.Utilities.limpaTabela(tabela);
             this.telaBuscaEndereco.dispose();
-        }
+        }if(e.getSource()== this.telaBuscaEndereco.getjButtonSair()){
+            this.telaBuscaEndereco.dispose();
+      }
     }
     
 }
