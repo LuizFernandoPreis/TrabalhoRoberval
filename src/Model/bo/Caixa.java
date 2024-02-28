@@ -18,7 +18,7 @@ public class Caixa {
     private float valorAbertura;
     private float valorFechamento;
     private String observacao;
-    private char status;
+    private String status;
     private funcionario funcionario;
     private MovimentoCaixa movimentoCaixa;
 
@@ -34,7 +34,7 @@ public class Caixa {
     }
     
 
-    public Caixa(int id, LocalDateTime dataHoraAbertura, LocalDateTime dataHoraFechamento, float valorAbertura, float valorFechamento, String observacao, char status, MovimentoCaixa movimentoCaixa) {
+    public Caixa(int id, LocalDateTime dataHoraAbertura, LocalDateTime dataHoraFechamento, float valorAbertura, float valorFechamento, String observacao, String status, MovimentoCaixa movimentoCaixa) {
         this.id = id;
         this.dataHoraAbertura = dataHoraAbertura;
         this.dataHoraFechamento = dataHoraFechamento;
@@ -93,11 +93,11 @@ public class Caixa {
         this.observacao = observacao;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

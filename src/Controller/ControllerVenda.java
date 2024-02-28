@@ -4,11 +4,13 @@
  */
 package Controller;
 
+import Model.bo.Caixa;
 import Model.bo.Carteirinha;
 import Model.bo.ItemVenda;
 import Model.bo.Produto;
 import Model.bo.Venda;
 import Model.bo.funcionario;
+import Service.CaixaService;
 import Service.ItemVendaService;
 import Service.ProdutoService;
 import Service.VendaService;
@@ -19,6 +21,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -50,7 +53,9 @@ public class ControllerVenda implements ActionListener{
         DocumentListener listener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                addProduto();
+                if(getCaixa()){
+                    addProduto();
+                }
             }
 
             @Override
@@ -63,6 +68,8 @@ public class ControllerVenda implements ActionListener{
                addProduto();
             }
         };
+        
+        
         this.vendas.getCodigobarraTexto().getDocument().addDocumentListener(listener);
         KeyListener l = new KeyListener(){
             @Override
@@ -182,5 +189,13 @@ public class ControllerVenda implements ActionListener{
        
     }
     
-    
+    public Boolean getCaixa(){
+        ArrayList<Caixa> listaCaixa = (ArrayList<Caixa>) CaixaService.carregar();
+        for(Caixa caixa: listaCaixa){
+            if(caixa.getStatus().length() < 2){
+                return true;
+            }
+        }
+        return false;
+    }
 }

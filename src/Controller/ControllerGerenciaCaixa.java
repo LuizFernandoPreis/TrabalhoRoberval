@@ -31,10 +31,7 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     private List<funcionario> listaFuncionario;
     private LocalDateTime dataAbertura;
     private LocalDateTime dataFechamento;
-    
-    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-    ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-    ScheduledExecutorService scheduler1 = Executors.newScheduledThreadPool(1);
+    private Controllers c = new Controllers(1);
 
 
     public ControllerGerenciaCaixa(GerenciamentoCaixa tela, Menu global) {
@@ -50,26 +47,14 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
             tela.getUsuarioBox().addItem(f.getNome());
         }
         
+        testeCaixa();
         
-      
+        this.c.setOn(1);
+        System.out.println(this.c.getOn());
+        setOn(1);
+        Utilities.setDatas(this.tela.getDataAbertura(), this.tela.getHoraAbertura(), this.c);
+        Utilities.setDatas(this.tela.getDataFechamento(), this.tela.getHoraFechamento(), this);
         
-         Runnable getData = () -> {
-            LocalDateTime datas = LocalDateTime.now();
-            
-            datas.format(formato);
-           this.tela.getHoraAbertura().setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());  
-           this.tela.getDataAbertura().setText(""+datas.getDayOfMonth()+"/"+datas.getMonthValue()+"/"+datas.getYear());
-           
-    };
-         Runnable getData1 = () -> {
-            LocalDateTime datas = LocalDateTime.now();
-            datas.format(formato);
-           this.tela.getHoraFechamento().setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());  
-           this.tela.getDataFechamento().setText(""+datas.getDayOfMonth()+"/"+datas.getMonthValue()+"/"+datas.getYear());
-           
-    };
-        scheduler.scheduleAtFixedRate(getData, 0, 1, TimeUnit.SECONDS);
-        scheduler1.scheduleAtFixedRate(getData1, 0, 1, TimeUnit.SECONDS);
 
     }
 
@@ -77,7 +62,7 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.tela.getAbrirCaixa())
         {
-         scheduler.shutdown();
+         setOn(0);
          dataAbertura = LocalDateTime.now();
          dataFechamento = LocalDateTime.now();
          
@@ -92,22 +77,51 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
          caixa.setValorFechamento(Float.parseFloat(tela.getSaldoFechamento().getText()));
          caixa.setObservacao(tela.getObservaçãoTexto().getText());
          caixa.setFuncionario(funcionario);
+         caixa.setStatus("a");
          CaixaService.adicionar(caixa);
         } else if(e.getSource() == this.tela.getFecharCaixa())
         {
-            System.out.println("c");
             
-            scheduler1.shutdown();
+            
+            
+            setOn(0);
             dataFechamento = LocalDateTime.now();
             
             Caixa caixa = new Caixa();
             caixa.setDataHoraFechamento(dataFechamento);
             caixa.setValorFechamento(Float.parseFloat(tela.getSaldoFechamento().getText()));
             caixa.setObservacao(tela.getObservaçãoTexto().getText());
+            caixa.setStatus("cc");
             caixa.setId(listaCaixa.size());
-            
+            System.out.println(caixa.getStatus().length());
             CaixaService.atualizar(caixa);
+            
+            this.tela.dispose();
         }
     }
     
+    
+    public void testeCaixa(){
+            for(Caixa caixa: listaCaixa){
+                System.out.println(caixa.getStatus());
+                if(caixa.getStatus().length() < 2){
+                    this.c.setOn(0);
+                    this.tela.getSaldoAbertura().setText(""+caixa.getValorAbertura());
+                    this.tela.getSaldoAbertura().setEnabled(false);
+                    LocalDateTime datas = caixa.getDataHoraAbertura();
+                    this.tela.getDataAbertura().setText(""+caixa.getDataHoraAbertura().getDayOfMonth()+"/"+caixa.getDataHoraAbertura().getMonthValue()+"/"+caixa.getDataHoraAbertura().getYear());
+                    this.tela.getHoraAbertura().setText(""+datas.getHour() + ":"+datas.getMinute() +":"+ datas.getSecond());
+                }
+            }
+        }
+
+    @Override
+    public int getOn() {
+        return super.getOn();
+    }
+    
+    @Override
+    public void setOn(int on) {
+        super.setOn(on);
+    }
     }

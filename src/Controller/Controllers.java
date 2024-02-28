@@ -11,6 +11,15 @@ package Controller;
 public class Controllers {
     private int on;
 
+    public Controllers(int on) {
+        this.on = on;
+    }
+
+    public Controllers() {
+    }
+    
+    
+
     public int getOn() {
         return on;
     }

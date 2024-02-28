@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import Controller.utilities.Utilities;
 import Model.bo.Bairro;
 import Model.bo.Caixa;
 import Model.bo.DAO.ConnectionFactory;
@@ -12,7 +13,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -23,7 +23,7 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
     @Override
     public void create(Caixa objeto) {
         Connection conexao = ConnectionFactory.getConnection();
-        String sqlExecutar = "INSERT INTO tblcaixa (dataHoraAbertura,dataHoraFechamento,valorAbertura,valorFechamento,observacao,tblfuncionario_id) VALUES(?,?,?,?,?,?)";
+        String sqlExecutar = "INSERT INTO tblcaixa (dataHoraAbertura,dataHoraFechamento,valorAbertura,valorFechamento,observacao,tblfuncionario_id,status) VALUES(?,?,?,?,?,?,?)";
        
         PreparedStatement pstm;
         pstm = null;
@@ -35,6 +35,7 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
             pstm.setFloat(4, objeto.getValorFechamento());
             pstm.setString(5, ""+objeto.getObservacao());
             pstm.setInt(6, objeto.getFuncionario().getId());
+            pstm.setString(7, objeto.getStatus());
             pstm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(BairroDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +61,10 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
             while(rst.next()){
                 Caixa bairro = new Caixa();
                 bairro.setId(rst.getInt("id"));
-
+                bairro.setStatus(rst.getString("status"));
+                bairro.setDataHoraAbertura(Utilities.StringToData(rst.getString("dataHoraAbertura")));
+                bairro.setDataHoraFechamento(Utilities.StringToData(rst.getString("dataHoraFechamento")));
+                bairro.setValorAbertura(rst.getFloat("valorAbertura"));
                 listaBairro.add(bairro);
             }
            
@@ -89,7 +93,8 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
         String sqlExecutar = " UPDATE tblcaixa"
                            + " SET datahorafechamento = ?,"
                            + "valorFechamento = ?,"
-                           +"observacao = ?"
+                           +"observacao = ?,"
+                           +"status = ?"
                            + " WHERE tblcaixa.id = ?" ;  
         PreparedStatement pstm = null;
         
@@ -98,7 +103,8 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
             pstm.setString(1, ""+objeto.getDataHoraFechamento());
             pstm.setFloat(2, objeto.getValorFechamento());
             pstm.setString(3, objeto.getObservacao());
-            pstm.setInt(4, objeto.getId());
+            pstm.setInt(5, objeto.getId());
+            pstm.setString(4, objeto.getStatus());
             pstm.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();

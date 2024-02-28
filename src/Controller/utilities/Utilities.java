@@ -8,8 +8,11 @@ import Controller.Controllers;
 import java.awt.Checkbox;
 import java.awt.Component;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -24,6 +27,25 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Utilities {
+    
+    public static LocalDateTime StringToData(String dataString){
+        // String a ser convertida para DateTime
+        String stringData = dataString;
+
+        // Formato da string
+        SimpleDateFormat formatoString = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime localDateTime = null;
+        try {
+            // Convertendo a string para Date
+            Date data = formatoString.parse(stringData);
+
+            // Convertendo Date para LocalDateTime (Java 8+)
+           localDateTime = data.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDateTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return localDateTime;
+    }
     
     public static void setDatas(JTextField data, JTextField hora, Controllers c){
          ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
