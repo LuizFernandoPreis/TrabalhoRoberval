@@ -48,6 +48,7 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
         }
         
         testeCaixa();
+        setValorFechamento();
         
         this.c.setOn(1);
         System.out.println(this.c.getOn());
@@ -58,6 +59,8 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
 
     }
 
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == this.tela.getAbrirCaixa())
@@ -92,8 +95,8 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
             caixa.setValorFechamento(Float.parseFloat(tela.getSaldoFechamento().getText()));
             caixa.setObservacao(tela.getObservaçãoTexto().getText());
             caixa.setStatus("cc");
+            
             caixa.setId(listaCaixa.size());
-            System.out.println(caixa.getStatus().length());
             CaixaService.atualizar(caixa);
             
             this.tela.dispose();
@@ -103,7 +106,6 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     
     public void testeCaixa(){
             for(Caixa caixa: listaCaixa){
-                System.out.println(caixa.getStatus());
                 if(caixa.getStatus().length() < 2){
                     this.c.setOn(0);
                     this.tela.getSaldoAbertura().setText(""+caixa.getValorAbertura());
@@ -123,5 +125,14 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     @Override
     public void setOn(int on) {
         super.setOn(on);
+    }
+    
+    public void setValorFechamento(){
+        for(Caixa caixa : listaCaixa){
+            if(caixa.getStatus().length() < 2){
+                tela.getSaldoFechamento().setText("" + caixa.getValorFechamento());
+                System.out.println(caixa.getValorFechamento());
+            }
+        }
     }
     }

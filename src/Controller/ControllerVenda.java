@@ -15,6 +15,8 @@ import Service.ItemVendaService;
 import Service.ProdutoService;
 import Service.VendaService;
 import View.CadastroVendas;
+import View.GerenciamentoCaixa;
+import View.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -37,22 +39,25 @@ public class ControllerVenda implements ActionListener{
     private LocalDateTime data;
     private List<Venda> listaVendas;
     private List<Produto> listaprodutos;
+    private List<Caixa> listaCaixa;
     private boolean qtd = false;
     private LocalDateTime dataHoraAtual;
     private int funcionarioId = 4;
+    private Caixa caixaId;
     DefaultTableModel tabela;
     
-    public ControllerVenda(CadastroVendas vendas) {
-        this.vendas = vendas;
+    public ControllerVenda(CadastroVendas tela) {
+        this.vendas = tela;
         this.data = data;
         listaprodutos = ProdutoService.carregar();
+        listaCaixa = CaixaService.carregar();
         tabela = (DefaultTableModel) this.vendas.getProdutosTabela().getModel();
-        System.out.println(listaprodutos);
         
         
         DocumentListener listener = new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
+                caixaPass();
                 if(getCaixa()){
                     addProduto();
                 }
@@ -60,12 +65,16 @@ public class ControllerVenda implements ActionListener{
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-               addProduto();
+               if(getCaixa()){
+                    addProduto();
+                }
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-               addProduto();
+               if(getCaixa()){
+                    addProduto();
+                }
             }
         };
         
@@ -81,6 +90,9 @@ public class ControllerVenda implements ActionListener{
                 if(e.isControlDown())
                 {
                     qtd = !qtd;
+                }
+                if(e.getKeyChar() == KeyEvent.VK_ESCAPE){
+                    vendas.dispose();
                 }
             }
 
@@ -101,6 +113,28 @@ public class ControllerVenda implements ActionListener{
         
     
     
+    public void caixaPass(){
+        if(!isCaixaOpen()){
+            Menu menu = new Menu();
+            GerenciamentoCaixa tela = new GerenciamentoCaixa();
+            ControllerGerenciaCaixa caixa = new ControllerGerenciaCaixa(tela, menu);
+            vendas.dispose();
+            System.out.println("cu");
+            tela.setVisible(true);
+        };
+    } 
+    
+    
+    
+    public boolean isCaixaOpen(){
+        for(Caixa caixa : listaCaixa){
+            if(caixa.getStatus().length() < 2){
+                caixaId = caixa;
+                return true;
+            };
+        }
+        return false;
+    }
     
     
     public void addProduto(){
@@ -163,6 +197,7 @@ public class ControllerVenda implements ActionListener{
         venda.setFuncionario(funcionario);
         
         VendaService.adicionar(venda);
+        
         for(int i = 0; i < tabela.getRowCount();i++)
         {
             Produto produto = new Produto();
@@ -178,7 +213,8 @@ public class ControllerVenda implements ActionListener{
             ItemVendaService.adicionar(itemVenda);
         }
        
-        
+        caixaId.setValorFechamento( caixaId.getValorFechamento() +  Float.parseFloat(vendas.getValorTexto().getText()));
+        CaixaService.atualizar(caixaId);
         tabela.setRowCount(0);
         this.vendas.getCodigobarraTexto().setText("");
     }

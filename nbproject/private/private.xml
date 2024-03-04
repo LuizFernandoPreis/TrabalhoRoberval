@@ -5,8 +5,11 @@
         <group>
             <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/Controller/ControllerVenda.java</file>
             <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/DAO/CaixaDAO.java</file>
-            <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/Service/CaixaService.java</file>
+            <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/View/CadastroVendas.java</file>
+            <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/View/GerenciamentoCaixa.java</file>
             <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/Controller/ControllerGerenciaCaixa.java</file>
+            <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/View/TelaMovimentoCaixa.java</file>
+            <file>file:/C:/Users/aluno/Documents/trabalhoRober/TrabalhoRoberval/src/View/Menu.java</file>
         </group>
     </open-files>
 </project-private>
