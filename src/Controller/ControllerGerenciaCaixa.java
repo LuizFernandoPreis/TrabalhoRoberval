@@ -51,7 +51,6 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
         setValorFechamento();
         
         this.c.setOn(1);
-        System.out.println(this.c.getOn());
         setOn(1);
         Utilities.setDatas(this.tela.getDataAbertura(), this.tela.getHoraAbertura(), this.c);
         Utilities.setDatas(this.tela.getDataFechamento(), this.tela.getHoraFechamento(), this);
@@ -130,7 +129,7 @@ public class ControllerGerenciaCaixa extends Controllers implements ActionListen
     public void setValorFechamento(){
         for(Caixa caixa : listaCaixa){
             if(caixa.getStatus().length() < 2){
-                tela.getSaldoFechamento().setText("" + caixa.getValorFechamento());
+                tela.getSaldoFechamento().setText("" + caixa.getValorFechamento() + 1);
                 System.out.println(caixa.getValorFechamento());
             }
         }

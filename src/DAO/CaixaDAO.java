@@ -65,6 +65,7 @@ public class CaixaDAO implements InterfaceDAO <Caixa>{
                 bairro.setDataHoraAbertura(Utilities.StringToData(rst.getString("dataHoraAbertura")));
                 bairro.setDataHoraFechamento(Utilities.StringToData(rst.getString("dataHoraFechamento")));
                 bairro.setValorAbertura(rst.getFloat("valorAbertura"));
+                bairro.setValorFechamento(rst.getFloat("valorFechamento"));
                 listaBairro.add(bairro);
             }
            
