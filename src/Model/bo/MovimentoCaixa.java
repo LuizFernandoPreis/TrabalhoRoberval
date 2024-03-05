@@ -15,14 +15,14 @@ public class MovimentoCaixa {
     private int id;
     private LocalDateTime dataHoraMovimento;
     private float valorMovimento;
-    private char flagTipoMovimento;
+    private String flagTipoMovimento;
     private String observacao;
     private char status;
 
     public MovimentoCaixa() {
     }
 
-    public MovimentoCaixa(int id, LocalDateTime dataHoraMovimento, float valorMovimento, char flagTipoMovimento, String observacao, char status) {
+    public MovimentoCaixa(int id, LocalDateTime dataHoraMovimento, float valorMovimento, String flagTipoMovimento, String observacao, char status) {
         this.id = id;
         this.dataHoraMovimento = dataHoraMovimento;
         this.valorMovimento = valorMovimento;
@@ -55,11 +55,11 @@ public class MovimentoCaixa {
         this.valorMovimento = valorMovimento;
     }
 
-    public char getFlagTipoMovimento() {
+    public String getFlagTipoMovimento() {
         return flagTipoMovimento;
     }
 
-    public void setFlagTipoMovimento(char flagTipoMovimento) {
+    public void setFlagTipoMovimento(String flagTipoMovimento) {
         this.flagTipoMovimento = flagTipoMovimento;
     }
 
